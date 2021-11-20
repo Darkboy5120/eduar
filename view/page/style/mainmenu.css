@@ -1,0 +1,208 @@
+@import url("../../component/style/global.css");
+
+@keyframes vertical-floating {
+    from {
+        top: 0;
+    } to {
+        top: -10%;
+    }
+}
+
+body {
+    background-color: rgb(50, 50, 50);
+    background-image: linear-gradient(to bottom, rgba(50, 150, 50, .6), rgba(150, 150, 150, .8), rgba(250, 50, 50, .6));
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coregame-container {
+    width: 100%;
+    height: 100%;
+}
+.coregame-container.focus-enemies > #enemy-team > .fighter-container,
+.coregame-container.focus-all > #enemy-team > .fighter-container,
+.coregame-container.focus-all > #ally-team > .fighter-container,
+.coregame-container.focus-allies > #ally-team > .fighter-container {
+    background-color: white;
+}
+.coregame-container.focus-enemies > #enemy-team > .fighter-container:hover,
+.coregame-container.focus-all > #enemy-team > .fighter-container:hover,
+.coregame-container.focus-all > #ally-team > .fighter-container:hover,
+.coregame-container.focus-allies > #ally-team > .fighter-container:hover {
+    background-color: red;
+    cursor: pointer;
+}
+.fighter-container {
+    position: relative;
+    height: 30%;
+}
+.fighter-container > progress {
+    position: absolute;
+    bottom: -.5rem;
+    display: block;
+    font-size: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 3;
+}
+.fighter-container > .focus-arrow {
+    position: absolute;
+    clip-path: polygon(50% 100%,0% 0%,100% 0%);
+    top: 0;
+    z-index: 3;
+    height: 10%;
+    width: 15%;
+    background-image: linear-gradient(to bottom, green, white, red);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    animation: vertical-floating 1s linear alternate-reverse infinite;
+}
+.fighter-container > img {
+    height: 100%;
+}
+#ally-team,
+#enemy-team {
+    height: 90%;
+    position: absolute;
+    z-index: 5;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+#ally-team {
+    left: 10%;
+}
+#enemy-team {
+    right: 10%;
+    transform: scaleX(-1);
+}
+.moveset {
+    background-color: white;
+    width: 25%;
+    height: 30%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 100px 100px 0 0;
+}
+.ms-skill {
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    background-color: red;
+    position: absolute;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+}
+.ms-skill > .description {
+    display: none;
+    z-index: 2;
+}
+.ms-skill.active {
+}
+.ms-skill.focused {
+    border-color: pink !important;
+}
+.ms-skill.pressed > .description {
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    background-color: black;
+    color: white;
+    border: 3px solid gold;
+    padding: 1rem 2rem;
+    min-width: 8rem;
+    min-height: 5rem;
+}
+.ms-skill > img {
+    height: 100%;
+    object-fit: cover;
+}
+.ms-skill.active:hover {
+    border-color: green;
+}
+.ms-skill.active.focus {
+    border-color: gold;
+}
+.ms-s0 {
+    left: 5%;
+    bottom: 25%;
+}
+.ms-s1 {
+    left: 25%;
+    bottom: 55%;
+}
+.ms-s2 {
+    right: 25%;
+    bottom: 55%;
+}
+.ms-s3 {
+    right: 5%;
+    bottom: 25%;
+}
+
+.mainmenu-container {
+    width: 30%;
+    height: 30%;
+    background-color: rgba(150, 150, 150, .5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 4px solid black;
+}
+
+h2 {
+    font-size: 1.8rem;
+    width: 70%;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'Courier New', Courier, monospace;
+    border: 4px solid black;
+    background-color: rgb(60, 150, 150);
+}
+
+h2:hover {
+    background-color: rgb(50, 150, 50);
+}
+
+.square-item {
+    height: 1rem;
+    width: 1rem;
+    background-color: rgba(150, 150, 150, .5);
+    position: absolute;
+    z-index: 2;
+    border: 4px solid black;
+    border-radius: 5px;
+}
+
+.si-0 {
+    top: 20%;
+    left: 30%;
+}
+.si-1 {
+    top: 70%;
+    left: 20%;
+}
+.si-2 {
+    top: 50%;
+    left: 70%;
+}
+.si-3 {
+    top: 80%;
+    left: 40%;
+}

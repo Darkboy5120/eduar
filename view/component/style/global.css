@@ -1,0 +1,9 @@
+html, body {
+    margin: 0;
+}
+.hidden {
+    display: none !important;
+}
+.invisible {
+    visibility: hidden;
+}
