@@ -1,24 +1,24 @@
 <div class="modal hidden" id="modal-signin-form">
     <div class="modal-card-big">
         <div class="modal-header">
-            <h2></h2>
+            <h2>Inicio de sesión</h2>
             <button><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body">
             <form>
-                <h2>Llena tus datos</h2>
+                <h3>Llena tus datos</h3>
                 <div class="input">
-                    <label for="email">Correo</label>
-                    <input id="email" type="email">
+                    <label for="signin-email">Correo</label>
+                    <input id="signin-email" type="email" placeholder="ejemplo@gmail.com">
                     <span class="log"></span>
                 </div>
                 <div class="input">
-                    <label for="password">Contraseña</label>
-                    <input id="password" type="password">
+                    <label for="signin-password">Contraseña</label>
+                    <input id="signin-password" type="password">
                     <span class="log"></span>
                 </div>
-                <button type="button" id="submit-signin">Iniciar sesión</button>
-                <p>¿Aun no tienes cuenta? registrate <a href="">aquí</a></p>
+                <button type="button" id="signin-submit">Iniciar sesión</button>
+                <p>¿Aun no tienes cuenta? registrate <span id="signin-to-signup">aquí</span></p>
             </form>
         </div>
     </div>
@@ -31,40 +31,44 @@
         </div>
         <div class="modal-body">
             <form>
-                <h2>Llena tus datos</h2>
+                <h3>Llena tus datos</h3>
                 <div class="input">
-                    <label for="firstname">Nombre(s)</label>
-                    <input id="firstname" type="text">
+                    <label for="signup-firstname">Nombre(s)</label>
+                    <input id="signup-firstname" type="text">
                     <span class="log"></span>
                 </div>
                 <div class="input">
-                    <label for="lastname">Apellido(s)</label>
-                    <input id="lastname" type="text">
+                    <label for="signup-lastname">Apellido(s)</label>
+                    <input id="signup-lastname" type="text">
                     <span class="log"></span>
                 </div>
                 <div class="input">
-                    <label for="email">Correo</label>
-                    <input id="email" type="email">
+                    <label for="signup-email">Correo</label>
+                    <input id="signup-email" type="email" placeholder="ejemplo@gmail.com">
                     <span class="log"></span>
                 </div>
                 <div class="input">
-                    <label for="password">Contraseña</label>
-                    <input id="password" type="password">
+                    <label for="signup-password">Contraseña</label>
+                    <input id="signup-password" type="password" placeholder="Solo números y letras">
+                    <span class="help">Solo números y letras</span>
                     <span class="log"></span>
                 </div>
                 <div class="input">
-                    <label for="confirm-password">Confirmar ontraseña</label>
-                    <input id="confirm-password" type="password">
+                    <label for="signup-confirm-password">Confirmar contraseña</label>
+                    <input id="signup-confirm-password" type="password">
                     <span class="log"></span>
                 </div>
                 <div class="input">
-                    <label for="birthdate">Fecha de nacimiento</label>
-                    <input id="birthdate" type="datetime-local">
+                    <label for="signup-birthdate">Fecha de nacimiento</label>
+                    <input id="signup-birthdate" type="date">
                     <span class="log"></span>
                 </div>
-                <label><input type="checkbox" id="politics"> Acepto los términos y condiciones de uso</label><br>
-                <button type="button" id="submit-signup">Crear cuenta</button>
-                <p>¿Ya tienes cuenta? inicia sesión <a href="">aquí</a></p>
+                <div class="checkbox">
+                    <label><input type="checkbox" id="signup-politics"> Acepto los términos y condiciones de uso</label>
+                    <span class="log"></span>
+                </div>
+                <button type="button" id="signup-submit">Crear cuenta</button>
+                <p>¿Ya tienes cuenta? inicia sesión <span id="signup-to-signin">aquí</span></p>
             </form>
         </div>
     </div>

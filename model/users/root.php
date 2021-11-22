@@ -15,5 +15,5 @@ $mi0 = new MysqlInterface(
     "localhost",
     "root",
     "",
-    "rentacar"
+    "tesis"
 );

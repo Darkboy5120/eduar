@@ -5,10 +5,12 @@ export const Navbar = function () {
         element.setAttribute("tabindex", "0");
         const show = () => {
             content.classList.add("dropdown-content-animation");
+            content.classList.remove("hidden");
             element.classList.add("active");
             active = true;
         }
         const dismiss = () => {
+            content.classList.add("hidden");
             content.classList.remove("dropdown-content-animation");
             element.classList.remove("active");
             active = false;

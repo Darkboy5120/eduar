@@ -1,0 +1,86 @@
+@import url("../../component/style/global.css");
+@import url("../../component/style/navbar.css");
+@import url("../../component/style/form.css");
+@import url("../../component/style/alert_me.css");
+
+body {
+    background-color: #F3F3F3;
+}
+
+.container > h1,
+.container > p {
+    text-align: center;
+}
+.quicksearch {
+    padding: 5vw;
+}
+.quickfilters {
+    background-color: #C4C4C4;
+    height: min-content;
+    display: flex;
+    padding: 0;
+}
+.quickfilters > a {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    margin: 0 5px 0 5px;
+    padding: .7rem;
+    cursor: pointer;
+}
+.categories-container {
+    background-color: #E5E5E5;
+}
+.categories-container > h2 {
+    margin: 0;
+    padding-top: 1rem;
+}
+.categories-container > h2,
+.categories-container > p {
+    text-align: center;
+}
+.categories {
+    padding: 1rem 5vw 4rem 5vw;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(6, 1fr);
+    position: relative;
+}
+.categories > .log {
+    margin-top: 4rem;
+    font-size: 1.2rem;
+    grid-column: 3 / 5;
+    text-align: center;
+}
+.categories > .loading {
+    position: absolute;
+    margin-top: 4rem;
+    font-size: 3rem;
+    justify-self: center;
+}
+.categories > a {
+    margin: 10%;
+    height: 10vw;
+    width: 10vw;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    position: relative;
+}
+.categories > a > i {
+    height: 40%;
+    margin: 0;
+    padding-top: .5rem;
+    font-size: 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.categories > a > p {
+    font-weight: bold;
+}

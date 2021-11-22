@@ -65,6 +65,7 @@ create table `user` (
   `lastname` varchar(50) not null,
   `birthdate` date not null,
   `password` varchar(255) not null,
+  `registerdate` timestamp default current_timestamp not null,
   primary key(pk_email)
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
@@ -295,5 +296,31 @@ create table `notification_aplication_comment` (
   foreign key(fk_aplicationcomment_id) references aplication_comment(pk_id) on delete cascade,
   foreign key(fk_notification_id) references notification(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
+
+insert into `aplication_category` (`name`) values ("Matemáticas"),
+("Agronomía"),
+("Física y astronomía"),
+("Salud y producción animal"),
+("Química"),
+("Antropología y arqueología"),
+("Sociología"),
+("Biología"),
+("Psicología"),
+("Educación"),
+("Ingenieria"),
+("Arquitectura"),
+("Urbanismo"),
+("Geografía"),
+("Artes"),
+("Ciencias de la tierra"),
+("Ciencias jurídicas y políticas"),
+("Ciencias económicas y administrativas"),
+("Tecnología y ciencias medicas"),
+("Filosofía"),
+("Linguistuca"),
+("Literatura"),
+("Historia"),
+("Ciencias biomémicas"),
+("Ciencias clínicas");
 
 COMMIT;

@@ -47,7 +47,7 @@
     align-items: center;
     justify-content: flex-end;
 }
-.quick-actions > .dropdown > i {
+.dropdown > i {
     border: 2px solid black;
     border-radius: 5px;
 }
@@ -60,7 +60,6 @@
 .dropdown-content {
     position: absolute;
     min-width: 10vw;
-    top: 0;
     right: 0;
     padding: 10%;
     justify-content: center;
@@ -70,7 +69,7 @@
     height: min-content;
     opacity: 0;
     transition: top .3s ease, opacity .5s ease;
-    z-index: -1;
+    z-index: -5 !important;
     border: 2px solid black;
 }
 .dropdown-content > * {

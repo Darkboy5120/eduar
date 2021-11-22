@@ -30,7 +30,7 @@ class MysqlInterface {
         $this->link->set_charset($this->charset);
     }
   
-    private function sanitize ($par) {
+    public function sanitize ($par) {
         $par = $this->link->real_escape_string($par);
         return $par;
     }
@@ -56,17 +56,8 @@ class MysqlInterface {
         );
     }
   
-    public function query ($meta_sql) {
+    public function query ($sql) {
         $this->log = "";
-        $sql_par = array();
-        for ($i = 0; $i < func_num_args()-1; $i++) {
-            $par = func_get_arg($i+1);
-            $par = $this->sanitize($par);
-            $par = "'" . $par . "'";
-            array_push($sql_par, $par);
-        }
-        $sql = $this->parseMetaSql($meta_sql, $sql_par);
-        
         $this->result = $this->link->query($sql);
         $this->log = $this->link->error;
     }

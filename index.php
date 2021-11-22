@@ -1,4 +1,6 @@
 <?php
+require "./model/libraries/cs_interface.php";
+
 $VIEW_PAGE_FOLDER = "view/page";
 $VIEW_MAIN_PAGE_FOLDER = "$VIEW_PAGE_FOLDER/main";
 $VIEW_MODAL_PAGE_FOLDER = "$VIEW_PAGE_FOLDER/modals";
@@ -15,16 +17,16 @@ function get_requested_page() {
 }
 function display_page($page) {
     global $VIEW_MAIN_PAGE_FOLDER, $VIEW_PAGE_FOLDER, $CONTROLLER_PAGE_FOLDER,
-        $VIEW_COMPONENT_CONTENT_FOLDER, $VIEW_MODAL_PAGE_FOLDER, $VIEW_CONTENT_PAGE_FOLDER;
+        $VIEW_COMPONENT_CONTENT_FOLDER, $VIEW_MODAL_PAGE_FOLDER, $VIEW_CONTENT_PAGE_FOLDER, $ci0;
     switch ($page) {
         case "welcome":
             require_once("$VIEW_MAIN_PAGE_FOLDER/welcome.php");
             break;
-        case "mainmenu":
-            require_once("$VIEW_MAIN_PAGE_FOLDER/mainmenu.php");
+        case "home":
+            require_once("$VIEW_MAIN_PAGE_FOLDER/home.php");
             break;
         default:
-            header("Location: ?p=mainmenu");
+            header("Location: ?p=welcome");
     }
 }
 function display_requested_page() {

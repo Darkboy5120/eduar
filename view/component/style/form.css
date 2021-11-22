@@ -1,7 +1,7 @@
 .input-success-log {
     color: green;
 }
-.input-success-log {
+.input-error-log {
     color: red;
 }
 
@@ -12,7 +12,8 @@ form {
 form > h2 {
     text-align: center;
 }
-form > .input {
+form > .input,
+form > .checkbox {
     display: flex;
     flex-direction: column;
     margin-bottom: .5rem;
@@ -42,4 +43,26 @@ form > button {
     width: 70%;
     font-size: 1.1rem;
     align-self: center;
+    cursor: pointer;
+}
+form > p {
+    text-align: center;
+}
+form > p > span {
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+form > .checkbox > label {
+    font-weight: bold;
+    cursor: pointer;
+    padding: .2rem;
+    border: 1px solid transparent;
+}
+form > .checkbox > label:hover {
+    border: 1px solid black;
+    user-select: none;
+}
+form > .checkbox > label > input {
+    cursor: pointer;
 }
