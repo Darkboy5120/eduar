@@ -25,6 +25,12 @@ function display_page($page) {
         case "home":
             require_once("$VIEW_MAIN_PAGE_FOLDER/home.php");
             break;
+        case "myar":
+            require_once("$VIEW_MAIN_PAGE_FOLDER/myar.php");
+            break;
+        case "newar":
+            require_once("$VIEW_MAIN_PAGE_FOLDER/newar.php");
+            break;
         default:
             header("Location: ?p=welcome");
     }

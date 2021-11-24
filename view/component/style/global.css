@@ -7,3 +7,24 @@ html, body {
 .invisible {
     visibility: hidden;
 }
+
+.button-danger,
+.button-success {
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 1px solid black;
+}
+
+.button-danger {
+    background-color: rgb(230, 0, 0);;
+}
+.button-danger:active {
+    background-color: rgb(255, 0, 0);
+}
+.button-success {
+    background-color: rgb(55, 179, 55);
+}
+.button-success:active {
+    background-color: rgb(77, 189, 77);
+}

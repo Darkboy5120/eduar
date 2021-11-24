@@ -1,3 +1,7 @@
+<?php
+$ci0->setSession("securitykey", $ci0->getSecurityKey());
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

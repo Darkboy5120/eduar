@@ -1,7 +1,7 @@
 export const Navbar = function () {
     const make_dropdown = (element) => {
         let active = false;
-        let content = element.querySelector(".dropdown-content");
+        let content = element.querySelector(".dropdown-content:not(.hidden)");
         element.setAttribute("tabindex", "0");
         const show = () => {
             content.classList.add("dropdown-content-animation");
@@ -29,7 +29,6 @@ export const Navbar = function () {
         element.addEventListener("click", e => {
             switch_status();
             e.stopPropagation();
-            e.preventDefault();
         });
         return {
             dismiss: dismiss,

@@ -33,12 +33,25 @@ $mi0->query("
     VALUES
         ('$email', '$firstname', '$lastname', '$birthdate', '$password')"
 );
-if ($mi0->result === TRUE) {
-    $last_user_id = $mi0->link->insert_id;
-    $mi0->end('commit', 0, $last_user_id);
-} else {
+if ($mi0->result === FALSE) {
     if ($mi0->getErrorName() === "DUPLICATE_KEY") {
         $mi0->end("rollback", -3, NULL);
     }
     $mi0->end("rollback", -4, NULL);
 }
+
+$mi0->query("
+    INSERT INTO consumer
+        (fk_user_id)
+    VALUES
+        ('$email')"
+);
+if ($mi0->result === TRUE) {
+    $ci0->setSession("user_data", array(
+        "pk_email" => $email,
+        "firstname" => $firstname,
+        "lastname" => $lastname
+    ));
+    $mi0->end('commit', 0, NULL);
+}
+$mi0->end("rollback", -5, NULL);

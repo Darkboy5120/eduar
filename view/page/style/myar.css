@@ -1,0 +1,37 @@
+@import url("../../component/style/global.css");
+@import url("../../component/style/navbar.css");
+@import url("../../component/style/modal.css");
+@import url("../../component/style/form.css");
+@import url("../../component/style/alert_me.css");
+
+body {
+    background-color: #F3F3F3;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+.header > h1,
+.header > p {
+    text-align: center;
+}
+.header > button,
+.header a > button {
+    padding: .5rem;
+    cursor: pointer;
+}
+.container {
+}
+.container > .loading {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.loading > i {
+    font-size: 3rem;
+}
+
+

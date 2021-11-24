@@ -25,7 +25,8 @@
 }
 .navbar .dropdown > i,
 .dropdown-content > span,
-.dropdown-content > i {
+.dropdown-content > i,
+.dropdown-content > a {
     cursor: pointer;
     user-select: none;
 }
@@ -72,11 +73,14 @@
     z-index: -5 !important;
     border: 2px solid black;
 }
-.dropdown-content > * {
+.dropdown-content > *:not(p) {
     margin-bottom: .2rem;
     background-color: #EBEBEB;
     padding-bottom: .3rem !important;
     padding-top: .3rem !important;
+}
+.dropdown-content > p {
+    margin: 0 0 .5rem 0;
 }
 .dropdown.right > .dropdown-content {
     right: unset !important;
