@@ -24,6 +24,8 @@ body {
     cursor: pointer;
 }
 .container {
+    /* DEBE ESTAR EN TODOS */
+    padding: 0 5vw 5vw 5vw;
 }
 .container > .loading {
     margin: 2rem;
@@ -34,4 +36,98 @@ body {
     font-size: 3rem;
 }
 
-
+.myar > .header {
+    display: grid;
+    flex-direction: row;
+    height: 5rem;
+    grid-template-columns: 50% 1fr;
+    padding: 1rem;
+}
+.myar > .header > .left {
+    display: inline-flex;
+    flex-direction: column;
+}
+.myar > .header > .left {
+    justify-self: flex-start;
+}
+.header > .left > .actions {
+    display: flex;
+}
+.header > .left > .actions > button,
+.header > .left > .actions > .actions-pages > button {
+    margin-right: .5rem;
+}
+.header > .left > .actions > .actions-pages > button.active {
+    background-color: black;
+    color: white;
+}
+.myar > .header > .right {
+    display: flex;
+    justify-self: flex-end;
+}
+.header > .right > .filter {
+    margin-left: 1rem;
+}
+.filter > .actions > select {
+    width: 100%;
+}
+.results {
+    padding: 2vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    background-color: #E5E5E5;
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+.results > .app {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.results > .app > img {
+    height: 10rem;
+    background-color: lightblue;
+    object-fit: cover;
+}
+.results > .app > .info {
+    display: grid;
+    padding: .5rem;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 4rem 2rem;
+    background-color: white;
+}
+.app > .info > *:nth-child(1) {
+    grid-column: 1 / 6;
+    grid-row: 1;
+    margin: 0;
+}
+.app > .info > *:nth-child(2) {
+    grid-column: 6 / 9;
+    grid-row: 1;
+    justify-self: flex-end;
+}
+.app > .info > *:nth-child(3) {
+    grid-column: 1 / 5;
+    grid-row: 2;
+    align-self: flex-end;
+}
+.app > .info > *:nth-child(4) {
+    grid-column: 5 / 9;
+    grid-row: 2;
+    justify-self: flex-end;
+    font-size: .8rem;
+    align-self: flex-end;
+}
+.app > .dropdown {
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+    height: 2rem;
+}
+.app > .dropdown > i {
+    color: white;
+}
+.app > .dropdown > i:hover {
+    color: black;
+}

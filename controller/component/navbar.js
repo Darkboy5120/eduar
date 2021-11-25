@@ -38,10 +38,17 @@ export const Navbar = function () {
             element: element
         }
     }
+
+    let dropdowns = [];
+
+    const add_dropdown = (element) => {
+        dropdowns.push(make_dropdown(element));
+    }
+
     const main = () => {
-        let dropdowns = [];
+
         document.querySelectorAll(".dropdown").forEach(e => {
-            dropdowns.push(make_dropdown(e));
+            add_dropdown(e);
         });
         const was_any_dropdown_clicked = (target) => {
             let result = false;
@@ -80,6 +87,7 @@ export const Navbar = function () {
     }
     
     return {
-        main : main
+        main : main,
+        add_dropdown : add_dropdown
     }
 }

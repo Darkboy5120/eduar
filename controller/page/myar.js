@@ -3,9 +3,14 @@ import { Navbar } from "../component/navbar.js";
 import { Form } from "../component/form.js";
 import { AlertMe } from "../component/alert_me.js";
 import { RequestMe } from "../component/request_me.js";
+import { AdvanceSearch } from "../component/advance_search.js";
 
 (function () {
-    Navbar().main();
+    let navbarController = Navbar();
+    navbarController.main();
+
+    let advanceSearch = AdvanceSearch("#myar", navbarController);
+    advanceSearch.main();
 
     const become_developer = () => {
         let submit_button = document.querySelector("#become-developer");
@@ -49,7 +54,6 @@ import { RequestMe } from "../component/request_me.js";
         loadingEl.classList.add("hidden");
         let fooEl2 = document.querySelector("#is-dev-empty");
         let fooEl3 = document.querySelector("#is-dev-full");
-        console.log(response);
 
         switch (response.code) {
             case 0:
@@ -63,6 +67,10 @@ import { RequestMe } from "../component/request_me.js";
                 break;
             default:
                 document.querySelector("#not-dev").classList.remove("hidden");
+        }
+
+        if (response.code == 1 || response.code == 2) {
+            advanceSearch.get_ar();
         }
     });
 

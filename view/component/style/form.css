@@ -33,6 +33,13 @@ form > h2 {
     border-radius: 5px;
     border: 1px solid #B0B0B0;
 }
+.input > select {
+    padding-top: 1rem;
+    padding-left: .5rem;
+    height: 3rem;
+    border-radius: 5px;
+    border: 1px solid #B0B0B0;
+}
 .input > textarea {
     padding-top: 1rem;
     padding-left: .5rem;
@@ -117,6 +124,10 @@ form > p > span {
     display: flex;
     scroll-snap-align: start;
 }
+.file-container > .file-images > .file-image > img {
+    height: 100%;
+    background-color: rgb(145, 145, 145);
+}
 .file-container > .file-images > .file-image > .file-remove {
     opacity: 0;
     display: block;
@@ -177,4 +188,8 @@ form > p > span {
     padding-right: .3rem;
 }
 .file-container > .file-button:hover {
+}
+
+input + span.input-log {
+    display: block;
 }

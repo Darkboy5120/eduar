@@ -139,7 +139,6 @@ create table `aplication` (
   `lastupdate` timestamp default current_timestamp not null,
   `registerdate` timestamp default current_timestamp not null,
   primary key(pk_id),
-  unique key(fk_developer_id),
   unique key(name),
   unique key(filepath),
   foreign key(fk_developer_id) references developer(fk_consumer_id) on delete cascade,
@@ -160,7 +159,6 @@ create table `aplication_image` (
   `pk_filepath` varchar(255) not null,
   `fk_aplication_id` smallint unsigned not null,
   primary key(pk_filepath),
-  unique key(fk_aplication_id),
   foreign key(fk_aplication_id) references aplication(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 

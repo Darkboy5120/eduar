@@ -3,7 +3,8 @@
         <i class="fas fa-bars"><span>EduAR</span></i>
         <div class="dropdown-content">
             <!--<span>foo</span>-->
-            <a href="">¿Que es EduAR?</a>
+            <a href="?p=home">Categorias</a>
+            <a href="?p=welcome">¿Que es EduAR?</a>
             <a href="">Objetivos</a>
             <a href="">Para maestros</a>
             <a href="">Guía para desarrolladores</a>
@@ -19,8 +20,8 @@
         <div class="dropdown">
             <i class="fas fa-user-circle"></i>
             <div class="dropdown-content">
-                <span id="ndd-signin-modal">Iniciar sesión</span>
-                <span id="ndd-signup-modal">Crear cuenta</span>
+                <button id="ndd-signin-modal">Iniciar sesión</button>
+                <button id="ndd-signup-modal">Crear cuenta</button>
                 <!--<a href="">foo</a>-->
             </div>
             <div class="dropdown-content">
@@ -29,7 +30,7 @@
                 <a id="ndd-signin-modal" href="?p=myprofile">Ver perfil</a>
                 <a id="ndd-signup-modal" href="?p=myar">Mis AR</a>
                 <a id="ndd-signup-modal" href="?p=myfavorites">Mis favoritos</a>
-                <span id="ndd-signup">Cerrar sesión</span>
+                <button id="ndd-signup">Cerrar sesión</button>
                 <!--<a href="">foo</a>-->
             </div>
         </div>

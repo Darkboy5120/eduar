@@ -15,17 +15,17 @@ export const FileControl = function (inputSelector, options) {
             log.print("error", log.message.empty);
             return false;
         } else if ("error", files.length < options.min) {
-            log.print(log.message.minLength);
+            log.print("error", log.message.minLength);
             return false;
         } else if ("error", files.length > options.max) {
-            log.print(log.message.maxLength);
+            log.print("error", log.message.maxLength);
             return false;
         }
         log.print("success", log.message.success);
         return true;
     }
-    const plural = " imágen";
-    const singular = " imagénes";
+    const plural = " archivo";
+    const singular = " archivos";
     let log = {
         element: input.element.parentNode.parentNode.querySelector(".input-log"),
         message: {
@@ -34,7 +34,8 @@ export const FileControl = function (inputSelector, options) {
             maxLength: "No debes agregar más de " + options.max + ((options.max > 1)
             ? plural : singular),
             empty: "El campo esta vacío",
-            success : "El campo es correcto"
+            success : "El campo es correcto",
+            regex : "No se permite ese tipo de archivo",
         },
         print: (type, message) => {
             log.element.textContent = message;
@@ -76,10 +77,10 @@ export const FileControl = function (inputSelector, options) {
             if (f.length) this.files = f;
             for (let i = 0; i < this.files.length; i++) {
                 let file = this.files[i];
-                let imageType = /image.*/;
+                let fileType = options.regex;
             
                 const isDuplicated = files.filter(f => file.name == f.name).length > 0;
-                if (!file.type.match(imageType)) {
+                if (!file.type.match(fileType)) {
                   continue;
                 } else if (isDuplicated) {
                     continue;
@@ -233,4 +234,44 @@ export const FileControl = function (inputSelector, options) {
         reset_is_edited: reset_is_edited,
         is_edited: is_edited
     };
+}
+
+export const FileControlDumb = function (inputSelector, fileType) {
+    let input = document.querySelector(inputSelector);
+
+    const log = {
+        element : input.parentNode.querySelector(".input-log"),
+        write : (type, message) => {
+            if (type == "success") {
+                log.element.classList.add("input-success-log");
+                log.element.classList.remove("input-error-log");
+            } else if (type == "error") {
+                log.element.classList.remove("input-success-log");
+                log.element.classList.add("input-error-log");
+            }
+
+            log.element.textContent = message;
+            log.element.classList.remove("hidden");
+        }, hide : () => {
+            log.element.add("hidden");
+        }
+    }
+
+    const isOk = () => {
+        if (input.files.length == 0) {
+            log.write("error", "El campo esta vacío");
+            return false;
+        } else if (input.files[0].type != fileType) {
+            log.write("error", "Ese tipo de archivo es invalido");
+            return false;
+        }
+
+        log.write("success", "El campo es correcto");
+        return true;
+    }
+
+    return {
+        isOk : isOk,
+        input : input,
+    }
 }

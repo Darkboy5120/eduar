@@ -31,12 +31,12 @@ export const Form = {
             hide : () => {
                 logEl.classList.add("hidden");
             },
-            success : "El valor es correcto",
+            success : "El campo es correcto",
             error : {
                 min : (data.type == "number") ? "No debe ser menor que " + data.min : "No debe tener menos de " + data.min + " caracteres",
                 min : (data.type == "number") ? "No debe ser mayor que " + data.min : "No debe tener más de " + data.min + " caracteres",
                 empty : "El campo esta vacío",
-                regex : "El valor es incorrecto"
+                regex : "El campo es incorrecto"
             }
         }
 
@@ -128,6 +128,56 @@ export const Form = {
             value : value,
             scrollIntoView : scrollIntoView,
             input : inputEl
+        }
+    },
+
+    Select : (selector) => {
+        let inputEl = document.querySelector(selector);
+        let containerEl = inputEl.parentNode;
+        let logEl = containerEl.querySelector(".log");
+
+        const value = () => {
+            return inputEl.value;
+        }
+        
+        const isOk = () => {
+            if (value() == "") {
+                log.write("error", "El campo esta vacío");
+                return false;
+            } else {
+                log.hide();
+            }
+
+            return true;
+        }
+
+        const scrollIntoView = () => {
+            inputEl.scrollIntoView();
+        }
+
+        const log = {
+            write  : (type, text) => {
+                if (type == "success") {
+                    logEl.classList.add(INPUT_SUCCESS_LOG_CLASS);
+                    logEl.classList.remove(INPUT_ERROR_LOG_CLASS);
+                } else if (type == "error") {
+                    logEl.classList.remove(INPUT_SUCCESS_LOG_CLASS);
+                    logEl.classList.add(INPUT_ERROR_LOG_CLASS);
+                }
+                logEl.innerHTML = text;
+                logEl.classList.remove("hidden");
+            },
+            hide : () => {
+                logEl.classList.add("hidden");
+            }
+        }
+
+        return {
+            log : log,
+            value : value,
+            scrollIntoView : scrollIntoView,
+            select : inputEl,
+            isOk : isOk
         }
     }
 };

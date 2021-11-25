@@ -27,6 +27,12 @@ if (isset($_REQUEST["api"])) {
         case "consumer_check_app_name":
             require "./web/consumer/check_app_name.php";
             break;
+        case "developer_create_app":
+            require "./web/developer/create_app.php";
+            break;
+        case "developer_get_ar":
+            require "./web/developer/get_ar.php";
+            break;
         default: echo json_encode("That's not a valid api");
     }
 }

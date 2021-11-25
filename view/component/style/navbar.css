@@ -10,12 +10,16 @@
 }
 .navbar span,
 .navbar i,
-.navbar a {
+.navbar a,
+.dropdown button,
+.dropdown i,
+.dropdown button {
     color: black;
     padding: 0 .5rem;
     height: 80%;
     display: flex;
     align-items: center;
+    border: none;
 }
 .navbar i {
     font-size: 1.2rem;
@@ -23,20 +27,22 @@
 .navbar i {
     height: 100%;
 }
-.navbar .dropdown > i,
-.dropdown-content > span,
+.dropdown > i,
+.dropdown-content > button,
 .dropdown-content > i,
 .dropdown-content > a {
     cursor: pointer;
     user-select: none;
 }
-.navbar .dropdown > i > span,
-.navbar .dropdown-content > i > span {
+.dropdown > i > span,
+.dropdown-content > i > span {
     padding-left: 10px;
 }
 .navbar span:hover,
-.navbar .dropdown > i:hover,
-.navbar a:hover {
+.dropdown > i:hover,
+.navbar a:hover,
+.dropdown button:hover,
+.dropdown a:hover {
     background-color: rgb(215, 185, 50);
     color: black;
 }
@@ -70,7 +76,6 @@
     height: min-content;
     opacity: 0;
     transition: top .3s ease, opacity .5s ease;
-    z-index: -5 !important;
     border: 2px solid black;
 }
 .dropdown-content > *:not(p) {

@@ -20,6 +20,12 @@
                         <span>Elije un título llamativo para tu aplicación</span>
                     </div>
                     <div class="input">
+                        <label for="pre-category">Categoria</label>
+                        <select id="pre-category"></select>
+                        <span class="log"></span>
+                        <span>De esta forma los uusarios podran encontrar más fácil tu aplicación</span>
+                    </div>
+                    <div class="input">
                         <label for="pre-desc">Descripción</label>
                         <textarea id="pre-desc" rows="5"></textarea>
                         <span class="log"></span>
@@ -41,7 +47,7 @@
             <h2>Imágenes</h2>
             <div class="step-container">
                 <div class="input-layout">
-                    <label for="input-others-image">Sube todas las imágenes que usaras</label>
+                    <label for="input-others-image">Otras imágenes</label>
                     <div class="input-field">
                         <input class="hidden" id="input-others-image" type="file" multiple="true">
                         <div class="input-secondary file-container long">
@@ -57,6 +63,7 @@
                         </div>
                     </div>
                     <span class="input-log hidden"></span>
+                    <p>Estas son las imágenes adicionales que se mostraran en la página de tu aplicación.</p>
                 </div>
                 <div class="input-layout">
                     <label for="input-thumbnail-image">Miniatura</label>
@@ -95,6 +102,12 @@
                     </div>
                     <span class="input-log hidden"></span>
                     <p>Esta imágen se mostrara en la página de la aplicación AR, deberia ser una imagen grande.</p>
+                </div>
+                <div class="input-layout">
+                    <label for="input-apk-file">Aplicación</label>
+                    <input type="file" id="input-apk-file">
+                    <span class="input-log hidden"></span>
+                    <p>Tiene que se una archivo apk.</p>
                 </div>
             </div>
             <div class="actions">

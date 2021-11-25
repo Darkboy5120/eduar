@@ -3,7 +3,7 @@ import { Navbar } from "../component/navbar.js";
 import { Form } from "../component/form.js";
 import { AlertMe } from "../component/alert_me.js";
 import { RequestMe } from "../component/request_me.js";
-import { FileControl } from "../component/file_control.js";
+import { FileControl, FileControlDumb } from "../component/file_control.js";
 
 (function () {
     Navbar().main();
@@ -71,6 +71,7 @@ import { FileControl } from "../component/file_control.js";
                     min : 5,
                     max : 255,
                 }),
+                category : Form.Select("#pre-category")
             },
             submit : {
                 element : document.querySelector("#pre-submit"),
@@ -118,45 +119,53 @@ import { FileControl } from "../component/file_control.js";
                 back : document.querySelector("#images-back")
             },
             input : {
-                add_image_others : new FileControl("#input-others-image", {
-                    min: 1, max: 20
+                others : new FileControl("#input-others-image", {
+                    min: 1, max: 5, regex: /image.*/
                 }),
-                add_image_thumbnail : new FileControl("#input-thumbnail-image", {
-                    min: 1, max: 1
+                thumbnail : new FileControl("#input-thumbnail-image", {
+                    min: 1, max: 1, regex : /image.*/
                 }),
-                add_image_background : new FileControl("#input-background-image", {
-                    min: 1, max: 1
+                background : new FileControl("#input-background-image", {
+                    min: 1, max: 1, regex : /image.*/
                 }),
+                apk : new FileControlDumb("#input-apk-file", "application/vnd.android.package-archive")
             },
             submit : {
                 element : document.querySelector("#images-submit"),
                 onclick : () => {
-                    console.log(form.images.isOk());
                     if (!form.images.isOk()) return;
 
                     const submitEl = form.images.submit.element;
                     const defaultSubmitText = submitEl.innerHTML;
                     submitEl.innerHTML = "<i class='fas fa-sync-alt fa-spin'></i> Cargando...";
 
-                    /*const name = form.images.input.name.value();
-
                     RequestMe.post("model/apis/", {
-                        api: "consumer_check_app_name",
-                        name: name,
+                        api: "developer_create_app",
+                        name: form.presentation.input.name.value(),
+                        category: form.presentation.input.category.value(),
+                        description : form.presentation.input.description.value(),
+                        github : form.presentation.input.github.value(),
+                        images_other_0 : form.images.input.others.val()[0],
+                        images_other_1 : form.images.input.others.val()[1],
+                        images_other_2 : form.images.input.others.val()[2],
+                        images_other_3 : form.images.input.others.val()[3],
+                        images_other_4 : form.images.input.others.val()[4],
+                        images_thumbnail : form.images.input.thumbnail.val()[0],
+                        images_background : form.images.input.background.val()[0],
+                        file_apk : form.images.input.apk.input.files[0],
                     }).then(response => {
-                        console.log(response);
                         submitEl.innerHTML = defaultSubmitText;
                         switch (response.code) {
                             case 0:
-                                newar.step.next();
-                                break;
-                            case 1:
-                                form.presentation.input.name.log.write("error", "Ese nombre ya esta en uso");
+                                new AlertMe("Genial", "Aplicación subida correctamente, regresando a Mis AR");
+                                window.setTimeout(() => {
+                                    location = "?p=myar"
+                                }, 3000);
                                 break;
                             default:
                                 new AlertMe("Error", "Ha ocurrido un error, intente de nuevo por favor");
                         }
-                    });*/
+                    });
                 }
             },
             isOk : () => {
@@ -182,6 +191,24 @@ import { FileControl } from "../component/file_control.js";
         form.images.submit.onclick();
     });
 
+    RequestMe.post("model/apis/", {
+        api: "global_get_categories",
+    }).then(response => {
+        switch (response.code) {
+            case 0:
+                let categories = response.data;
+                for (let name in categories) {
+                    let node = document.createElement("option");
+                    node.setAttribute("value", categories[name].pk_id);
+                    node.textContent = categories[name].name;
+                    form.presentation.input.category.select.appendChild(node);
+                }
+                break;
+            default:
+                new AlertMe("Error", "Ha ocurrido un error, intente de nuevo por favor");
+        }
+    });
+
     let test = {
         presentation : () => {
             form.presentation.input.name.input.value = "eduar";
@@ -197,5 +224,4 @@ import { FileControl } from "../component/file_control.js";
     }
 
     test.presentation();
-
 })();

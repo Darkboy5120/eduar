@@ -5,7 +5,7 @@
             <button><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body">
-            <button id="become-developer">Activar modo programador</button>
+            <button id="become-developer">Activar modo desarrollador</button>
             <button id="m-bdw-cancel">Cancelar</button>
         </div>
     </div>
