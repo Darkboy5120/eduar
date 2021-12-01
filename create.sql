@@ -17,7 +17,8 @@ drop table if exists `aplication_comment`;
 drop table if exists `aplication_download`;
 drop table if exists `aplication_favorite`;
 drop table if exists `aplication_endorsement`;
-drop table if exists `aplication_unique_interaction`;
+drop table if exists `aplication_interaction`;
+drop table if exists `interaction`;
 drop table if exists `aplication_image_background`;
 drop table if exists `aplication_image_thumbnail`;
 drop table if exists `aplication_image`;
@@ -27,6 +28,7 @@ drop table if exists `aplication_category`;
 drop table if exists `verified_developer`;
 drop table if exists `developer`;
 drop table if exists `consumer`;
+drop table if exists `user_notification`;
 drop table if exists `notification`;
 drop table if exists `checker`;
 drop table if exists `user_photo`;
@@ -79,23 +81,29 @@ create table `user_photo` (
 
 create table `checker` (
   `fk_user_id` varchar(50) not null,
-  unique key(fk_user_id),
+  primary key(fk_user_id),
   foreign key(fk_user_id) references user(pk_email) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `notification` (
+  `type` varchar(25) not null,
+  primary key(type)
+) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
+
+create table `user_notification` (
   `pk_id` smallint unsigned not null auto_increment,
   `fk_user_id` varchar(50) not null,
   `ischecked` enum("0", "1") not null,
-  `type` enum("0", "1", "2", "3", "4", "5", "6", "7") not null,
+  `fk_notification_type` varchar(25) not null,
   `registerdate` timestamp default current_timestamp not null,
   primary key(pk_id),
-  foreign key(fk_user_id) references user(pk_email) on delete cascade
+  foreign key(fk_user_id) references user(pk_email) on delete cascade,
+  foreign key(fk_notification_type) references notification(type) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `consumer` (
   `fk_user_id` varchar(50) not null,
-  unique key(fk_user_id),
+  primary key(fk_user_id),
   foreign key(fk_user_id) references user(pk_email) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
@@ -106,6 +114,7 @@ create table `developer` (
   `website` varchar(255) null,
   `linkedln` varchar(255) null,
   `github` varchar(255) null,
+  primary key(fk_consumer_id),
   foreign key(fk_consumer_id) references consumer(fk_user_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
@@ -116,7 +125,7 @@ create table `verified_developer` (
   `fronthumanidpath` varchar(255) null,
   `isverified` enum("0", "1") not null,
   `registerdate` timestamp default current_timestamp not null,
-  unique key(fk_developer_id),
+  primary key(fk_developer_id),
   unique key(phone),
   foreign key(fk_developer_id) references developer(fk_consumer_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
@@ -151,7 +160,7 @@ create table `aplication_version` (
   `description` varchar(255) not null,
   `version` decimal(5,3) not null,
   `registerdate` timestamp default current_timestamp not null,
-  unique key(fk_aplication_id, version),
+  primary key(fk_aplication_id, version),
   foreign key(fk_aplication_id) references aplication(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
@@ -180,42 +189,54 @@ create table `aplication_image_background` (
   foreign key(fk_aplicationimage_id) references aplication_image(pk_filepath) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
-create table `aplication_unique_interaction` (
+create table `interaction` (
+  `type` varchar(25) not null,
+  primary key(type)
+) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
+
+create table `aplication_interaction` (
   `pk_id` smallint unsigned not null auto_increment,
   `fk_aplication_id` smallint unsigned not null,
   `fk_consumer_id` varchar(50) not null,
+  `fk_interaction_type` varchar(25) not null,
   `registerdate` timestamp default current_timestamp not null,
   primary key(pk_id),
-  unique key(fk_aplication_id, fk_consumer_id),
   foreign key(fk_aplication_id) references aplication(pk_id) on delete cascade,
-  foreign key(fk_consumer_id) references consumer(fk_user_id) on delete cascade
+  foreign key(fk_consumer_id) references consumer(fk_user_id) on delete cascade,
+  foreign key(fk_interaction_type) references interaction(type) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `aplication_endorsement` (
-  `fk_aplicationuniqueinteraction_id` smallint unsigned not null,
-  foreign key(fk_aplicationuniqueinteraction_id) references aplication_unique_interaction(pk_id) on delete cascade
+  `fk_aplicationinteraction_id` smallint unsigned not null,
+  `fk_aplicationinteraction_type` varchar(25) not null,
+  primary key(fk_aplicationinteraction_id, fk_aplicationinteraction_type),
+  foreign key(fk_aplicationinteraction_id) references aplication_interaction(pk_id) on delete cascade,
+  foreign key(fk_aplicationinteraction_type) references aplication_interaction(fk_interaction_type) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `aplication_favorite` (
-  `fk_aplicationuniqueinteraction_id` smallint unsigned not null,
-  foreign key(fk_aplicationuniqueinteraction_id) references aplication_unique_interaction(pk_id) on delete cascade
+  `fk_aplicationinteraction_id` smallint unsigned not null,
+  `fk_aplicationinteraction_type` varchar(25) not null,
+  primary key(fk_aplicationinteraction_id, fk_aplicationinteraction_type),
+  foreign key(fk_aplicationinteraction_id) references aplication_interaction(pk_id) on delete cascade,
+  foreign key(fk_aplicationinteraction_type) references aplication_interaction(fk_interaction_type) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `aplication_download` (
-  `fk_aplicationuniqueinteraction_id` smallint unsigned not null,
-  foreign key(fk_aplicationuniqueinteraction_id) references aplication_unique_interaction(pk_id) on delete cascade
+  `fk_aplicationinteraction_id` smallint unsigned not null,
+  `fk_aplicationinteraction_type` varchar(25) not null,
+  primary key(fk_aplicationinteraction_id, fk_aplicationinteraction_type),
+  foreign key(fk_aplicationinteraction_id) references aplication_interaction(pk_id) on delete cascade,
+  foreign key(fk_aplicationinteraction_type) references aplication_interaction(fk_interaction_type) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `aplication_comment` (
   `pk_id` smallint unsigned not null auto_increment,
-  `fk_aplication_id` smallint unsigned not null,
-  `fk_consumer_id` varchar(50) not null,
+  `fk_aplicationinteraction_id` smallint unsigned not null,
   `comment` varchar(255) not null,
-  `registerdate` timestamp default current_timestamp not null,
   primary key(pk_id),
-  unique key(fk_aplication_id, fk_consumer_id),
-  foreign key(fk_aplication_id) references aplication(pk_id) on delete cascade,
-  foreign key(fk_consumer_id) references consumer(fk_user_id) on delete cascade
+  unique key(fk_aplicationinteraction_id),
+  foreign key(fk_aplicationinteraction_id) references aplication_interaction(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `aplication_comment_reaction` (
@@ -226,7 +247,7 @@ create table `aplication_comment_reaction` (
   primary key(pk_id),
   unique key(fk_consumer_id, fk_aplicationcomment_id),
   foreign key(fk_reaction_id) references comment_reaction(pk_id) on delete cascade,
-  foreign key(fk_aplicationcomment_id) references aplication_comment(pk_id) on delete cascade,
+  foreign key(fk_aplicationcomment_id) references aplication_comment(fk_aplicationinteraction_id) on delete cascade,
   foreign key(fk_consumer_id) references consumer(fk_user_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
@@ -241,61 +262,62 @@ create table `developer_karma_achievement` (
 
 create table `notification_verified_developer` (
   `fk_verifieddeveloper_id` varchar(50) not null,
-  `fk_notification_id` smallint unsigned not null,
+  `fk_usernotification_id` smallint unsigned not null,
   foreign key(fk_verifieddeveloper_id) references verified_developer(fk_developer_id) on delete cascade,
-  foreign key(fk_notification_id) references notification(pk_id) on delete cascade
+  foreign key(fk_usernotification_id) references user_notification(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `notification_karma_achievement` (
   `fk_karmaachievement_id` smallint unsigned not null,
-  `fk_notification_id` smallint unsigned not null,
+  `fk_usernotification_id` smallint unsigned not null,
   foreign key(fk_karmaachievement_id) references karma_achievement(pk_id) on delete cascade,
-  foreign key(fk_notification_id) references notification(pk_id) on delete cascade
+  foreign key(fk_usernotification_id) references user_notification(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `notification_karma_level` (
   `fk_karmalevel_id` smallint unsigned not null,
-  `fk_notification_id` smallint unsigned not null,
+  `fk_usernotification_id` smallint unsigned not null,
   foreign key(fk_karmalevel_id) references karma_level(pk_level) on delete cascade,
-  foreign key(fk_notification_id) references notification(pk_id) on delete cascade
+  foreign key(fk_usernotification_id) references user_notification(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `notification_aplication_comment_reaction` (
   `fk_aplicationcommentreaction_id` smallint unsigned not null,
-  `fk_notification_id` smallint unsigned not null,
+  `fk_usernotification_id` smallint unsigned not null,
   foreign key(fk_aplicationcommentreaction_id) references aplication_comment_reaction(pk_id) on delete cascade,
-  foreign key(fk_notification_id) references notification(pk_id) on delete cascade
+  foreign key(fk_usernotification_id) references user_notification(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `notification_aplication_download` (
   `fk_aplicationdownload_id` smallint unsigned not null,
-  `fk_notification_id` smallint unsigned not null,
-  foreign key(fk_aplicationdownload_id) references aplication_download(fk_aplicationuniqueinteraction_id) on delete cascade,
-  foreign key(fk_notification_id) references notification(pk_id) on delete cascade
+  `fk_usernotification_id` smallint unsigned not null,
+  foreign key(fk_aplicationdownload_id) references aplication_download(fk_aplicationinteraction_id) on delete cascade,
+  foreign key(fk_usernotification_id) references user_notification(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `notification_aplication_endorsement` (
   `fk_aplicationendorsement_id` smallint unsigned not null,
-  `fk_notification_id` smallint unsigned not null,
-  foreign key(fk_aplicationendorsement_id) references aplication_endorsement(fk_aplicationuniqueinteraction_id) on delete cascade,
-  foreign key(fk_notification_id) references notification(pk_id) on delete cascade
+  `fk_usernotification_id` smallint unsigned not null,
+  foreign key(fk_aplicationendorsement_id) references aplication_endorsement(fk_aplicationinteraction_id) on delete cascade,
+  foreign key(fk_usernotification_id) references user_notification(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `notification_aplication_favorite` (
   `fk_aplicationfavorite_id` smallint unsigned not null,
-  `fk_notification_id` smallint unsigned not null,
-  foreign key(fk_aplicationfavorite_id) references aplication_favorite(fk_aplicationuniqueinteraction_id) on delete cascade,
-  foreign key(fk_notification_id) references notification(pk_id) on delete cascade
+  `fk_usernotification_id` smallint unsigned not null,
+  foreign key(fk_aplicationfavorite_id) references aplication_favorite(fk_aplicationinteraction_id) on delete cascade,
+  foreign key(fk_usernotification_id) references user_notification(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `notification_aplication_comment` (
   `fk_aplicationcomment_id` smallint unsigned not null,
-  `fk_notification_id` smallint unsigned not null,
+  `fk_usernotification_id` smallint unsigned not null,
   foreign key(fk_aplicationcomment_id) references aplication_comment(pk_id) on delete cascade,
-  foreign key(fk_notification_id) references notification(pk_id) on delete cascade
+  foreign key(fk_usernotification_id) references user_notification(pk_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
-insert into `aplication_category` (`name`) values ("Matemáticas"),
+insert into `aplication_category` (`name`) values
+("Matemáticas"),
 ("Agronomía"),
 ("Física y astronomía"),
 ("Salud y producción animal"),
@@ -320,5 +342,20 @@ insert into `aplication_category` (`name`) values ("Matemáticas"),
 ("Historia"),
 ("Ciencias biomémicas"),
 ("Ciencias clínicas");
+
+insert into `interaction` (`type`) values
+("download"),
+("endorsement"),
+("favorite");
+
+insert into `notification` (`type`) values
+("aplication_comment"),
+("aplication_download"),
+("aplication_endorsement"),
+("aplication_favorite"),
+("comment_reaction"),
+("karma_level"),
+("karma_achievement"),
+("verified_developer");
 
 COMMIT;

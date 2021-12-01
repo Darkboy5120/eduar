@@ -1,3 +1,5 @@
+import { RequestMe } from "../component/request_me.js";
+
 export const Navbar = function () {
     const make_dropdown = (element) => {
         let active = false;
@@ -85,6 +87,80 @@ export const Navbar = function () {
             add_keyboard_events(d);
         });
     }
+
+    let searchInputEl = document.querySelector("#search");
+    let searchResultsEl = searchInputEl.parentNode.querySelector(".search-results");
+    let searchThrottle = 1000;
+    let searchTimeout = null;
+
+    const controlSearch = (e) => {
+        let searchValue = e.target.value;
+        if (searchValue.length == 0) {
+            searchResultsEl.classList.add("hidden");
+            return;
+        }
+        else if (searchTimeout != null) window.clearTimeout(searchTimeout);
+        searchResultsEl.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-sync-alt fa-spin"></i>
+            </div>
+        `;
+        searchResultsEl.classList.remove("hidden");
+        searchTimeout = window.setTimeout(() => {
+            doSearch(searchValue);
+        }, searchThrottle);
+    }
+
+    const doSearch = (search_value) => {
+        RequestMe.post("model/apis/", {
+            api: "global_search_ar",
+            search_value: search_value
+        }).then(response => {
+            switch (response.code) {
+                case 0:
+                    searchResultsEl.innerHTML = "";
+                    let aplications = response.data;
+                    for (let name in aplications) {
+                        let node = document.createElement("a");
+                        node.classList.add("s-result");
+                        node.setAttribute("href", `?p=seear&aplication=${aplications[name].pk_id}`);
+                        node.innerHTML = `
+                            <p>${aplications[name].name}</p>
+                            <span>Por ${aplications[name].firstname}</span>
+                            <div class="stats">
+                                <i class="far fa-heart"> ${aplications[name].favorites}</i>
+                                <i class="far fa-thumbs-up"> ${aplications[name].endorsements}</i>
+                                <i class="fas fa-download"> ${aplications[name].downloads}</i>
+                            </div>
+                        `;
+                        searchResultsEl.appendChild(node);
+                    }
+                    break;
+                case -3:
+                    searchResultsEl.innerHTML = `
+                        <p class="empty">No se encontraron resultados</p>
+                    `;
+                    break;
+                default:
+                    searchResultsEl.innerHTML = `
+                        <p class="error">Ha ocurrido un problema al intentar hacer la búsquedad, por favor intente de nuevo</p>
+                    `;
+            }
+        });
+    }
+
+    searchInputEl.addEventListener("keyup", e => {
+        controlSearch(e);
+    });
+    searchInputEl.addEventListener("blur", e => {
+        window.setTimeout(() => {
+            if (searchTimeout != null) window.clearTimeout(searchTimeout);
+            searchResultsEl.classList.add("hidden");
+        }, 200);
+    });
+    searchInputEl.addEventListener("focus", e => {
+        controlSearch(e);
+    });
     
     return {
         main : main,

@@ -31,6 +31,18 @@ function display_page($page) {
         case "newar":
             require_once("$VIEW_MAIN_PAGE_FOLDER/newar.php");
             break;
+        case "searchar":
+            require_once("$VIEW_MAIN_PAGE_FOLDER/searchar.php");
+            break;
+        case "seear":
+            require_once("$VIEW_MAIN_PAGE_FOLDER/seear.php");
+            break;
+        case "myfavorite":
+            require_once("$VIEW_MAIN_PAGE_FOLDER/myfavorite.php");
+            break;
+        case "profile":
+            require_once("$VIEW_MAIN_PAGE_FOLDER/profile.php");
+            break;
         default:
             header("Location: ?p=welcome");
     }

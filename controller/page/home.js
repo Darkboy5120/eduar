@@ -16,7 +16,7 @@ import { Sign } from "../component/sign.js";
                 <i class="fas fa-tag"></i>
                 <p>${category.name}</p>
             `;
-            node.setAttribute("href", `?p=search&category=${category.pk_id}`);
+            node.setAttribute("href", `?p=searchar&category=${category.pk_id}`);
             categoriesEl.appendChild(node);
         }
     }

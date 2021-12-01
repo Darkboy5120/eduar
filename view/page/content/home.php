@@ -6,9 +6,9 @@
     <p>Tenemos muchas AR que te pueden brindarte grandes beneficios en tus clases</p>
     <div class="quicksearch">
         <div class="quickfilters">
-            <a href="?p=search&filter=0">Lo más reciente</a>
-            <a href="?p=search&filter=1"> Más popular</a>
-            <a href="?p=search&filter=2">Más descargado</a>
+            <a href="?p=searchar&orderby=0">Más descargado</a>
+            <a href="?p=searchar&orderby=1"> Más popular</a>
+            <a href="?p=searchar&orderby=2">Más favoritos</a>
         </div>
         <div class="categories-container">
             <h2>Categorias AR</h2>

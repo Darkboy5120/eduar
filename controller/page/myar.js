@@ -9,7 +9,15 @@ import { AdvanceSearch } from "../component/advance_search.js";
     let navbarController = Navbar();
     navbarController.main();
 
-    let advanceSearch = AdvanceSearch("#myar", navbarController);
+    let modal = {
+        become_developer_warning : Modal("#modal-become-developer-warning"),
+        remove_app_warning : Modal("#modal-remove-app-warning")
+    }
+
+    let advanceSearch = AdvanceSearch("#myar", navbarController, {
+        type : "myar",
+        modal : modal
+    });
     advanceSearch.main();
 
     const become_developer = () => {
@@ -20,7 +28,6 @@ import { AdvanceSearch } from "../component/advance_search.js";
         RequestMe.post("model/apis/", {
             api: "global_become_developer",
         }).then(response => {
-            console.log(response);
             submit_button.innerHTML = default_submit_text;
             switch (response.code) {
                 case 0:
@@ -32,15 +39,14 @@ import { AdvanceSearch } from "../component/advance_search.js";
         });
     }
 
-    let modal = {
-        become_developer_warning : Modal("#modal-become-developer-warning")
-    }
-
     document.querySelector("#become-developer-trigger").addEventListener("click", () => {
         modal.become_developer_warning.show();
     });
     document.querySelector("#m-bdw-cancel").addEventListener("click", () => {
         modal.become_developer_warning.hide();
+    });
+    document.querySelector("#m-raw-cancel").addEventListener("click", () => {
+        modal.remove_app_warning.hide();
     });
     document.querySelector("#become-developer").addEventListener("click", () => {
         modal.become_developer_warning.hide();
@@ -52,14 +58,13 @@ import { AdvanceSearch } from "../component/advance_search.js";
     }).then(response => {
         let loadingEl = document.querySelector(".container > .loading");
         loadingEl.classList.add("hidden");
-        let fooEl2 = document.querySelector("#is-dev-empty");
-        let fooEl3 = document.querySelector("#is-dev-full");
 
         switch (response.code) {
             case 0:
                 document.querySelector("#not-dev").classList.remove("hidden");
                 break;
             case 1:
+                document.querySelector("#myar").classList.remove("hidden");
                 document.querySelector("#is-dev-full").classList.remove("hidden");
                 break;
             case 2:

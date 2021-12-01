@@ -44,7 +44,7 @@ export const Sign = () => {
                         submitEl.innerHTML = defaultSubmitText;
                         switch (response.code) {
                             case 0:
-                                location = "?p=home";
+                                location = location;
                                 //modal.signin.hide();
                                 /*new AlertMe("Genial", "Iniciando sesión...");
                                 window.setInterval(() => {
@@ -143,7 +143,7 @@ export const Sign = () => {
                                 modal.signup.hide();
                                 new AlertMe("Genial", "Cuenta creada correctamente, iniciando sesión...");
                                 window.setInterval(() => {
-                                    location = "?p=home";
+                                    location = location;
                                 }, 3000);
                                 break;
                             case -3:
@@ -245,4 +245,8 @@ export const Sign = () => {
         }
     }
     //test.signup();
+
+    return {
+        modal : modal
+    }
 }

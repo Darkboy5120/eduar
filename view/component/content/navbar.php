@@ -13,7 +13,9 @@
     </div>
     <div class="input-search">
         <i class="fas fa-search"></i>
-        <input type="text">
+        <input type="text" id="search" autocomplete="off">
+        <div class="search-results hidden">
+        </div>
     </div>
     <div class="quick-actions">
         <!--<a href="">foo</a>-->
@@ -27,9 +29,9 @@
             <div class="dropdown-content">
                 <p data-username></p>
                 <p data-email></p>
-                <a id="ndd-signin-modal" href="?p=myprofile">Ver perfil</a>
+                <a id="ndd-signin-modal" href="?p=profile">Ver perfil</a>
                 <a id="ndd-signup-modal" href="?p=myar">Mis AR</a>
-                <a id="ndd-signup-modal" href="?p=myfavorites">Mis favoritos</a>
+                <a id="ndd-signup-modal" href="?p=myfavorite">Mis favoritos</a>
                 <button id="ndd-signup">Cerrar sesión</button>
                 <!--<a href="">foo</a>-->
             </div>

@@ -12,6 +12,8 @@ function dataIsAllRight () {
         || !isset($_REQUEST["category"])
     ) {
         return FALSE;
+    } else if (count($_FILES) != 7) {
+
     }
     //checar que el archivo sea apk
     //checar que las imagenes tambien
@@ -56,7 +58,7 @@ $last_aplication_id = $mi0->link->insert_id;
 foreach ($_FILES as $name => $file) {
     if ($name == "images_background"
         || $name == "images_thumbnail"
-        || $name == "images_other"
+        || strpos($name, "images_other") !== FALSE
         ) {
 
             while (TRUE) {

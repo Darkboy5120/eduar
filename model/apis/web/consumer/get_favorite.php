@@ -36,13 +36,17 @@ function getArSql ($email, $category_sql, $orderby_sql, $order_sql, $offset, $li
     FROM
         aplication
     LEFT JOIN
-        (user, aplication_image, aplication_image_thumbnail)
+        (user, aplication_image, aplication_image_thumbnail, aplication_interaction,
+            aplication_favorite)
     ON
         (aplication.fk_developer_id = user.pk_email
             AND aplication.pk_id = aplication_image.fk_aplication_id
-            AND aplication_image_thumbnail.fk_aplicationimage_id = aplication_image.pk_filepath)
+            AND aplication_image_thumbnail.fk_aplicationimage_id = aplication_image.pk_filepath
+            AND aplication_favorite.fk_aplicationinteraction_id
+            AND aplication_interaction.fk_aplication_id = aplication.pk_id)
     WHERE
-        aplication.fk_developer_id = '$email' $category_sql
+        aplication_interaction.fk_consumer_id = '$email' $category_sql
+    GROUP BY aplication.pk_id
     ORDER BY
         $orderby_sql
     $order_sql

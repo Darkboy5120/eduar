@@ -42,7 +42,7 @@ function getArSql ($email, $category_sql, $orderby_sql, $order_sql, $offset, $li
             AND aplication.pk_id = aplication_image.fk_aplication_id
             AND aplication_image_thumbnail.fk_aplicationimage_id = aplication_image.pk_filepath)
     WHERE
-        aplication.fk_developer_id = '$email' $category_sql
+        aplication.fk_developer_id <> '$email' $category_sql
     ORDER BY
         $orderby_sql
     $order_sql
@@ -71,7 +71,9 @@ if ($ci0->getSession("securitykey") !== $ci0->getSecuritykey()) {
 
 $mi0->begin();
 
-$email = $ci0->getSession("user_data")["pk_email"];
+$email = ($ci0->existSession("user_data"))
+    ? $ci0->getSession("user_data")["pk_email"]
+    : "0";
 $page = $mi0->sanitize($_REQUEST["page"]);
 $limit = 10;
 $offset = intval($page) * $limit;

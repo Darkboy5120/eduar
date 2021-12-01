@@ -9,21 +9,6 @@ body {
     background-color: #F3F3F3;
 }
 
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-}
-.header > h1,
-.header > p {
-    text-align: center;
-}
-.header > button,
-.header a > button {
-    padding: .5rem;
-    cursor: pointer;
-}
 .container {
     /* DEBE ESTAR EN TODOS */
     padding: 0 5vw 5vw 5vw;

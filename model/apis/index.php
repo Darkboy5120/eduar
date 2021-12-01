@@ -33,6 +33,30 @@ if (isset($_REQUEST["api"])) {
         case "developer_get_ar":
             require "./web/developer/get_ar.php";
             break;
+        case "developer_remove_app":
+            require "./web/developer/remove_app.php";
+            break;
+        case "consumer_get_ar":
+            require "./web/consumer/get_ar.php";
+            break;
+        case "consumer_get_ar_all":
+            require "./web/consumer/get_ar_all.php";
+            break;
+        case "consumer_switch_ar_stat":
+            require "./web/consumer/switch_ar_stat.php";
+            break;
+        case "consumer_get_ar_images":
+            require "./web/consumer/get_ar_images.php";
+            break;
+        case "consumer_download_ar":
+            require "./web/consumer/download_ar.php";
+            break;
+        case "consumer_get_favorite":
+            require "./web/consumer/get_favorite.php";
+            break;
+        case "global_search_ar":
+            require "./web/global/search_ar.php";
+            break;
         default: echo json_encode("That's not a valid api");
     }
 }
