@@ -3,7 +3,8 @@ import { Navbar } from "../component/navbar.js";
 import { Form } from "../component/form.js";
 import { AlertMe } from "../component/alert_me.js";
 import { RequestMe } from "../component/request_me.js";
-import { FileControl, FileControlDumb } from "../component/file_control.js";
+import ImageControl from "../component/image_control.js";
+import ApkControl from "../component/apk_control.js";
 
 (function () {
     Navbar().main();
@@ -119,16 +120,16 @@ import { FileControl, FileControlDumb } from "../component/file_control.js";
                 back : document.querySelector("#images-back")
             },
             input : {
-                others : new FileControl("#input-others-image", {
+                others : new ImageControl("#input-others-image", {
                     min: 1, max: 5, regex: /image.*/
                 }),
-                thumbnail : new FileControl("#input-thumbnail-image", {
+                thumbnail : new ImageControl("#input-thumbnail-image", {
                     min: 1, max: 1, regex : /image.*/
                 }),
-                background : new FileControl("#input-background-image", {
+                background : new ImageControl("#input-background-image", {
                     min: 1, max: 1, regex : /image.*/
                 }),
-                apk : new FileControlDumb("#input-apk-file", "application/vnd.android.package-archive")
+                apk : new ApkControl("#input-apk-file", "application/vnd.android.package-archive")
             },
             submit : {
                 element : document.querySelector("#images-submit"),
