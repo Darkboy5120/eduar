@@ -1,0 +1,18 @@
+.dropdown {
+  position: relative;
+}
+.dropdown > .content {
+  position: absolute;
+  display: none;
+  box-shadow: 2px 2px 4px var(--shadow);
+  border-radius: 5px;
+}
+.contentRight {
+  right: 0;
+}
+.dropdown:hover > .content,
+.dropdown:focus-within > .content {
+  display: initial;
+  background-color: var(--main1);
+  padding: .5em;
+}

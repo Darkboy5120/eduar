@@ -1,0 +1,44 @@
+.modalWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, .5);
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalContainer {
+  background-color: var(--main4);
+  height: 80%;
+  width: 60%;
+  border-radius: 5px;
+  border: 2px solid var(--main2);
+  padding: 1em;
+}
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--main2);
+  padding-bottom: .5em;
+}
+.modalTitle {
+
+}
+.modalClose {
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 2em;
+  height: 1em;
+  cursor: pointer;
+}
+.modalClose:hover {
+  color: var(--danger);
+}
+.modalBody {
+
+}

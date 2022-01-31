@@ -1,4 +1,13 @@
-const palette = {
+:root {
+  --main1: white;
+  --main2: black;
+  --main3: gold;
+  --main4: #f3f3f3;
+  --shadow: #bbbbbb;
+  --danger: red;
+  --success: green;
+}
+/* const palette = {
   white: 'rgb(255, 255, 255)',
   black: '#000000',
   lightgray: '#f3f3f3',
@@ -30,4 +39,4 @@ const theme = {
   },
 };
 
-export default theme;
+export default theme; */

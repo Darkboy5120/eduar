@@ -1,0 +1,14 @@
+.dropdownItem {
+  background-color: var(--main4);
+  padding: .2em .4em;
+  cursor: pointer;
+  margin-bottom: .3em;
+  min-width: 10vw;
+  border-radius: 5px;
+}
+.dropdownItem:hover {
+  background-color: var(--main3);
+}
+.dropdownItem > .title {
+  color: var(--main2);
+}

@@ -1,5 +1,8 @@
+@import url('./assets/theme/light.css');
+
 body {
   margin: 0;
+  background-color: var(--main4);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
