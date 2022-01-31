@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import Navbar from "./components/molecules/Navbar";
+import Navbar from "./components/organisms/Navbar";
 
 export default function App() {
   return (

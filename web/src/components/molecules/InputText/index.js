@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import Input from "../Input";
+import Input from "../../atoms/Input";
 
 const InputText = ({type, placeholder, title, label}) => {
   const isPassword = type === "password" ? true : false;

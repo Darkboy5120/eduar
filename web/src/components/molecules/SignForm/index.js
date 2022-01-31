@@ -1,6 +1,6 @@
 import React from "react";
 import './styles.css';
-import Button from "../Button";
+import Button from "../../atoms/Button";
 
 const SignForm = ({title, footer, submit, children}) => {
   return (

@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import './styles.css';
-import Dropdown from '../Dropdown';
-import DropdownItem from '../DropdrownItem';
-import InputSearch from '../../atoms/Input';
+import Dropdown from '../../molecules/Dropdown';
+import DropdownItem from '../../molecules/DropdrownItem';
+import InputSearch from '../../molecules/InputSearch';
 import {FaAlignJustify, FaUserCircle} from 'react-icons/fa';
 import Modal from '../../atoms/Modal';
-import SignForm from '../../atoms/SignForm';
-import InputText from '../../atoms/InputText';
+import SignForm from '../../molecules/SignForm';
+import InputText from '../../molecules/InputText';
 
 const Navbar = () => {
   const [signInModal, setSignInModal] = useState(false);

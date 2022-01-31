@@ -1,7 +1,7 @@
 import React from "react";
 import './styles.css';
 import {FaSearch} from 'react-icons/fa';
-import Input from "../Input";
+import Input from "../../atoms/Input";
 
 const InputSearch = () => {
   const leftIcon = <FaSearch className="inputIcon" />;
