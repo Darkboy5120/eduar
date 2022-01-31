@@ -12,16 +12,21 @@ const Modal = ({visible, setVisible, title, children}) => {
       hideModal();
     }
   };
-  
   useEffect(() => {
     if (visible) {
       document.activeElement.blur();
       modalContainer.current.focus();
+      modalContainer.current.onkeyup = e => {
+        if (e.which === 27) {
+          setVisible(false);
+          document.activeElement.blur();
+        }
+      };
     }
-  }, [visible, modalContainer]);
+  }, [visible, modalContainer, setVisible]);
 
   return visible ? <div className="modalWrapper" onClick={checkDismiss}>
-  <div ref={modalContainer} className="modalContainer">
+  <div ref={modalContainer} tabIndex="1" className="modalContainer">
     <div className="modalHeader">
       <h2 className="modalTitle">{title}</h2>
       <button className="modalClose" onClick={hideModal}>{<FaTimes />}</button>

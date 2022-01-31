@@ -1,13 +1,12 @@
 import React from "react";
 import './styles.css';
 import {FaSearch} from 'react-icons/fa';
+import Input from "../Input";
 
 const InputSearch = () => {
+  const leftIcon = <FaSearch className="inputIcon" />;
   return (
-    <div className="inputSearchContainer">
-      <FaSearch className="icon" />
-      <input className="input" type="search" />
-    </div>
+    <Input type="search" leftIcon={leftIcon} />
   );
 };
 

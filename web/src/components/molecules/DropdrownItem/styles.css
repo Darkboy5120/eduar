@@ -5,6 +5,14 @@
   margin-bottom: .3em;
   min-width: 10vw;
   border-radius: 5px;
+  display: block;
+}
+.nonLink {
+  text-decoration: none;
+}
+.dropdownItem:link,
+.dropdownItem:visited {
+  color: var(--main2);
 }
 .dropdownItem:hover {
   background-color: var(--main3);

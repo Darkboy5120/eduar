@@ -1,0 +1,10 @@
+.signFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+}
+.footer > .footerTrigger {
+  font-weight: bold;
+  cursor: pointer;
+}

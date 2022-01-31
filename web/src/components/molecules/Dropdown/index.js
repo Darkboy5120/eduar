@@ -9,13 +9,16 @@ const handlekeyboardNavigation = root => {
     e.stopPropagation();
     let firstChild = root.current.querySelector(".dropdownItem");
     firstChild.focus();
-    firstChild.onkeyup = e => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (e.which === 27) {
-        root.current.querySelector("button").focus();
-      }
-    };
+    let rootChilds = root.current.querySelectorAll(".dropdownItem");
+    rootChilds.forEach(el => {
+      el.onkeyup = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.which === 27) {
+          root.current.querySelector("button").focus();
+        }
+      };
+    })
   };
 };
 

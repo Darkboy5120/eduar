@@ -1,0 +1,8 @@
+.inputTextContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: .5em;
+}
+.inputTextLabel {
+}
