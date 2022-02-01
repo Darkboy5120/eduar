@@ -4,7 +4,6 @@ import "./styles.css";
 const onSubmit = e => {
   e.preventDefault();
   e.stopPropagation();
-  console.log(123);
 };
 
 const Form = ({children}) => {

@@ -4,6 +4,7 @@ import InputText from "../../molecules/InputText";
 import useSignInForm from "./useSignInForm";
 
 const SignInForm = ({footerOnClick}) => {
+  const form = useSignInForm();
   const signInFooter = {
     label: "¿Aun no tienes cuenta? ",
     trigger: "aqui",
@@ -13,13 +14,12 @@ const SignInForm = ({footerOnClick}) => {
   };
   const signInSubmit = {
     label: "Iniciar sesión",
-    onClick: () => console.log("signed in"),
+    onClick: () => {
+      console.log(form.email.get.value, form.password.get.value);
+    },
   };
-  const form = useSignInForm();
 
-  useEffect(() => {
-    // console.log(form);
-    console.log(form.email.get.value);
+  useEffect(() => {   
   }, [form]);
 
   return (

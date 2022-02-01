@@ -9,6 +9,11 @@ const LOG = {
   regex: "El formato es incorrecto",
 };
 
+const checkRegex = (value, validation) => {
+  let result = validation.not ? value.match(validation.regex) : value.match(validation.regex);
+  return result;
+};
+
 const triggerValidation = (value, validation, setError, setOk) => {
   if (!value) {
     setOk(false);
@@ -19,7 +24,7 @@ const triggerValidation = (value, validation, setError, setOk) => {
   } else if (value.length > validation.max) {
     setOk(false);
     setError(LOG.max);
-  } else if (value.match(validation.regex)) {
+  } else if (checkRegex(value, validation)) {
     setOk(false);
     setError(LOG.regex);
   } else {
