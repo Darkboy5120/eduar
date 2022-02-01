@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
 import './styles.css';
 
-const Input = ({title, type, leftIcon, placeholder, onChange}) => {
-  const iconLeftStyle = leftIcon ? "inputWithIconLeft" : null;
-  const inputTitleStyle = title ? "inputTitleSpace" : null;
+function Input({
+  title, type, leftIcon, placeholder, onChange,
+}) {
+  const iconLeftStyle = leftIcon ? 'inputWithIconLeft' : null;
+  const inputTitleStyle = title ? 'inputTitleSpace' : null;
   return (
     <div className="inputContainer">
       <span className="inputTitle">{title}</span>
@@ -11,6 +13,6 @@ const Input = ({title, type, leftIcon, placeholder, onChange}) => {
       <input onChange={onChange} className={`input ${iconLeftStyle} ${inputTitleStyle}`} type={type} placeholder={placeholder} />
     </div>
   );
-};
+}
 
 export default Input;

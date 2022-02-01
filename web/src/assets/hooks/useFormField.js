@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const useFormField = (validation) => {
   const defaultValue = {
@@ -14,8 +14,8 @@ const useFormField = (validation) => {
   const [state, setState] = useState(defaultValue);
   const customState = {
     set: {
-      value: value => setState({...state, value: value}),
-      ok: ok => setState({...state, ok: ok}),
+      ok: (newOk) => setState({ ...state, ok: newOk }),
+      value: (newValue) => setState({ ...state, value: newValue }),
     },
     get: state,
   };

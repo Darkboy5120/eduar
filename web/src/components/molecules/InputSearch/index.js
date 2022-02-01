@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 import './styles.css';
-import {FaSearch} from 'react-icons/fa';
-import Input from "../../atoms/Input";
+import { FaSearch } from 'react-icons/fa';
+import Input from '../../atoms/Input';
 
-const InputSearch = () => {
+function InputSearch() {
   const leftIcon = <FaSearch className="inputIcon" />;
   return (
     <Input type="search" leftIcon={leftIcon} />
   );
-};
+}
 
 export default InputSearch;

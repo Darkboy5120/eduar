@@ -1,9 +1,12 @@
-import React from "react";
+import React from 'react';
 import './styles.css';
-import Button from "../../atoms/Button";
-import Form from "../../atoms/Form";
+import Button from '../../atoms/Button';
+import Form from '../../atoms/Form';
+import CustomLink from '../../atoms/CustomLink';
 
-const SignForm = ({title, footer, submit, children}) => {
+function SignForm({
+  title, footer, submit, children,
+}) {
   return (
     <div className="signFormContainer">
       <h3 className="signFormTitle">{title}</h3>
@@ -13,10 +16,10 @@ const SignForm = ({title, footer, submit, children}) => {
       </Form>
       <div className="signFormFooter">
         <span>{footer.label}</span>
-        <a tabIndex="0" className="footerTrigger" onClick={footer.onClick}>{footer.trigger}</a>
+        <CustomLink tabIndex="0" className="footerTrigger" onClick={footer.onClick}>{footer.trigger}</CustomLink>
       </div>
     </div>
   );
-};
+}
 
 export default SignForm;

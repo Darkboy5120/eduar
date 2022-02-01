@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './styles.css';
+import { FaAlignJustify, FaUserCircle } from 'react-icons/fa';
 import Dropdown from '../../molecules/Dropdown';
 import DropdownItem from '../../molecules/DropdrownItem';
 import InputSearch from '../../molecules/InputSearch';
-import {FaAlignJustify, FaUserCircle} from 'react-icons/fa';
 import Modal from '../../atoms/Modal';
 import SignInForm from '../SignInForm';
 
-const Navbar = () => {
+function Navbar() {
   const [signInModal, setSignInModal] = useState(false);
 
   return (
@@ -24,13 +24,13 @@ const Navbar = () => {
       </Dropdown>
       <div className="rightContainer">
         <InputSearch />
-        <Dropdown leftIcon={<FaUserCircle />} align="right" >
+        <Dropdown leftIcon={<FaUserCircle />} align="right">
           <DropdownItem title="Iniciar sesión" onClick={() => setSignInModal(true)} />
           <DropdownItem title="Crear cuenta" onClick={() => console.log(123)} />
         </Dropdown>
       </div>
     </div>
   );
-};
+}
 
 export default Navbar;

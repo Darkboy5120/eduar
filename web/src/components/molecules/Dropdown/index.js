@@ -1,31 +1,33 @@
-import React, {useEffect, useRef} from "react";
-import Button from "../../atoms/Button";
+import React, { useEffect, useRef } from 'react';
+import Button from '../../atoms/Button';
 import './styles.css';
 
-const handlekeyboardNavigation = root => {
+const handlekeyboardNavigation = (root) => {
   root.current.focus();
-  root.current.onkeypress = e => {
+  root.current.onkeypress = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    let firstChild = root.current.querySelector(".dropdownItem");
+    const firstChild = root.current.querySelector('.dropdownItem');
     firstChild.focus();
-    let rootChilds = root.current.querySelectorAll(".dropdownItem");
-    rootChilds.forEach(el => {
-      el.onkeyup = e => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.which === 27) {
-          root.current.querySelector("button").focus();
+    const rootChilds = root.current.querySelectorAll('.dropdownItem');
+    rootChilds.forEach((el) => {
+      el.onkeyup = (elEvent) => {
+        elEvent.preventDefault();
+        elEvent.stopPropagation();
+        if (elEvent.which === 27) {
+          root.current.querySelector('button').focus();
         }
       };
-    })
+    });
   };
 };
 
-const Dropdown = ({children, title, leftIcon, align}) => {
-  let root = useRef();
-  align = align ?? "left";
-  let contentAlign = align === "right" ? "contentRight" : null;
+function Dropdown({
+  children, title, leftIcon, align,
+}) {
+  const root = useRef();
+  align = align ?? 'left';
+  const contentAlign = align === 'right' ? 'contentRight' : null;
 
   useEffect(() => {
     handlekeyboardNavigation(root);
@@ -37,6 +39,6 @@ const Dropdown = ({children, title, leftIcon, align}) => {
       <div className={`content ${contentAlign}`}>{children}</div>
     </div>
   );
-};
+}
 
 export default Dropdown;

@@ -1,25 +1,27 @@
-import React, {useEffect} from "react";
-import SignForm from "../../molecules/SignForm";
-import InputText from "../../molecules/InputText";
-import useSignInForm from "./useSignInForm";
+import React, { useEffect } from 'react';
+import SignForm from '../../molecules/SignForm';
+import InputText from '../../molecules/InputText';
+import useSignInForm from './useSignInForm';
 
-const SignInForm = ({footerOnClick}) => {
+function SignInForm({ footerOnClick }) {
   const form = useSignInForm();
   const signInFooter = {
-    label: "¿Aun no tienes cuenta? ",
-    trigger: "aqui",
+    label: '¿Aun no tienes cuenta? ',
+    trigger: 'aqui',
     onClick: () => {
       footerOnClick();
     },
   };
   const signInSubmit = {
-    label: "Iniciar sesión",
+    label: 'Iniciar sesión',
     onClick: () => {
-      console.log(form.email.get.value, form.password.get.value);
+      form.email.set.value(123);
+      // console.log(form.email.get.value, form.password.get.value);
     },
   };
 
-  useEffect(() => {   
+  useEffect(() => {
+    // console.log(form.email.get.value);
   }, [form]);
 
   return (
@@ -28,6 +30,6 @@ const SignInForm = ({footerOnClick}) => {
       <InputText state={form.password} type="password" title="Contraseña" />
     </SignForm>
   );
-};
+}
 
 export default SignInForm;
