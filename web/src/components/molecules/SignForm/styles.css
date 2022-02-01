@@ -4,7 +4,13 @@
   align-items: center;
   padding: 2em;
 }
-.footer > .footerTrigger {
+.signFormTitle {
+  margin-bottom: 1em;
+}
+.signFormFooter {
+  margin-top: 1em;
+}
+.signFormFooter > .footerTrigger {
   font-weight: bold;
   cursor: pointer;
 }

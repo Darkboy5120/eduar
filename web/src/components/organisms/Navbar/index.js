@@ -5,30 +5,15 @@ import DropdownItem from '../../molecules/DropdrownItem';
 import InputSearch from '../../molecules/InputSearch';
 import {FaAlignJustify, FaUserCircle} from 'react-icons/fa';
 import Modal from '../../atoms/Modal';
-import SignForm from '../../molecules/SignForm';
-import InputText from '../../molecules/InputText';
+import SignInForm from '../SignInForm';
 
 const Navbar = () => {
   const [signInModal, setSignInModal] = useState(false);
-  const signInFooter = {
-    label: "¿Aun no tienes cuenta? ",
-    trigger: "aqui",
-    onClick: () => {
-      setSignInModal(false);
-    },
-  };
-  const signInSubmit = {
-    label: "Iniciar sesión",
-    onClick: () => console.log("signed in"),
-  };
 
   return (
     <div className="navbar">
       <Modal title="Inicio de sesión" visible={signInModal} setVisible={setSignInModal}>
-        <SignForm title="Llena tus datos" footer={signInFooter} submit={signInSubmit}>
-          <InputText title="Correo" placeholder="ejemplo@gmail.mx" />
-          <InputText type="password" title="Contraseña" />
-        </SignForm>
+        <SignInForm footerOnClick={() => setSignInModal(false)} />
       </Modal>
       <Dropdown title="Eduar" leftIcon={<FaAlignJustify />}>
         <DropdownItem title="Categorias" linkTarget="foo" />

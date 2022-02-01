@@ -1,14 +1,14 @@
 import React from "react";
 import './styles.css';
 
-const Input = ({title, type, leftIcon, placeholder}) => {
+const Input = ({title, type, leftIcon, placeholder, onChange}) => {
   const iconLeftStyle = leftIcon ? "inputWithIconLeft" : null;
   const inputTitleStyle = title ? "inputTitleSpace" : null;
   return (
     <div className="inputContainer">
       <span className="inputTitle">{title}</span>
       {leftIcon}
-      <input className={`input ${iconLeftStyle} ${inputTitleStyle}`} type={type} placeholder={placeholder} />
+      <input onChange={onChange} className={`input ${iconLeftStyle} ${inputTitleStyle}`} type={type} placeholder={placeholder} />
     </div>
   );
 };

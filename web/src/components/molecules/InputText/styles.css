@@ -6,3 +6,6 @@
 }
 .inputTextLabel {
 }
+.inputTextError {
+  color: var(--danger);
+}

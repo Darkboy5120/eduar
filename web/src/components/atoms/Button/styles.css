@@ -11,6 +11,7 @@
   border-radius: 5px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .buttonContainer:hover {
   background-color: var(--main3);
