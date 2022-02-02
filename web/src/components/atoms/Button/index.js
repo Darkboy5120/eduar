@@ -1,12 +1,16 @@
 import React from 'react';
 import './styles.css';
+import { FaSyncAlt } from 'react-icons/fa';
 
-function Button({ title, onClick, leftIcon }) {
+function Button({
+  title, onClick, leftIcon, type, disabled, loading,
+}) {
+  const loadingIcon = loading ? <FaSyncAlt className="buttonIconLoading" /> : null;
   const finalLeftIcon = <div className={`icon ${title && leftIcon ? 'iconSpace' : null}`}>{leftIcon}</div>;
   return (
-    <button type="button" className="buttonContainer" onClick={onClick}>
+    <button disabled={disabled} type={type ? 'submit' : 'button'} className="buttonContainer" onClick={onClick}>
       {finalLeftIcon}
-      {title}
+      {loadingIcon ?? title}
     </button>
   );
 }

@@ -10,6 +10,11 @@
 .inputTextError {
   color: var(--danger);
 }
+.inputTextBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 .inputTextPasswordIcon {
   position: absolute;
   right: .5em;

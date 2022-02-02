@@ -35,7 +35,7 @@ const triggerValidation = (value, validation, setError, setOk) => {
 };
 
 function InputText({
-  type, placeholder, title, label, state,
+  type, placeholder, title, label, onChange, setOk, validation,
 }) {
   const [error, setError] = useState();
   const isPassword = type === 'password';
@@ -43,16 +43,17 @@ function InputText({
   const passwordIcon = password ? <FaEye /> : <FaEyeSlash />;
   type = type ?? 'text';
   type = password ? 'password' : 'text';
-  const onChange = (e) => {
-    // state.set.value(true);
-    console.log(e.target.value);
-    triggerValidation(e.target.value, state.get.validation, setError, state.set.ok);
+  const onChangeDo = (e) => {
+    onChange(e);
+    triggerValidation(e.target.value, validation, setError, setOk);
   };
 
   return (
     <div className="inputTextContainer">
-      {isPassword ? <button type="button" aria-label="password-visibility" onClick={() => setPassword(!password)} className="inputTextPasswordIcon">{passwordIcon}</button> : null}
-      <Input onChange={onChange} title={title} type={type} placeholder={placeholder} />
+      <div className="inputTextBox">
+        <Input onChange={onChangeDo} title={title} type={type} placeholder={placeholder} />
+        {isPassword ? <button type="button" aria-label="password-visibility" onClick={() => setPassword(!password)} className="inputTextPasswordIcon">{passwordIcon}</button> : null}
+      </div>
       <span className="inputTextLabel">{label}</span>
       <span className="inputTextError">{error}</span>
     </div>

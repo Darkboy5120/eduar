@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SignForm from '../../molecules/SignForm';
 import InputText from '../../molecules/InputText';
-import useSignInForm from './useSignInForm';
+import useSignIn from '../../../assets/hooks/useSignIn';
 
 function SignInForm({ footerOnClick }) {
-  const form = useSignInForm();
+  const { emailInput, passwordInput, submit } = useSignIn();
+
   const signInFooter = {
     label: '¿Aun no tienes cuenta? ',
     trigger: 'aqui',
@@ -15,19 +16,16 @@ function SignInForm({ footerOnClick }) {
   const signInSubmit = {
     label: 'Iniciar sesión',
     onClick: () => {
-      form.email.set.value(123);
-      // console.log(form.email.get.value, form.password.get.value);
+      submit.setLoading(true);
+      console.log(emailInput.value, passwordInput.value);
+      setTimeout(() => submit.setLoading(false), 3000);
     },
   };
 
-  useEffect(() => {
-    // console.log(form.email.get.value);
-  }, [form]);
-
   return (
-    <SignForm title="Llena tus datos" footer={signInFooter} submit={signInSubmit}>
-      <InputText state={form.email} title="Correo" placeholder="ejemplo@gmail.mx" />
-      <InputText state={form.password} type="password" title="Contraseña" />
+    <SignForm {...submit} title="Llena tus datos" footer={signInFooter} submit={signInSubmit}>
+      <InputText {...emailInput} title="Correo" placeholder="ejemplo@gmail.mx" />
+      <InputText {...passwordInput} type="password" title="Contraseña" />
     </SignForm>
   );
 }

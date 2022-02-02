@@ -1,3 +1,12 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1800deg);
+  }
+}
+
 .buttonContainer {
   height: 50px;
   background-color: var(--main1);
@@ -21,4 +30,7 @@
 }
 .buttonContainer > .iconSpace {
   margin-right: .5em;
+}
+.buttonIconLoading {
+  animation: spin infinite 5s linear;
 }
