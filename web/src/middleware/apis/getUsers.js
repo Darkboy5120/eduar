@@ -1,13 +1,9 @@
 const { mysqlConn } = require('../utils/mysqlConn');
 
 exports.getUsers = (res) => {
-  const connection = mysqlConn('root');
+  const conn = mysqlConn(res, 'root');
 
-  connection.connect();
-
-  connection.query('SELECT * FROM Usuario', (err, rows) => {
-    if (err) throw err;
-    res.send(rows);
+  conn.query('SELECT * FROM Usuario', (rows) => {
+    conn.end(0, rows);
   });
-  connection.end();
 };
