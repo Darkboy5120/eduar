@@ -15,6 +15,11 @@ const checkRegex = (value, validation) => {
   return result;
 };
 
+const getEqualValidation = (value, validation) => {
+  const ok = value === validation.equal;
+  return [ok, !ok ? validation.error : null];
+};
+
 const triggerValidation = (value, validation, setError, setOk) => {
   if (!value) {
     setOk(false);
@@ -25,6 +30,10 @@ const triggerValidation = (value, validation, setError, setOk) => {
   } else if (value.length > validation.max) {
     setOk(false);
     setError(LOG.max);
+  } else if (validation.equal) {
+    const [ok, error] = getEqualValidation(value, validation);
+    setOk(ok);
+    setError(error);
   } else if (checkRegex(value, validation)) {
     setOk(false);
     setError(LOG.regex);

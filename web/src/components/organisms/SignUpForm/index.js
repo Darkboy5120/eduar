@@ -1,13 +1,15 @@
 import React from 'react';
 import SignForm from '../../molecules/SignForm';
 import InputText from '../../molecules/InputText';
-import useSignIn from '../../../assets/hooks/useSignIn';
+import useSignUp from '../../../assets/hooks/useSignUp';
 
-function SignInForm({ footerOnClick }) {
-  const { emailInput, passwordInput, submit } = useSignIn();
+function SignUpForm({ footerOnClick }) {
+  const {
+    emailInput, passwordInput, confirmPasswordInput, firstnameInput, lastnameInput, submit,
+  } = useSignUp();
 
   const signFooter = {
-    label: '¿Aun no tienes cuenta? registrate ',
+    label: '¿Aun no tienes cuenta? inicia sesión ',
     trigger: 'aqui',
     onClick: () => {
       footerOnClick();
@@ -24,10 +26,13 @@ function SignInForm({ footerOnClick }) {
 
   return (
     <SignForm {...submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>
-      <InputText {...emailInput} title="Correo" placeholder="ejemplo@gmail.mx" />
+      <InputText {...firstnameInput} title="Nombre(s)" />
+      <InputText {...lastnameInput} title="Apellido(s)" />
+      <InputText {...emailInput} title="Correo" placeholder="ejemplo@ucol.mx" />
       <InputText {...passwordInput} type="password" title="Contraseña" />
+      <InputText {...confirmPasswordInput} type="password" title="Confirmar contraseña" />
     </SignForm>
   );
 }
 
-export default SignInForm;
+export default SignUpForm;

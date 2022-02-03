@@ -6,14 +6,27 @@ import DropdownItem from '../../molecules/DropdrownItem';
 import InputSearch from '../../molecules/InputSearch';
 import Modal from '../../atoms/Modal';
 import SignInForm from '../SignInForm';
+import SignUpForm from '../SignUpForm';
 
 function Navbar() {
   const [signInModal, setSignInModal] = useState(false);
+  const [signUpModal, setSignUpModal] = useState(false);
 
   return (
     <div className="navbar">
       <Modal title="Inicio de sesión" visible={signInModal} setVisible={setSignInModal}>
-        <SignInForm footerOnClick={() => setSignInModal(false)} />
+        <SignInForm footerOnClick={() => {
+          setSignInModal(false);
+          setSignUpModal(true);
+        }}
+        />
+      </Modal>
+      <Modal title="Inicio de sesión" visible={signUpModal} setVisible={setSignUpModal}>
+        <SignUpForm footerOnClick={() => {
+          setSignUpModal(false);
+          setSignInModal(true);
+        }}
+        />
       </Modal>
       <Dropdown title="Eduar" leftIcon={<FaAlignJustify />}>
         <DropdownItem title="Categorias" linkTarget="foo" />
@@ -26,7 +39,7 @@ function Navbar() {
         <InputSearch />
         <Dropdown leftIcon={<FaUserCircle />} align="right">
           <DropdownItem title="Iniciar sesión" onClick={() => setSignInModal(true)} />
-          <DropdownItem title="Crear cuenta" onClick={() => console.log(123)} />
+          <DropdownItem title="Crear cuenta" onClick={() => setSignUpModal(true)} />
         </Dropdown>
       </div>
     </div>

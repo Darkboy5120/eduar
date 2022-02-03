@@ -17,6 +17,9 @@
   border-radius: 5px;
   border: 2px solid var(--main2);
   padding: 1em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .modalHeader {
   display: flex;
@@ -40,5 +43,6 @@
   color: var(--danger);
 }
 .modalBody {
-
+  overflow-y: auto;
+  flex: 1;
 }
