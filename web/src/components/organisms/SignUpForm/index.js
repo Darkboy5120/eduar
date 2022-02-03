@@ -27,7 +27,6 @@ function SignUpForm({ footerOnClick }) {
     label: 'Iniciar sesión',
     onClick: () => {
       submit.setLoading(true);
-      console.log(emailInput.value, passwordInput.value);
       setTimeout(() => submit.setLoading(false), 3000);
     },
   };

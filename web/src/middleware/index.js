@@ -1,13 +1,15 @@
 const express = require('express');
 const helmet = require('helmet');
+const cors = require('cors');
 const { apis } = require('./apis');
 
 const app = express();
+app.use(cors());
 app.use(helmet());
-const port = 3000;
+const port = 3001;
 
 app.get('/apis', (req, res) => {
-  switch (req.query.name) {
+  switch (req.query.api) {
     case 'get_users':
       apis.getUsers(res);
       break;

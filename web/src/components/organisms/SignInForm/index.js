@@ -2,6 +2,7 @@ import React from 'react';
 import SignForm from '../../molecules/SignForm';
 import InputText from '../../molecules/InputText';
 import useSignIn from '../../../assets/hooks/useSignIn';
+import request from '../../../assets/controllers/request';
 
 function SignInForm({ footerOnClick }) {
   const { emailInput, passwordInput, submit } = useSignIn();
@@ -17,8 +18,10 @@ function SignInForm({ footerOnClick }) {
     label: 'Iniciar sesión',
     onClick: () => {
       submit.setLoading(true);
-      console.log(emailInput.value, passwordInput.value);
-      setTimeout(() => submit.setLoading(false), 3000);
+      request.get('get_users').then((r) => {
+        console.log(r);
+        submit.setLoading(false);
+      });
     },
   };
 
