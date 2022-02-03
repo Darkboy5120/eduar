@@ -13,14 +13,16 @@ const useSignUp = () => {
   });
   const firstnameInput = useInput(inputValidations.string);
   const lastnameInput = useInput(inputValidations.string);
+  const birthdateInput = useInput(inputValidations.date);
   const [politics, setPolitics] = useState(false);
   const submit = useSubmit();
 
   useEffect(() => {
     const ok = emailInput.ok && passwordInput.ok && confirmPasswordInput.ok
-      && firstnameInput.ok && lastnameInput.ok && politics;
+      && firstnameInput.ok && lastnameInput.ok && politics && birthdateInput.ok;
     submit.setOk(ok);
-  }, [emailInput, passwordInput, confirmPasswordInput, firstnameInput, lastnameInput]);
+  }, [emailInput,
+    passwordInput, confirmPasswordInput, firstnameInput, lastnameInput, birthdateInput]);
 
   return {
     emailInput,
@@ -30,6 +32,7 @@ const useSignUp = () => {
     lastnameInput,
     submit,
     setPolitics,
+    birthdateInput,
   };
 };
 

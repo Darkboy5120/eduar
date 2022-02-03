@@ -51,7 +51,7 @@ function InputText({
   const [password, setPassword] = useState(isPassword);
   const passwordIcon = password ? <FaEye /> : <FaEyeSlash />;
   type = type ?? 'text';
-  type = password ? 'password' : 'text';
+  type = password ? 'password' : type;
   const onChangeDo = (e) => {
     onChange(e);
     triggerValidation(e.target.value, validation, setError, setOk);

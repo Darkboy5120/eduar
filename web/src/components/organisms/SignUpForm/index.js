@@ -13,6 +13,7 @@ function SignUpForm({ footerOnClick }) {
     lastnameInput,
     submit,
     setPolitics,
+    birthdateInput,
   } = useSignUp();
 
   const signFooter = {
@@ -38,6 +39,7 @@ function SignUpForm({ footerOnClick }) {
       <InputText {...emailInput} title="Correo" placeholder="ejemplo@ucol.mx" />
       <InputText {...passwordInput} type="password" title="Contraseña" />
       <InputText {...confirmPasswordInput} type="password" title="Confirmar contraseña" />
+      <InputText {...birthdateInput} type="date" title="Fecha de nacimiento" />
       <CheckboxLabel setChecked={setPolitics} title="Acepto los términos y condiciones" />
     </SignForm>
   );
