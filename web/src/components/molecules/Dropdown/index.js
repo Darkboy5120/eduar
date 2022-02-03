@@ -35,7 +35,7 @@ function Dropdown({
 
   return (
     <div ref={root} className="dropdown">
-      <Button leftIcon={leftIcon} title={title} onClick={() => console.log(123)} />
+      <Button leftIcon={leftIcon} title={title} onClick={() => {}} />
       <div className={`content ${contentAlign}`}>{children}</div>
     </div>
   );

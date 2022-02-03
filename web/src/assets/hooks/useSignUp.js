@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useInput from './useInput';
 import inputValidations from '../controllers/inputValidations';
 import useSubmit from './useSubmit';
@@ -13,16 +13,23 @@ const useSignUp = () => {
   });
   const firstnameInput = useInput(inputValidations.string);
   const lastnameInput = useInput(inputValidations.string);
+  const [politics, setPolitics] = useState(false);
   const submit = useSubmit();
 
   useEffect(() => {
     const ok = emailInput.ok && passwordInput.ok && confirmPasswordInput.ok
-      && firstnameInput.ok && lastnameInput.ok;
+      && firstnameInput.ok && lastnameInput.ok && politics;
     submit.setOk(ok);
   }, [emailInput, passwordInput, confirmPasswordInput, firstnameInput, lastnameInput]);
 
   return {
-    emailInput, passwordInput, confirmPasswordInput, firstnameInput, lastnameInput, submit,
+    emailInput,
+    passwordInput,
+    confirmPasswordInput,
+    firstnameInput,
+    lastnameInput,
+    submit,
+    setPolitics,
   };
 };
 

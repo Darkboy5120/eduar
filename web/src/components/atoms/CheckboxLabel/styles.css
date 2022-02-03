@@ -1,0 +1,17 @@
+.checkboxLabelContainer {
+  border: 2px solid transparent; 
+  margin-bottom: .5em;
+  cursor: pointer;
+  padding: .2em;
+}
+.checkboxLabelContainer:hover {
+  border: 2px solid var(--main2);
+}
+.checkboxLabel {
+  margin-right: .5em;
+  cursor: pointer;
+}
+.checkboxLabelTitle {
+  color: var(--main2);
+  user-select: none;
+}

@@ -2,10 +2,17 @@ import React from 'react';
 import SignForm from '../../molecules/SignForm';
 import InputText from '../../molecules/InputText';
 import useSignUp from '../../../assets/hooks/useSignUp';
+import CheckboxLabel from '../../atoms/CheckboxLabel';
 
 function SignUpForm({ footerOnClick }) {
   const {
-    emailInput, passwordInput, confirmPasswordInput, firstnameInput, lastnameInput, submit,
+    emailInput,
+    passwordInput,
+    confirmPasswordInput,
+    firstnameInput,
+    lastnameInput,
+    submit,
+    setPolitics,
   } = useSignUp();
 
   const signFooter = {
@@ -31,6 +38,7 @@ function SignUpForm({ footerOnClick }) {
       <InputText {...emailInput} title="Correo" placeholder="ejemplo@ucol.mx" />
       <InputText {...passwordInput} type="password" title="Contraseña" />
       <InputText {...confirmPasswordInput} type="password" title="Confirmar contraseña" />
+      <CheckboxLabel setChecked={setPolitics} title="Acepto los términos y condiciones" />
     </SignForm>
   );
 }
