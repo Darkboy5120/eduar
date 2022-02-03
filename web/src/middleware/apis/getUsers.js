@@ -1,19 +1,13 @@
-const GetUsers = (mysql) => {
-  const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'traelo',
-  });
+const { mysqlConn } = require('../utils/mysqlConn');
+
+exports.getUsers = (res) => {
+  const connection = mysqlConn('root');
 
   connection.connect();
 
-  connection.query('SELECT * FROM Usuario', (err, rows, fields) => {
+  connection.query('SELECT * FROM Usuario', (err, rows) => {
     if (err) throw err;
-    console.log(rows);
+    res.send(rows);
   });
-
   connection.end();
 };
-
-export default GetUsers;

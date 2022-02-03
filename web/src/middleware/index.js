@@ -1,13 +1,15 @@
 const express = require('express');
-const apis = require('./apis');
+const helmet = require('helmet');
+const { apis } = require('./apis');
 
 const app = express();
+app.use(helmet());
 const port = 3000;
 
 app.get('/apis', (req, res) => {
   switch (req.query.name) {
     case 'get_users':
-      apis.GetUsers();
+      apis.getUsers(res);
       break;
     default:
       res.send('That api does\'nt exits');
@@ -15,5 +17,5 @@ app.get('/apis', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Listening on port ${port}`);
 });

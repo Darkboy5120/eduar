@@ -1,6 +1,5 @@
-import GetUsers from './getUsers.mjs';
-const mysql = require('mysql');
+const { getUsers } = require('./getUsers');
 
-export {
-  getUsers: GetUsers(mysql),
+exports.apis = {
+  getUsers,
 };
