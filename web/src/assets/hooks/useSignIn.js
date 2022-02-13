@@ -1,19 +1,12 @@
-import { useEffect } from 'react';
 import useInput from './useInput';
 import inputValidations from '../controllers/inputValidations';
+import formHookPipe from '../controllers/formHookPipe';
 import useSubmit from './useSubmit';
 
-const useSignIn = () => {
-  const emailInput = useInput(inputValidations.email);
-  const passwordInput = useInput(inputValidations.string);
-  const submit = useSubmit();
-
-  useEffect(() => {
-    const ok = emailInput.ok && passwordInput.ok;
-    submit.setOk(ok);
-  }, [emailInput, passwordInput]);
-
-  return { emailInput, passwordInput, submit };
-};
+const useSignIn = () => formHookPipe({
+  email: useInput(inputValidations.email),
+  password: useInput(inputValidations.string),
+  submit: useSubmit(),
+});
 
 export default useSignIn;

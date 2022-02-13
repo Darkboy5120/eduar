@@ -44,16 +44,18 @@ const triggerValidation = (value, validation, setError, setOk) => {
 };
 
 function InputText({
-  type, placeholder, title, label, onChange, setOk, validation,
+  type, placeholder, title, label, setValue, setOk, validation,
 }) {
   const [error, setError] = useState();
   const isPassword = type === 'password';
   const [password, setPassword] = useState(isPassword);
   const passwordIcon = password ? <FaEye /> : <FaEyeSlash />;
   type = type ?? 'text';
-  type = password ? 'password' : type;
+  if (isPassword) {
+    type = password ? 'password' : 'text';
+  }
   const onChangeDo = (e) => {
-    onChange(e);
+    setValue(e.target.value);
     triggerValidation(e.target.value, validation, setError, setOk);
   };
 

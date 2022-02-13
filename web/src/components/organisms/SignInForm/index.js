@@ -5,7 +5,7 @@ import useSignIn from '../../../assets/hooks/useSignIn';
 import request from '../../../assets/controllers/request';
 
 function SignInForm({ footerOnClick }) {
-  const { emailInput, passwordInput, submit } = useSignIn();
+  const form = useSignIn();
 
   const signFooter = {
     label: '¿Aun no tienes cuenta? registrate ',
@@ -17,18 +17,18 @@ function SignInForm({ footerOnClick }) {
   const signSubmit = {
     label: 'Iniciar sesión',
     onClick: () => {
-      submit.setLoading(true);
-      request.get('get_users').then((r) => {
+      form.submit.setLoading(true);
+      request.post('get_users').then((r) => {
         console.log(r);
-        submit.setLoading(false);
+        form.submit.setLoading(false);
       });
     },
   };
 
   return (
-    <SignForm {...submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>
-      <InputText {...emailInput} title="Correo" placeholder="ejemplo@gmail.mx" />
-      <InputText {...passwordInput} type="password" title="Contraseña" />
+    <SignForm {...form.submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>
+      <InputText {...form.email} title="Correo" placeholder="ejemplo@gmail.mx" />
+      <InputText {...form.password} type="password" title="Contraseña" />
     </SignForm>
   );
 }

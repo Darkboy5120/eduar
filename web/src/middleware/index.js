@@ -4,12 +4,14 @@ const cors = require('cors');
 const { apis } = require('./apis');
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(helmet());
-const port = 3001;
+const port = process.env.PORT || 3001;
 
-app.get('/apis', (req, res) => {
-  switch (req.query.api) {
+app.post('/apis', (req, res) => {
+  switch (req.body.api) {
     case 'get_users':
       apis.getUsers(res);
       break;
