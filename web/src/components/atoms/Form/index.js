@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './styles.css';
+import styles from './styles.module.css';
 
 const onSubmit = (e) => {
   e.preventDefault();
@@ -14,7 +14,7 @@ function Form({ children }) {
   }, []);
 
   return (
-    <form onSubmit={onSubmit} ref={form} className="formContainer">{children}</form>
+    <form onSubmit={onSubmit} ref={form} className={styles.formContainer}>{children}</form>
   );
 }
 

@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useRef, useEffect } from 'react';
-import './styles.css';
+import styles from './styles.module.css';
 import { FaTimes } from 'react-icons/fa';
 
 function Modal({
@@ -32,13 +32,13 @@ function Modal({
   }, [visible, modalContainer, setVisible]);
 
   return visible ? (
-    <div className="modalWrapper" role="button" onClick={checkDismiss}>
-      <div ref={modalContainer} role="navigation" tabIndex="1" className="modalContainer">
-        <div className="modalHeader">
-          <h2 className="modalTitle">{title}</h2>
-          <button type="button" aria-label="Cerrar" className="modalClose" onClick={hideModal}><FaTimes /></button>
+    <div className={styles.modalWrapper} role="button" onClick={checkDismiss}>
+      <div ref={modalContainer} role="navigation" tabIndex="1" className={styles.modalContainer}>
+        <div className={styles.modalHeader}>
+          <h2 className={styles.modalTitle}>{title}</h2>
+          <button type="button" aria-label="Cerrar" className={styles.modalClose} onClick={hideModal}><FaTimes /></button>
         </div>
-        <div className="modalBody">{children}</div>
+        <div className={styles.modalBody}>{children}</div>
       </div>
     </div>
   ) : null;

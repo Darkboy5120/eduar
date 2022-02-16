@@ -1,9 +1,9 @@
 import React from "react";
-import "./styles.css";
+import styles from "./styles.module.css";
 
 const DocumentContainer = ({children}) => {
   return (
-    <div className="container">{children}</div>
+    <div className={styles.container}>{children}</div>
   );
 };
 

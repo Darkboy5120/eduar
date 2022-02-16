@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
-import './styles.css';
+import styles from './styles.module.css';
 
 function CheckboxLabel({ title, setChecked }) {
   const [value, setValue] = useState(false);
@@ -15,9 +15,9 @@ function CheckboxLabel({ title, setChecked }) {
   };
 
   return (
-    <div className="checkboxLabelContainer" role="button" onClick={() => setValue(!value)}>
-      <input className="checkboxLabel" type="checkbox" checked={value} onChange={onChangeDo} />
-      <span className="checkboxLabelTitle">{title}</span>
+    <div className={styles.checkboxLabelContainer} role="button" onClick={() => setValue(!value)}>
+      <input className={styles.checkboxLabel} type="checkbox" checked={value} onChange={onChangeDo} />
+      <span className={styles.checkboxLabelTitle}>{title}</span>
     </div>
   );
 }

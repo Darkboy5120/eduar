@@ -1,16 +1,16 @@
 import React from 'react';
-import './styles.css';
+import styles from './styles.module.css';
 
 function Input({
   title, type, leftIcon, placeholder, onChange,
 }) {
-  const iconLeftStyle = leftIcon ? 'inputWithIconLeft' : null;
-  const inputTitleStyle = title ? 'inputTitleSpace' : null;
+  const iconLeftStyle = leftIcon ? styles.inputWithIconLeft : null;
+  const inputTitleStyle = title ? styles.inputTitleSpace : null;
   return (
-    <div className="inputContainer">
-      <span className="inputTitle">{title}</span>
+    <div className={styles.inputContainer}>
+      <span className={styles.inputTitle}>{title}</span>
       {leftIcon}
-      <input onChange={onChange} className={`input ${iconLeftStyle} ${inputTitleStyle}`} type={type} placeholder={placeholder} />
+      <input onChange={onChange} className={`${styles.input} ${iconLeftStyle} ${inputTitleStyle}`} type={type} placeholder={placeholder} />
     </div>
   );
 }

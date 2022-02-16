@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css';
+import styles from './styles.module.css';
 import { FaAlignJustify, FaUserCircle } from 'react-icons/fa';
 import Dropdown from '../../molecules/Dropdown';
 import DropdownItem from '../../molecules/DropdrownItem';
@@ -13,7 +13,7 @@ function Navbar() {
   const [signUpModal, setSignUpModal] = useState(false);
 
   return (
-    <div className="navbar">
+    <div className={styles.navbar}>
       <Modal title="Inicio de sesión" visible={signInModal} setVisible={setSignInModal}>
         <SignInForm footerOnClick={() => {
           setSignInModal(false);
@@ -35,7 +35,7 @@ function Navbar() {
         <DropdownItem title="Para maestros" linkTarget="foo" />
         <DropdownItem title="Guía para desarrolladores" linkTarget="foo" />
       </Dropdown>
-      <div className="rightContainer">
+      <div className={styles.rightContainer}>
         <InputSearch />
         <Dropdown leftIcon={<FaUserCircle />} align="right">
           <DropdownItem title="Iniciar sesión" onClick={() => setSignInModal(true)} />

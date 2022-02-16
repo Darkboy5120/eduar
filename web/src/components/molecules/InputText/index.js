@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css';
+import styles from './styles.module.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Input from '../../atoms/Input';
 
@@ -60,13 +60,13 @@ function InputText({
   };
 
   return (
-    <div className="inputTextContainer">
-      <div className="inputTextBox">
+    <div className={styles.inputTextContainer}>
+      <div className={styles.inputTextBox}>
         <Input onChange={onChangeDo} title={title} type={type} placeholder={placeholder} />
-        {isPassword ? <button type="button" aria-label="password-visibility" onClick={() => setPassword(!password)} className="inputTextPasswordIcon">{passwordIcon}</button> : null}
+        {isPassword ? <button type="button" aria-label="password-visibility" onClick={() => setPassword(!password)} className={styles.inputTextPasswordIcon}>{passwordIcon}</button> : null}
       </div>
-      <span className="inputTextLabel">{label}</span>
-      <span className="inputTextError">{error}</span>
+      <span className={styles.inputTextLabel}>{label}</span>
+      <span className={styles.inputTextError}>{error}</span>
     </div>
   );
 }
