@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import globalStore, {signIn as gsSignIn, signOut as gsSignOut} from "../store/reducers/globalStore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlUgYl40IL0MknZncZtOX9k1Yx8gO0ABo",
@@ -11,9 +13,64 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+let setLoading = null;
+let alert = null;
 
-const firebasePipe = () => {
-  
+const showError = error => {
+  switch (error.code) {
+    case 'auth/user-not-found':
+      alert.show('Correo y/o contraseña incorrectos', {type: 'error'});
+      break;
+    case 'auth/email-already-in-use':
+      alert.show('Ese correo ya esta registrado', {type: 'error'});
+      break;
+    default:
+      alert.show(`${error.code}\n${error.message}`, {type: 'error'});
+  }
+};
+
+const handleError = req => {
+  setLoading(true);
+  req.catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    showError(error);
+    setLoading(false);
+  });
+};
+
+const signIn = (email, password, callback) => {
+  handleError(signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    setLoading(false);
+    globalStore.dispatch(gsSignIn({email}));
+    alert.show('Sessión iniciada', {type: 'success'});
+    setTimeout(() => callback(user), 1000);
+  }));
+};
+
+const signUp = (email, password, callback) => {
+  handleError(createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    setLoading(false);
+    globalStore.dispatch(gsSignIn({email}));
+    alert.show('Cuenta creada, iniciando sesión...', {type: 'success'});
+    setTimeout(() => callback(user), 1000);
+  }));
+};
+
+const firebasePipe = {
+  init: (newSetLoading, newAlert) => {
+    setLoading = newSetLoading;
+    alert = newAlert;
+    return {
+      signIn,
+      signUp,
+    };
+  },
 };
 
 export default firebasePipe;

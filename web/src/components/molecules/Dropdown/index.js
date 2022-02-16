@@ -7,7 +7,6 @@ const handlekeyboardNavigation = (root) => {
   root.current.onkeypress = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(root.current);
     const firstChild = root.current.querySelector('div > a');
     firstChild.focus();
     const rootChilds = root.current.querySelectorAll('div > a');

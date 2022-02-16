@@ -21,7 +21,7 @@ function Navbar() {
         }}
         />
       </Modal>
-      <Modal title="Inicio de sesión" visible={signUpModal} setVisible={setSignUpModal}>
+      <Modal title="Registro" visible={signUpModal} setVisible={setSignUpModal}>
         <SignUpForm footerOnClick={() => {
           setSignUpModal(false);
           setSignInModal(true);

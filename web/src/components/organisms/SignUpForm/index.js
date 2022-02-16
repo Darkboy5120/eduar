@@ -3,9 +3,13 @@ import SignForm from '../../molecules/SignForm';
 import InputText from '../../molecules/InputText';
 import useSignUp from '../../../assets/hooks/useSignUp';
 import CheckboxLabel from '../../atoms/CheckboxLabel';
+import firebasePipe from '../../../assets/controllers/firebasePipe';
+import { useAlert } from 'react-alert';
 
 function SignUpForm({ footerOnClick }) {
   const form = useSignUp();
+  const alert = useAlert();
+  const fbPipe = firebasePipe.init(form.submit.setLoading, alert);
 
   const signFooter = {
     label: '¿Aun no tienes cuenta? inicia sesión ',
@@ -15,10 +19,12 @@ function SignUpForm({ footerOnClick }) {
     },
   };
   const signSubmit = {
-    label: 'Iniciar sesión',
+    label: 'Crear cuenta',
     onClick: () => {
       form.submit.setLoading(true);
-      setTimeout(() => form.submit.setLoading(false), 3000);
+      fbPipe.signUp(form.email.value, form.password.value, user => {
+        console.log(user);
+      });
     },
   };
 
