@@ -30,36 +30,27 @@ const showError = error => {
   }
 };
 
-const handleError = req => {
+const handleError = (req, successMessanje, {email}) => {
   setLoading(true);
   req.catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     showError(error);
     setLoading(false);
+  }).then((userCredential) => {
+    // const user = userCredential.user;
+    setLoading(false);
+    globalStore.dispatch(gsSignIn({email}));
+    alert.show(successMessanje, {type: 'success'});
   });
 };
 
 const signIn = (email, password, callback) => {
-  handleError(signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    setLoading(false);
-    globalStore.dispatch(gsSignIn({email}));
-    alert.show('Sessión iniciada', {type: 'success'});
-    setTimeout(() => callback(user), 1000);
-  }));
+  handleError(signInWithEmailAndPassword(auth, email, password), 'Sessión iniciada', {email});
 };
 
 const signUp = (email, password, callback) => {
-  handleError(createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    setLoading(false);
-    globalStore.dispatch(gsSignIn({email}));
-    alert.show('Cuenta creada, iniciando sesión...', {type: 'success'});
-    setTimeout(() => callback(user), 1000);
-  }));
+  handleError(createUserWithEmailAndPassword(auth, email, password), 'Cuenta creada, iniciando sesión...', {email});
 };
 
 const firebasePipe = {

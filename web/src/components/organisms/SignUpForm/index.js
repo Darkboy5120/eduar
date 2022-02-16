@@ -22,9 +22,7 @@ function SignUpForm({ footerOnClick }) {
     label: 'Crear cuenta',
     onClick: () => {
       form.submit.setLoading(true);
-      fbPipe.signUp(form.email.value, form.password.value, user => {
-        console.log(user);
-      });
+      fbPipe.signUp(form.email.value, form.password.value);
     },
   };
 

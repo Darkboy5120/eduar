@@ -21,9 +21,7 @@ function SignInForm({ footerOnClick }) {
   const signSubmit = {
     label: 'Iniciar sesión',
     onClick: () => {
-      fbPipe.signIn(form.email.value, form.password.value, user => {
-        console.log('signed in');
-      });
+      fbPipe.signIn(form.email.value, form.password.value);
       // request.post('signIn', {}).then((res) => {
       //   console.log(res);
       //   form.submit.setLoading(false);
