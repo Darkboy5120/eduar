@@ -1,10 +1,9 @@
 import React from 'react';
+import { useAlert } from 'react-alert';
 import SignForm from '../../molecules/SignForm';
 import InputText from '../../molecules/InputText';
 import useSignIn from '../../../assets/hooks/useSignIn';
-import request from '../../../assets/controllers/request';
 import firebasePipe from '../../../assets/controllers/firebasePipe';
-import { useAlert } from 'react-alert';
 
 function SignInForm({ footerOnClick }) {
   const form = useSignIn();

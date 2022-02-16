@@ -1,19 +1,19 @@
 import React from 'react';
-import Navbar from '../src/components/organisms/Navbar';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
-import globalStore from '../src/assets/store/reducers/globalStore';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
+import globalStore from '../src/assets/store/reducers/globalStore';
+import Navbar from '../src/components/organisms/Navbar';
 
 const options = {
   position: positions.BOTTOM_RIGHT,
   timeout: 5000,
   offset: '30px',
-  transition: transitions.SCALE
-}
+  transition: transitions.SCALE,
+};
 
-export async function getServerSideProps(params) {  
+export async function getServerSideProps(params) {
   // Fetch data from external API
   // const res = await fetch(`https://.../data`)
   // const data = await res.json()
@@ -22,19 +22,19 @@ export async function getServerSideProps(params) {
   return { props: { p: params.query.p } };
 }
 
-const getPage = page => {
+const getPage = (page) => {
   let pageContent;
   switch (page) {
     case 'welcome':
-      pageContent = <div></div>;
+      pageContent = <div />;
       break;
     default:
-      pageContent = <div></div>;
+      pageContent = <div />;
   }
   return pageContent;
-}
+};
 
-export default function Home(props) {
+export default function Home({ p }) {
   return (
     <Provider store={globalStore}>
       <AlertProvider template={AlertTemplate} {...options}>
@@ -44,7 +44,7 @@ export default function Home(props) {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Navbar />
-          {getPage(props.p)}
+          {getPage(p)}
         </div>
       </AlertProvider>
     </Provider>

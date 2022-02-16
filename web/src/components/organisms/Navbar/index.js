@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styles from './styles.module.css';
 import { FaAlignJustify, FaUserCircle } from 'react-icons/fa';
+import styles from './styles.module.css';
 import Dropdown from '../../molecules/Dropdown';
 import DropdownItem from '../../molecules/DropdrownItem';
 import InputSearch from '../../molecules/InputSearch';

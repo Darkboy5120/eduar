@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useAlert } from 'react-alert';
 import SignForm from '../../molecules/SignForm';
 import InputText from '../../molecules/InputText';
 import useSignUp from '../../../assets/hooks/useSignUp';
 import CheckboxLabel from '../../atoms/CheckboxLabel';
 import firebasePipe from '../../../assets/controllers/firebasePipe';
-import { useAlert } from 'react-alert';
 
 function SignUpForm({ footerOnClick }) {
   const form = useSignUp();
@@ -22,21 +22,11 @@ function SignUpForm({ footerOnClick }) {
     label: 'Crear cuenta',
     onClick: () => {
       form.submit.setLoading(true);
-      fbPipe.signUp(form.email.value, form.password.value);
+      fbPipe.signUp(form.email.value, form.password.value, (user) => {
+        console.log(user);
+      });
     },
   };
-
-  useEffect(() => {
-    console.log(
-      form.email.ok,
-      form.password.ok,
-      form.confirmPassword.ok,
-      form.firstname.ok,
-      form.lastname.ok,
-      form.birthdate.ok,
-      form.politics.ok,
-    );
-  }, [form]);
 
   return (
     <SignForm {...form.submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>

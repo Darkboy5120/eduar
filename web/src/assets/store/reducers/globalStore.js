@@ -1,4 +1,5 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit'
+import { createSlice, configureStore } from '@reduxjs/toolkit';
+
 const userIntialState = {
   id: null,
   firstname: null,
@@ -20,12 +21,12 @@ const counterSlice = createSlice({
       state.user = userIntialState;
     },
   },
-})
+});
 
 const globalStore = configureStore({
   reducer: counterSlice.reducer,
 });
 
-export const { signIn, signOut } = counterSlice.actions
+export const { signIn, signOut } = counterSlice.actions;
 
 export default globalStore;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styles from './styles.module.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import styles from './styles.module.css';
 import Input from '../../atoms/Input';
 
 const LOG = {
