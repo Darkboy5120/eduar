@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../src/components/organisms/Navbar';
 import Head from 'next/head';
+import { Provider } from 'react-redux';
 
 export async function getServerSideProps(foo) {
   console.log(foo.query.a);
@@ -14,12 +15,14 @@ export async function getServerSideProps(foo) {
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Navbar />
-    </div>
+    <Provider store={store}>
+      <div>
+        <Head>
+          <title>Create Next App</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Navbar />
+      </div>
+    </Provider>
   );
 }

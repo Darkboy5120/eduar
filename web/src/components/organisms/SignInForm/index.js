@@ -18,8 +18,8 @@ function SignInForm({ footerOnClick }) {
     label: 'Iniciar sesión',
     onClick: () => {
       form.submit.setLoading(true);
-      request.post('get_users').then((r) => {
-        console.log(r);
+      request.post('signIn', {}).then((res) => {
+        console.log(res);
         form.submit.setLoading(false);
       });
     },

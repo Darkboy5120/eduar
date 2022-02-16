@@ -66,9 +66,10 @@ create table `user` (
   `firstname` varchar(50) not null,
   `lastname` varchar(50) not null,
   `birthdate` date not null,
-  `password` varchar(255) not null,
+  `auth` varchar(28) not null,
   `registerdate` timestamp default current_timestamp not null,
-  primary key(pk_email)
+  primary key(pk_email),
+  unique key(auth)
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `user_photo` (
