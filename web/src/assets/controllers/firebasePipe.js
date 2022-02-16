@@ -3,6 +3,7 @@ import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as authSignOut,
 } from 'firebase/auth';
 import globalStore, { signIn as gsSignIn, signOut as gsSignOut } from '../store/reducers/globalStore';
+import request from './request';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAlUgYl40IL0MknZncZtOX9k1Yx8gO0ABo',
@@ -59,12 +60,32 @@ const signIn = (email, password, callback) => {
   );
 };
 
-const signUp = (email, password, callback) => {
+const signUp = (email, password, firstname, lastname, birthdate) => {
   handleError(
     createUserWithEmailAndPassword(auth, email, password),
     'Cuenta creada, iniciando sesión...',
     { email },
-    callback,
+    (user) => {
+      setLoading(true);
+      request.post('signUp', {
+        email,
+        password,
+        firstname,
+        lastname,
+        birthdate,
+        auth: user.uid,
+      }).then((res) => {
+        console.log(res);
+        setLoading(false);
+        switch (res.code) {
+          case 0:
+            alert.show('Sesión iniciada');
+            break;
+          default:
+            alert.show('Ha ocurrido un problema en el servidor');
+        }
+      });
+    },
   );
 };
 
