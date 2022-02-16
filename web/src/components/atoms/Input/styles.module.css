@@ -1,0 +1,27 @@
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 15em;
+}
+.inputContainer > .inputTitle {
+  position: absolute;
+  top: 0;
+  left: .5em;
+  font-weight: 600;
+  font-size: .9rem;
+}
+.inputContainer > .inputTitleSpace {
+  padding-top: 1em !important;
+}
+.inputContainer > .input {
+  border: none;
+  box-shadow: 0px 2px 4px var(--shadow);
+  height: 3em;
+  border-radius: 5px;
+  padding: 0 .7em;
+  width: 100%;
+}
+.inputContainer > .inputWithIconLeft {
+  padding-left: 2.5em;
+}
