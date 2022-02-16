@@ -2,8 +2,9 @@ import React from 'react';
 import Navbar from '../src/components/organisms/Navbar';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
+import globalStore from '../src/assets/store/reducers/globalStore';
 
-export async function getServerSideProps(foo) {
+export async function getServerSideProps(foo) {  
   console.log(foo.query.a);
   // Fetch data from external API
   // const res = await fetch(`https://.../data`)
@@ -15,7 +16,7 @@ export async function getServerSideProps(foo) {
 
 export default function Home() {
   return (
-    <Provider store={store}>
+    <Provider store={globalStore}>
       <div>
         <Head>
           <title>Create Next App</title>
