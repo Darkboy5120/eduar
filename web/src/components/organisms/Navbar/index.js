@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaAlignJustify, FaUserCircle } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import Dropdown from '../../molecules/Dropdown';
 import DropdownItem from '../../molecules/DropdrownItem';
@@ -7,10 +8,16 @@ import InputSearch from '../../molecules/InputSearch';
 import Modal from '../../atoms/Modal';
 import SignInForm from '../SignInForm';
 import SignUpForm from '../SignUpForm';
+import globalStore from '../../../assets/store/reducers/globalStore';
+import firebasePipe from '../../../assets/controllers/firebasePipe';
 
 function Navbar() {
   const [signInModal, setSignInModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
+  const globalState = useSelector(globalStore.getState);
+  const fbPipe = firebasePipe.init();
+
+  console.log(globalState);
 
   return (
     <div className={styles.navbar}>
@@ -38,8 +45,14 @@ function Navbar() {
       <div className={styles.rightContainer}>
         <InputSearch />
         <Dropdown leftIcon={<FaUserCircle />} align="right">
-          <DropdownItem title="Iniciar sesión" onClick={() => setSignInModal(true)} />
-          <DropdownItem title="Crear cuenta" onClick={() => setSignUpModal(true)} />
+          <p>{globalState.user.firstname}</p>
+          <p>{globalState.user.email}</p>
+          {globalState.signed ? <DropdownItem title="Ver perfil" linkTarget="foo" /> : null}
+          {globalState.signed ? <DropdownItem title="Mis AR" linkTarget="foo" /> : null}
+          {globalState.signed ? <DropdownItem title="Mis favoritos" linkTarget="foo" /> : null}
+          {globalState.signed ? <DropdownItem title="Cerrar sesión" onClick={() => fbPipe.signOut()} /> : null}
+          {!globalState.signed ? <DropdownItem title="Iniciar sesión" onClick={() => setSignInModal(true)} /> : null}
+          {!globalState.signed ? <DropdownItem title="Crear cuenta" onClick={() => setSignUpModal(true)} /> : null}
         </Dropdown>
       </div>
     </div>

@@ -34,7 +34,7 @@ const showError = (error) => {
   }
 };
 
-const handleError = (req, successMessanje, { email }, callback) => {
+const handleError = (req, callback) => {
   setLoading(true);
   req.catch((error) => {
     showError(error);
@@ -42,8 +42,6 @@ const handleError = (req, successMessanje, { email }, callback) => {
   }).then((userCredential) => {
     if (userCredential) {
       setLoading(false);
-      globalStore.dispatch(gsSignIn({ email }));
-      alert.show(successMessanje, { type: 'success' });
       if (callback) {
         callback(userCredential.user);
       }
@@ -51,23 +49,36 @@ const handleError = (req, successMessanje, { email }, callback) => {
   });
 };
 
-const signIn = (email, password, callback) => {
+const signIn = (email, password) => {
   handleError(
     signInWithEmailAndPassword(auth, email, password),
-    'Sessión iniciada',
-    { email },
-    callback,
+    (user) => {
+      setLoading(true);
+      request.post('global_signIn', {
+        email,
+      }).then((res) => {
+        setLoading(false);
+        switch (res.data.code) {
+          case 0:
+            globalStore.dispatch(gsSignIn(
+              { user: { ...res.data.data, auth: user.uid }, signed: true },
+            ));
+            alert.show('Sesión iniciada', { type: 'success' });
+            break;
+          default:
+            alert.show('Ha ocurrido un problema en el servidor');
+        }
+      });
+    },
   );
 };
 
 const signUp = (email, password, firstname, lastname, birthdate) => {
   handleError(
     createUserWithEmailAndPassword(auth, email, password),
-    'Cuenta creada, iniciando sesión...',
-    { email },
     (user) => {
       setLoading(true);
-      request.post('signUp', {
+      request.post('global_signUp', {
         email,
         password,
         firstname,
@@ -75,11 +86,9 @@ const signUp = (email, password, firstname, lastname, birthdate) => {
         birthdate,
         auth: user.uid,
       }).then((res) => {
-        console.log(res);
-        setLoading(false);
-        switch (res.code) {
+        switch (res.data.code) {
           case 0:
-            alert.show('Sesión iniciada');
+            signIn(email, password);
             break;
           default:
             alert.show('Ha ocurrido un problema en el servidor');
@@ -90,8 +99,8 @@ const signUp = (email, password, firstname, lastname, birthdate) => {
 };
 
 const signOut = (callback) => {
-  authSignOut().then(() => {
-    gsSignOut();
+  authSignOut(auth).then(() => {
+    globalStore.dispatch(gsSignOut());
     if (callback) {
       callback();
     }

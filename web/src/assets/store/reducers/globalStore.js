@@ -8,25 +8,28 @@ const userIntialState = {
   birthdate: null,
 };
 
-const counterSlice = createSlice({
+export const globalSlice = createSlice({
   name: 'globalStore',
   initialState: {
     user: userIntialState,
+    signed: null,
   },
   reducers: {
     signIn: (state, data) => {
-      state.email = data.payload.email;
+      state.user = data.payload.user;
+      state.signed = data.payload.signed;
     },
     signOut: (state) => {
       state.user = userIntialState;
+      state.signed = null;
     },
   },
 });
 
 const globalStore = configureStore({
-  reducer: counterSlice.reducer,
+  reducer: globalSlice.reducer,
 });
 
-export const { signIn, signOut } = counterSlice.actions;
+export const { signIn, signOut } = globalSlice.actions;
 
 export default globalStore;

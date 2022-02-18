@@ -19,7 +19,7 @@ export async function getServerSideProps(params) {
   // const data = await res.json()
 
   // Pass data to the page via props
-  return { props: { p: params.query.p } };
+  return { props: { p: params.query.p ?? '' } };
 }
 
 const getPage = (page) => {
