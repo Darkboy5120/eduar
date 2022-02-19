@@ -52,8 +52,8 @@ const handleError = (req, callback) => {
 const signInServer = (user, dismiss) => {
   request.post('global_signIn', {
     email: user.email,
+    auth: user.uid,
   }).then((res) => {
-    console.log(res);
     if (setLoading) {
       setLoading(false);
     }
@@ -101,7 +101,7 @@ const signUp = (email, password, firstname, lastname, birthdate, dismiss) => {
             signIn(email, password, dismiss);
             break;
           default:
-            alert.show('Ha ocurrido un problema en el servidor');
+            alert.show('Ha ocurrido un problema en el servidor', { type: 'error' });
         }
       });
     },
