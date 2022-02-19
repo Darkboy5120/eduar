@@ -49,31 +49,41 @@ const handleError = (req, callback) => {
   });
 };
 
-const signIn = (email, password) => {
+const signInServer = (user, dismiss) => {
+  request.post('global_signIn', {
+    email: user.email,
+  }).then((res) => {
+    console.log(res);
+    if (setLoading) {
+      setLoading(false);
+    }
+    switch (res.data.code) {
+      case 0:
+        globalStore.dispatch(gsSignIn(
+          { user: { ...res.data.data, auth: user.uid }, signed: true },
+        ));
+        if (dismiss) {
+          dismiss();
+          alert.show('Sesión iniciada', { type: 'success' });
+        }
+        break;
+      default:
+        alert.show('Ha ocurrido un problema en el servidor', { type: 'error' });
+    }
+  });
+};
+
+const signIn = (email, password, dismiss) => {
   handleError(
     signInWithEmailAndPassword(auth, email, password),
     (user) => {
       setLoading(true);
-      request.post('global_signIn', {
-        email,
-      }).then((res) => {
-        setLoading(false);
-        switch (res.data.code) {
-          case 0:
-            globalStore.dispatch(gsSignIn(
-              { user: { ...res.data.data, auth: user.uid }, signed: true },
-            ));
-            alert.show('Sesión iniciada', { type: 'success' });
-            break;
-          default:
-            alert.show('Ha ocurrido un problema en el servidor');
-        }
-      });
+      signInServer(user, dismiss);
     },
   );
 };
 
-const signUp = (email, password, firstname, lastname, birthdate) => {
+const signUp = (email, password, firstname, lastname, birthdate, dismiss) => {
   handleError(
     createUserWithEmailAndPassword(auth, email, password),
     (user) => {
@@ -88,7 +98,7 @@ const signUp = (email, password, firstname, lastname, birthdate) => {
       }).then((res) => {
         switch (res.data.code) {
           case 0:
-            signIn(email, password);
+            signIn(email, password, dismiss);
             break;
           default:
             alert.show('Ha ocurrido un problema en el servidor');
@@ -98,9 +108,19 @@ const signUp = (email, password, firstname, lastname, birthdate) => {
   );
 };
 
+const autoSignIn = () => {
+  auth.onAuthStateChanged((user) => {
+    if (user && !setLoading) {
+      alert.show('Sesión restaurada', { type: 'success' });
+      signInServer(user);
+    }
+  });
+};
+
 const signOut = (callback) => {
   authSignOut(auth).then(() => {
     globalStore.dispatch(gsSignOut());
+    alert.show('Sesión cerrada', { type: 'success' });
     if (callback) {
       callback();
     }
@@ -115,6 +135,7 @@ const firebasePipe = {
       signIn,
       signUp,
       signOut,
+      autoSignIn,
     };
   },
 };

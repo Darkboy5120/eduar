@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaAlignJustify, FaUserCircle } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
+import { useAlert } from 'react-alert';
 import styles from './styles.module.css';
 import Dropdown from '../../molecules/Dropdown';
 import DropdownItem from '../../molecules/DropdrownItem';
@@ -15,24 +16,33 @@ function Navbar() {
   const [signInModal, setSignInModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
   const globalState = useSelector(globalStore.getState);
-  const fbPipe = firebasePipe.init();
+  const alert = useAlert();
+  const fbPipe = firebasePipe.init(null, alert);
 
-  console.log(globalState);
+  useEffect(() => {
+    if (!globalStore.signed) {
+      fbPipe.autoSignIn();
+    }
+  }, []);
 
   return (
     <div className={styles.navbar}>
       <Modal title="Inicio de sesión" visible={signInModal} setVisible={setSignInModal}>
-        <SignInForm footerOnClick={() => {
-          setSignInModal(false);
-          setSignUpModal(true);
-        }}
+        <SignInForm
+          footerOnClick={() => {
+            setSignInModal(false);
+            setSignUpModal(true);
+          }}
+          dismiss={() => setSignInModal(false)}
         />
       </Modal>
       <Modal title="Registro" visible={signUpModal} setVisible={setSignUpModal}>
-        <SignUpForm footerOnClick={() => {
-          setSignUpModal(false);
-          setSignInModal(true);
-        }}
+        <SignUpForm
+          footerOnClick={() => {
+            setSignUpModal(false);
+            setSignInModal(true);
+          }}
+          dismiss={() => setSignUpModal(false)}
         />
       </Modal>
       <Dropdown title="Eduar" leftIcon={<FaAlignJustify />}>

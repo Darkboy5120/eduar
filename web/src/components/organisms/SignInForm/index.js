@@ -5,7 +5,7 @@ import InputText from '../../molecules/InputText';
 import useSignIn from '../../../assets/hooks/useSignIn';
 import firebasePipe from '../../../assets/controllers/firebasePipe';
 
-function SignInForm({ footerOnClick }) {
+function SignInForm({ footerOnClick, dismiss }) {
   const form = useSignIn();
   const alert = useAlert();
   const fbPipe = firebasePipe.init(form.submit.setLoading, alert);
@@ -20,7 +20,7 @@ function SignInForm({ footerOnClick }) {
   const signSubmit = {
     label: 'Iniciar sesión',
     onClick: () => {
-      fbPipe.signIn(form.email.value, form.password.value);
+      fbPipe.signIn(form.email.value, form.password.value, dismiss);
     },
   };
 

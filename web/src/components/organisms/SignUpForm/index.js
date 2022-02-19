@@ -6,7 +6,7 @@ import useSignUp from '../../../assets/hooks/useSignUp';
 import CheckboxLabel from '../../atoms/CheckboxLabel';
 import firebasePipe from '../../../assets/controllers/firebasePipe';
 
-function SignUpForm({ footerOnClick }) {
+function SignUpForm({ footerOnClick, dismiss }) {
   const form = useSignUp();
   const alert = useAlert();
   const fbPipe = firebasePipe.init(form.submit.setLoading, alert);
@@ -28,6 +28,7 @@ function SignUpForm({ footerOnClick }) {
         form.firstname.value,
         form.lastname.value,
         form.birthdate.value,
+        dismiss,
       );
     },
   };
