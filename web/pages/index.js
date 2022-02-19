@@ -5,6 +5,7 @@ import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 import globalStore from '../src/assets/store/reducers/globalStore';
 import Navbar from '../src/components/organisms/Navbar';
+import MyAr from '../src/components/pages/MyAr';
 
 const options = {
   position: positions.BOTTOM_RIGHT,
@@ -27,6 +28,9 @@ const getPage = (page) => {
   switch (page) {
     case 'welcome':
       pageContent = <div />;
+      break;
+    case 'myar':
+      pageContent = <MyAr />;
       break;
     default:
       pageContent = <div />;

@@ -27,7 +27,7 @@ function Navbar() {
 
   return (
     <div className={styles.navbar}>
-      <Modal title="Inicio de sesión" visible={signInModal} setVisible={setSignInModal}>
+      <Modal title="Inicio de sesión" size="big" visible={signInModal} setVisible={setSignInModal}>
         <SignInForm
           footerOnClick={() => {
             setSignInModal(false);
@@ -36,7 +36,7 @@ function Navbar() {
           dismiss={() => setSignInModal(false)}
         />
       </Modal>
-      <Modal title="Registro" visible={signUpModal} setVisible={setSignUpModal}>
+      <Modal title="Registro" size="big" visible={signUpModal} setVisible={setSignUpModal}>
         <SignUpForm
           footerOnClick={() => {
             setSignUpModal(false);

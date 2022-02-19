@@ -1,0 +1,25 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1800deg);
+  }
+}
+
+.centered {
+  width: 100%;
+  text-align: center;
+}
+.small {
+  font-size: 1rem;
+}
+.medium {
+  font-size: 2rem;
+}
+.big {
+  font-size: 3rem;
+}
+.loading {
+  animation: spin infinite 5s linear;
+}

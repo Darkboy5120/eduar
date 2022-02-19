@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Button from '../../atoms/Button';
+import CustomButton from '../../atoms/CustomButton';
 import styles from './styles.module.css';
 
 const handlekeyboardNavigation = (root) => {
@@ -35,7 +35,7 @@ function Dropdown({
 
   return (
     <div ref={root} className={styles.dropdown}>
-      <Button leftIcon={leftIcon} title={title} onClick={() => {}} />
+      <CustomButton leftIcon={leftIcon} title={title} onClick={() => {}} />
       <div className={`${styles.content} ${contentAlign}`}>{children}</div>
     </div>
   );

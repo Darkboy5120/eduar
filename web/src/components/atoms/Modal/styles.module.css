@@ -10,10 +10,16 @@
   align-items: center;
   justify-content: center;
 }
-.modalContainer {
-  background-color: var(--main4);
+.modalContainerBig {
   height: 80%;
   width: 60%;
+}
+.modalContainerSmall {
+  height: 35%;
+  width: 30%;
+}
+.modalContainer {
+  background-color: var(--main4);
   border-radius: 5px;
   border: 2px solid var(--main2);
   padding: 1em;
@@ -45,4 +51,5 @@
 .modalBody {
   overflow-y: auto;
   flex: 1;
+  padding: 2%;
 }
