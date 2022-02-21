@@ -1,0 +1,25 @@
+.container {
+  color: var(--main2);
+  text-decoration: none;
+}
+.container:focus-within {
+  outline: 3px solid var(--main2);
+  border-radius: 5px;
+}
+.container:hover > .flexContainer {
+  background-color: var(--main3);
+}
+.flexContainer {
+  height: 130px;
+  width: 130px;
+  box-shadow: 0px 4px 8px var(--shadow);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 5px;
+  background-color: var(--main1);
+}
+.icon {
+  height: 50%;
+  font-size: 3.5rem;
+}

@@ -1,0 +1,8 @@
+.container {
+  background-color: var(--main2);
+  color: var(--main1);
+  padding: .3em .6em;
+  margin: 0 .5em;
+  display: flex;
+  align-items: center;
+}

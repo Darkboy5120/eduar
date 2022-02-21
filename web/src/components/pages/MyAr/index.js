@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import PageContainer from '../../../layouts/PageContainer';
-import PageHeader from '../../atoms/PageHeader';
-import PageText from '../../atoms/PageText';
+import CustomText from '../../atoms/CustomText';
 import CustomButton from '../../atoms/CustomButton';
 import Modal from '../../atoms/Modal';
-import FlexButton from '../../atoms/FlexButton';
+import FlexButton from '../../molecules/FlexButton';
 import LoadingSpinner from '../../atoms/LoadingSpinner';
 
 function MyAr() {
@@ -21,9 +20,9 @@ function MyAr() {
         />
         <FlexButton title="Cancelar" onClick={() => setEnableDevModal(false)} />
       </Modal>
-      <LoadingSpinner size="medium" centered />
-      <PageHeader text="Aun no has activado el modo desarrollador" />
-      <PageText text="Solo los desarrolladores pueden subir aplicaciónes" />
+      {/* <LoadingSpinner size="medium" centered /> */}
+      <CustomText h1 text="Aun no has activado el modo desarrollador" />
+      <CustomText text="Solo los desarrolladores pueden subir aplicaciónes" />
       <br />
       <CustomButton title="Activar modo desarrollador" onClick={() => setEnableDevModal(true)} />
     </PageContainer>

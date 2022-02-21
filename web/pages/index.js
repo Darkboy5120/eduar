@@ -6,6 +6,7 @@ import AlertTemplate from 'react-alert-template-basic';
 import globalStore from '../src/assets/store/reducers/globalStore';
 import Navbar from '../src/components/organisms/Navbar';
 import MyAr from '../src/components/pages/MyAr';
+import Home from '../src/components/pages/Home';
 
 const options = {
   position: positions.BOTTOM_RIGHT,
@@ -32,13 +33,16 @@ const getPage = (page) => {
     case 'myar':
       pageContent = <MyAr />;
       break;
+    case 'home':
+      pageContent = <Home />;
+      break;
     default:
       pageContent = <div />;
   }
   return pageContent;
 };
 
-export default function Home({ p }) {
+export default function App({ p }) {
   return (
     <Provider store={globalStore}>
       <AlertProvider template={AlertTemplate} {...options}>

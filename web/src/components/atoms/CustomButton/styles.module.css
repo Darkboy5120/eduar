@@ -13,6 +13,9 @@
   align-items: center;
   justify-content: center;
 }
+.flex {
+  width: 100%;
+}
 .buttonContainer:hover {
   background-color: var(--main3);
 }
