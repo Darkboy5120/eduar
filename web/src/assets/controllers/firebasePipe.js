@@ -113,6 +113,8 @@ const autoSignIn = () => {
     if (user && !setLoading) {
       alert.show('Sesión restaurada', { type: 'success' });
       signInServer(user);
+    } else {
+      globalStore.dispatch(gsSignOut());
     }
   });
 };
@@ -136,6 +138,7 @@ const firebasePipe = {
       signUp,
       signOut,
       autoSignIn,
+      auth,
     };
   },
 };

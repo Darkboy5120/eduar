@@ -21,7 +21,7 @@ export const globalSlice = createSlice({
     },
     signOut: (state) => {
       state.user = userIntialState;
-      state.signed = null;
+      state.signed = false;
     },
   },
 });

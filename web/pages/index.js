@@ -1,13 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
-import { useRouter } from 'next/router';
 import globalStore from '../src/assets/store/reducers/globalStore';
 import Navbar from '../src/components/organisms/Navbar';
 import MyAr from '../src/components/pages/MyAr';
 import Home from '../src/components/pages/Home';
+import Blocked from '../src/components/pages/Blocked';
+import Loading from '../src/components/pages/Loading';
 
 const options = {
   position: positions.BOTTOM_RIGHT,
@@ -16,27 +17,22 @@ const options = {
   transition: transitions.SCALE,
 };
 
-export async function getServerSideProps(params) {
-  // Fetch data from external API
-  // const res = await fetch(`https://.../data`)
-  // const data = await res.json()
-
-  // Pass data to the page via props
-  return { props: params.query };
+export async function getServerSideProps(context) {
+  return { props: context.query };
 }
 
-const checkAllowedScreens = (page) => {
-  const { signed } = globalStore.getState();
+function PageContent({ params }) {
+  const globalState = useSelector(globalStore.getState);
   const restrictedScreens = ['myar'];
-  if (!signed && restrictedScreens.includes(page)) {
-  }
-};
 
-const getPage = (params) => {
-  const page = params.p;
+  if (restrictedScreens.includes(params.p) && globalState.signed === false) {
+    return <Blocked />;
+  } if (restrictedScreens.includes(params.p) && globalState.signed === null) {
+    return <Loading />;
+  }
+
   let pageContent;
-  checkAllowedScreens(page);
-  switch (page) {
+  switch (params.p) {
     case 'welcome':
       pageContent = <div />;
       break;
@@ -47,10 +43,10 @@ const getPage = (params) => {
       pageContent = <Home />;
       break;
     default:
-      pageContent = <div />;
+      pageContent = <Home />;
   }
   return pageContent;
-};
+}
 
 export default function App(params) {
   return (
@@ -62,7 +58,7 @@ export default function App(params) {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Navbar />
-          {getPage(params)}
+          <PageContent params={params} />
         </div>
       </AlertProvider>
     </Provider>
