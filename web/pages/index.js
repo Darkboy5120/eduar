@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { Provider, useSelector } from 'react-redux';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
+import { useRouter } from 'next/router';
 import globalStore from '../src/assets/store/reducers/globalStore';
 import Navbar from '../src/components/organisms/Navbar';
 import MyAr from '../src/components/pages/MyAr';
@@ -24,9 +25,12 @@ export async function getServerSideProps(context) {
 function PageContent({ params }) {
   const globalState = useSelector(globalStore.getState);
   const restrictedScreens = ['myar'];
+  const router = useRouter();
 
   if (restrictedScreens.includes(params.p) && globalState.signed === false) {
-    return <Blocked />;
+    // return <Blocked />;
+    router.push('/?p=welcome');
+    return <Loading />;
   } if (restrictedScreens.includes(params.p) && globalState.signed === null) {
     return <Loading />;
   }

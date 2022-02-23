@@ -58,7 +58,7 @@ function Navbar() {
           <p>{globalState.user.firstname}</p>
           <p>{globalState.user.email}</p>
           {globalState.signed ? <DropdownItem title="Ver perfil" linkTarget="foo" /> : null}
-          {globalState.signed ? <DropdownItem title="Mis AR" linkTarget="foo" /> : null}
+          {globalState.signed ? <DropdownItem title="Mis AR" linkTarget="/?p=myar" /> : null}
           {globalState.signed ? <DropdownItem title="Mis favoritos" linkTarget="foo" /> : null}
           {globalState.signed ? <DropdownItem title="Cerrar sesión" onClick={() => fbPipe.signOut()} /> : null}
           {!globalState.signed ? <DropdownItem title="Iniciar sesión" onClick={() => setSignInModal(true)} /> : null}

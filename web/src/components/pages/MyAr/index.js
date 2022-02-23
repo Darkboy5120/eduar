@@ -4,7 +4,6 @@ import CustomText from '../../atoms/CustomText';
 import CustomButton from '../../atoms/CustomButton';
 import Modal from '../../atoms/Modal';
 import FlexButton from '../../molecules/FlexButton';
-import LoadingSpinner from '../../atoms/LoadingSpinner';
 import request from '../../../assets/controllers/request';
 import globalStore from '../../../assets/store/reducers/globalStore';
 
@@ -37,7 +36,6 @@ function MyAr() {
         />
         <FlexButton title="Cancelar" onClick={() => setEnableDevModal(false)} />
       </Modal>
-      {/* <LoadingSpinner size="medium" centered /> */}
       <CustomText h1 text="Aun no has activado el modo desarrollador" />
       <CustomText text="Solo los desarrolladores pueden subir aplicaciónes" />
       <br />
