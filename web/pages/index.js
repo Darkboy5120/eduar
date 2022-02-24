@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Provider, useSelector } from 'react-redux';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
@@ -8,7 +8,6 @@ import globalStore from '../src/assets/store/reducers/globalStore';
 import Navbar from '../src/components/organisms/Navbar';
 import MyAr from '../src/components/pages/MyAr';
 import Home from '../src/components/pages/Home';
-import Blocked from '../src/components/pages/Blocked';
 import Loading from '../src/components/pages/Loading';
 
 const options = {
@@ -25,14 +24,16 @@ export async function getServerSideProps(context) {
 function PageContent({ params }) {
   const globalState = useSelector(globalStore.getState);
   const restrictedScreens = ['myar'];
+  const [toDefaultScreen, setToDefaultScreen] = useState(false);
   const router = useRouter();
 
   if (restrictedScreens.includes(params.p) && globalState.signed === false) {
-    // return <Blocked />;
     router.push('/?p=welcome');
     return <Loading />;
   } if (restrictedScreens.includes(params.p) && globalState.signed === null) {
     return <Loading />;
+  } if (toDefaultScreen) {
+    router.push('/?p=welcome');
   }
 
   let pageContent;
@@ -47,7 +48,10 @@ function PageContent({ params }) {
       pageContent = <Home />;
       break;
     default:
-      pageContent = <Home />;
+      if (!toDefaultScreen) {
+        setToDefaultScreen(true);
+      }
+      pageContent = <Loading />;
   }
   return pageContent;
 }
