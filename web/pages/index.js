@@ -33,7 +33,7 @@ function PageContent({ params }) {
   } if (restrictedScreens.includes(params.p) && globalState.signed === null) {
     return <Loading />;
   } if (toDefaultScreen) {
-    router.push('/?p=welcome');
+    router.push('/?p=home');
   }
 
   let pageContent;

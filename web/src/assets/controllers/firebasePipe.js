@@ -57,7 +57,7 @@ const signInServer = (user, dismiss) => {
     if (setLoading) {
       setLoading(false);
     }
-    switch (res.data.code) {
+    switch (res?.data?.code) {
       case 0:
         globalStore.dispatch(gsSignIn(
           { user: { ...res.data.data, auth: user.uid }, signed: true },
@@ -96,7 +96,7 @@ const signUp = (email, password, firstname, lastname, birthdate, dismiss) => {
         birthdate,
         auth: user.uid,
       }).then((res) => {
-        switch (res.data.code) {
+        switch (res?.data?.code) {
           case 0:
             signIn(email, password, dismiss);
             break;
@@ -111,7 +111,7 @@ const signUp = (email, password, firstname, lastname, birthdate, dismiss) => {
 const autoSignIn = () => {
   auth.onAuthStateChanged((user) => {
     if (user && !setLoading) {
-      alert.show('Sesión restaurada', { type: 'success' });
+      // alert.show('Sesión restaurada', { type: 'success' });
       signInServer(user);
     } else {
       globalStore.dispatch(gsSignOut());

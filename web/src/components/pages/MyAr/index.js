@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageContainer from '../../../layouts/PageContainer';
 import CustomText from '../../atoms/CustomText';
 import CustomButton from '../../atoms/CustomButton';
@@ -6,40 +6,37 @@ import Modal from '../../atoms/Modal';
 import FlexButton from '../../molecules/FlexButton';
 import request from '../../../assets/controllers/request';
 import globalStore from '../../../assets/store/reducers/globalStore';
+import LoadingSpinner from '../../atoms/LoadingSpinner';
+import BecomeDeveloper from '../../organisms/BecomeDeveloper';
+import ShowMyAr from '../../organisms/ShowMyAr';
 
-const enableDevMode = (setEnableDevModal, setDevModeLoading) => {
-  setDevModeLoading(true);
-  request.post('global_enableDevMode', {
-    params: {
-      id: globalStore.getState().user.id,
-    },
+const getData = (setData) => {
+  request.post('global_isDev', {
+    id: globalStore.getState().user.email,
   }).then((res) => {
-    setDevModeLoading(false);
-    setEnableDevModal(false);
-    console.log(res);
+    setData(res?.data?.code);
   });
 };
 
+const getContent = (code, setData) => {
+  if (code === 0) {
+    return <BecomeDeveloper setData={setData} />;
+  }
+  return <ShowMyAr type={code} />;
+};
+
 function MyAr() {
-  const [enableDevModal, setEnableDevModal] = useState();
-  const [devModeLoading, setDevModeLoading] = useState(false);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    if (!data) {
+      getData(setData);
+    }
+  }, [data]);
 
   return (
     <PageContainer>
-      <Modal title="¿Quieres activar el modo desarrollador?" visible={enableDevModal} setVisible={setEnableDevModal}>
-        <FlexButton
-          title="Si, activalo"
-          loading={devModeLoading}
-          onClick={() => {
-            enableDevMode(setEnableDevModal, setDevModeLoading);
-          }}
-        />
-        <FlexButton title="Cancelar" onClick={() => setEnableDevModal(false)} />
-      </Modal>
-      <CustomText h1 text="Aun no has activado el modo desarrollador" />
-      <CustomText text="Solo los desarrolladores pueden subir aplicaciónes" />
-      <br />
-      <CustomButton title="Activar modo desarrollador" onClick={() => setEnableDevModal(true)} />
+      {data !== null ? getContent(data, setData) : <LoadingSpinner size="big" centered />}
     </PageContainer>
   );
 }
