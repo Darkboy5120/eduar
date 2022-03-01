@@ -32,7 +32,7 @@ function PageContent({ params }) {
     return <Loading />;
   } if (restrictedScreens.includes(params.p) && globalState.signed === null) {
     return <Loading />;
-  } if (toDefaultScreen) {
+  } if (toDefaultScreen && globalState.signed !== null) {
     router.push('/?p=home');
   }
 
