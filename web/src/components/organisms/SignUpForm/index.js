@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAlert } from 'react-alert';
-import SignForm from '../../molecules/SignForm';
+import CustomForm from '../../molecules/CustomForm';
 import InputText from '../../molecules/InputText';
 import useSignUp from '../../../assets/hooks/useSignUp';
 import CheckboxLabel from '../../atoms/CheckboxLabel';
@@ -34,7 +34,7 @@ function SignUpForm({ footerOnClick, dismiss }) {
   };
 
   return (
-    <SignForm {...form.submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>
+    <CustomForm {...form.submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>
       <InputText {...form.firstname} title="Nombre(s)" />
       <InputText {...form.lastname} title="Apellido(s)" />
       <InputText {...form.email} title="Correo" placeholder="ejemplo@ucol.mx" />
@@ -42,7 +42,7 @@ function SignUpForm({ footerOnClick, dismiss }) {
       <InputText {...form.confirmPassword} type="password" title="Confirmar contraseña" />
       <InputText {...form.birthdate} type="date" title="Fecha de nacimiento" />
       <CheckboxLabel setChecked={form.politics.setOk} title="Acepto los términos y condiciones" />
-    </SignForm>
+    </CustomForm>
   );
 }
 

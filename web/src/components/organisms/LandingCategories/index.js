@@ -4,10 +4,11 @@ import styles from './styles.module.css';
 import FilterButton from '../../molecules/FilterButton';
 import CustomText from '../../atoms/CustomText';
 import LoadCategoties from '../../molecules/LoadCategories';
+import ContentContainer from '../../../layouts/ContentContainer';
 
 function LandingCategories() {
   return (
-    <FlexContainer className={`${styles.container}`} column>
+    <ContentContainer>
       <FlexContainer className={styles.filterContainer}>
         <FilterButton title="Más descargado" href="/?p=searchar&orderby=0" />
         <FilterButton title="Más descargado" href="/?p=searchar&orderby=1" />
@@ -22,7 +23,7 @@ function LandingCategories() {
         <LoadCategoties />
         <br />
       </FlexContainer>
-    </FlexContainer>
+    </ContentContainer>
   );
 }
 

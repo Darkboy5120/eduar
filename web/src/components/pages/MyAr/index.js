@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PageContainer from '../../../layouts/PageContainer';
-import CustomText from '../../atoms/CustomText';
-import CustomButton from '../../atoms/CustomButton';
-import Modal from '../../atoms/Modal';
-import FlexButton from '../../molecules/FlexButton';
 import request from '../../../assets/controllers/request';
 import globalStore from '../../../assets/store/reducers/globalStore';
 import LoadingSpinner from '../../atoms/LoadingSpinner';

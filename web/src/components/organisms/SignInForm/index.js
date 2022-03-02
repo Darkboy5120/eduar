@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAlert } from 'react-alert';
-import SignForm from '../../molecules/SignForm';
+import CustomForm from '../../molecules/CustomForm';
 import InputText from '../../molecules/InputText';
 import useSignIn from '../../../assets/hooks/useSignIn';
 import firebasePipe from '../../../assets/controllers/firebasePipe';
@@ -25,10 +25,10 @@ function SignInForm({ footerOnClick, dismiss }) {
   };
 
   return (
-    <SignForm {...form.submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>
+    <CustomForm {...form.submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>
       <InputText {...form.email} title="Correo" placeholder="ejemplo@gmail.mx" />
       <InputText {...form.password} type="password" title="Contraseña" />
-    </SignForm>
+    </CustomForm>
   );
 }
 

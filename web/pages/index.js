@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import { Provider, useSelector } from 'react-redux';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
@@ -8,6 +8,7 @@ import globalStore from '../src/assets/store/reducers/globalStore';
 import Navbar from '../src/components/organisms/Navbar';
 import MyAr from '../src/components/pages/MyAr';
 import Home from '../src/components/pages/Home';
+import NewAr from '../src/components/pages/NewAr';
 import Loading from '../src/components/pages/Loading';
 
 const options = {
@@ -46,6 +47,9 @@ function PageContent({ params }) {
       break;
     case 'home':
       pageContent = <Home />;
+      break;
+    case 'newar':
+      pageContent = <NewAr />;
       break;
     default:
       if (!toDefaultScreen) {

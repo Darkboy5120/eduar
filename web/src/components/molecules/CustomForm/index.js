@@ -4,22 +4,24 @@ import CustomButton from '../../atoms/CustomButton';
 import Form from '../../atoms/Form';
 import CustomLink from '../../atoms/CustomLink';
 
-function SignForm({
+function CustomForm({
   title, footer, submit, children, ok, loading,
 }) {
   return (
     <div className={styles.signFormContainer}>
-      <h3 className={styles.signFormTitle}>{title}</h3>
+      {title ? <h3 className={styles.signFormTitle}>{title}</h3> : null}
       <Form>
         {children}
         <CustomButton disabled={!ok} loading={loading} type="submit" title={submit.label} onClick={submit.onClick} />
       </Form>
-      <div className={styles.signFormFooter}>
-        <span>{footer.label}</span>
-        <CustomLink tabIndex="0" className={styles.footerTrigger} onClick={footer.onClick}>{footer.trigger}</CustomLink>
-      </div>
+      {footer ? (
+        <div className={styles.signFormFooter}>
+          <span>{footer.label}</span>
+          <CustomLink tabIndex="0" className={styles.footerTrigger} onClick={footer.onClick}>{footer.trigger}</CustomLink>
+        </div>
+      ) : null}
     </div>
   );
 }
 
-export default SignForm;
+export default CustomForm;

@@ -4,3 +4,11 @@
 .column {
   flex-direction: column;
 }
+.verticalCentered {
+  align-items: center;
+  align-content: center;
+}
+.horizontalCentered {
+  justify-items: center;
+  justify-content: center;
+}
