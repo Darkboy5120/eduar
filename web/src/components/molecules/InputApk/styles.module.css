@@ -1,0 +1,19 @@
+.inputSuccessLog {
+    color: green;
+}
+.inputErrorLog {
+    color: red;
+}
+.hidden {
+  display: none !important;
+}
+.inputLayout {
+    margin-bottom: .5em;
+    width: inherit;
+}
+.title {
+    font-weight: 500;
+}
+input + span.inputLog {
+    display: block;
+}

@@ -1,0 +1,119 @@
+.inputSuccessLog {
+    color: green;
+}
+.inputErrorLog {
+    color: red;
+}
+.hidden {
+  display: none !important;
+}
+.inputLayout {
+    margin-bottom: .5em;
+    width: inherit;
+}
+.title {
+    font-weight: 500;
+}
+.inputField > .fileContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+.inputField > .fileContainer.inputSecondary {
+    background-color: var(--main1);
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 2px var(--shadow);
+    overflow: hidden;
+}
+.fileContainer > .fileImages {
+    height: 10rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: auto;
+    column-gap: .5rem;
+    row-gap: 0;
+    overflow-y: auto;
+    /*scroll-snap-type: y mandatory;*/
+}
+.fileDragover {
+    background-color: gray;
+    border-radius: 5px 5px 0 0;
+}
+.fileContainer > .fileImages > .fileImage {
+    width: 100%;
+    position: relative;
+    display: flex;
+    scroll-snap-align: start;
+    height: inherit;
+}
+.fileContainer > .fileImages > .fileImage > img {
+    height: 100%;
+    background-color: rgb(145, 145, 145);
+    object-fit: cover;
+}
+.fileContainer > .fileImages > .fileImage > .fileRemove {
+    position: absolute;
+    font-size: 3rem;
+    width: 100%;
+    height: 100%;
+    font-size: 3rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(50, 50, 50, .5);
+    cursor: pointer;
+}
+.fileContainer > .fileImages > .fileImage > .fileRemove:hover {
+    color: var(--danger);
+}
+.fileContainer > .fileImages.editing > .fileImage > img {
+    height: 100%;
+    filter: blur(3px);
+}
+.fileContainer > .fileImages.editing > .fileImage > .fileRemove {
+    display: flex;
+}
+.fileContainer > .fileImages > .fileImage > img {
+    width: 100%;
+}
+.fileContainer > .fileEmpty {
+    height: 10rem;
+    color: gray;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fileContainer > .fileActions {
+    color: black;
+    font-size: .9rem;
+    height: 2rem;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    border-top: 3px solid black;
+}
+.fileContainer > .fileActions > * {
+    cursor: pointer;
+    padding: 0 .5rem 0 .5rem;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: var(--textColor);
+}
+.fileContainer > .fileActions > *:hover,
+.fileContainer > .fileActions > *:focus {
+    background-color: var(--main5);
+}
+.actionIcon {
+    padding-right: .3rem;
+}
+.fileContainer > .fileButton:hover {
+}
+
+input + span.inputLog {
+    display: block;
+}

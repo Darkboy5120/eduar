@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAlert } from 'react-alert';
 import FlexContainer from '../../../layouts/FlexContainer';
 import PageContainer from '../../../layouts/PageContainer';
 import CustomText from '../../atoms/CustomText';
@@ -10,6 +11,9 @@ import useNewArStep1 from '../../../assets/hooks/useNewArStep1';
 import useNewArStep2 from '../../../assets/hooks/useNewArStep2';
 import request from '../../../assets/controllers/request';
 import InputDropdown from '../../atoms/InputDropdown';
+import InputImage from '../../molecules/InputImage';
+import InputApk from '../../molecules/InputApk';
+import globalStore from '../../../assets/store/reducers/globalStore';
 
 const getCategories = (setCategories) => {
   request.post('global_getCategories').then((res) => {
@@ -17,10 +21,34 @@ const getCategories = (setCategories) => {
   });
 };
 
+const createApp = (form1, form2, setLoading, alert) => {
+  setLoading(true);
+  request('developer_createApp', {
+    developerId: globalStore.getState().user.id,
+    name: form1.name.value,
+    description: form1.description.value,
+    category: form1.category.value,
+    github: form1.github.value,
+    additional: form2.additional.value,
+    thumbnail: form2.thumbnail.value,
+    cover: form2.cover.value,
+    apk: form2.apk.value,
+  }).then((res) => {
+    switch (res?.data?.code) {
+      case 0:
+        alert.show('todo ok', { type: 'success' });
+        break;
+      default:
+        alert.show('Ha ocurrido un problema en el servidor', { type: 'error' });
+    }
+  });
+};
+
 function NewAr() {
   const [step1, setStep1] = useState(false);
   const [step2, setStep2] = useState(false);
   const formStep1 = useNewArStep1();
+  const alert = useAlert();
   const formStep2 = useNewArStep2();
 
   const formStep1Submit = {
@@ -32,7 +60,8 @@ function NewAr() {
   const formStep2Submit = {
     label: 'Terminar',
     onClick: () => {
-      setStep2(true);
+      // setStep2(true);
+      createApp(formStep1, formStep2, setStep2.submit.setLoading, alert);
     },
   };
   const formStep2Back = {
@@ -41,10 +70,6 @@ function NewAr() {
       setStep1(false);
     },
   };
-
-  useEffect(() => {
-    console.log(formStep1.submit.ok);
-  }, [formStep1]);
 
   return (
     <PageContainer>
@@ -71,6 +96,10 @@ function NewAr() {
             <br />
             <CustomText h2 text="Imágenes" />
             <CustomForm {...formStep2.submit} submit={formStep2Submit} back={formStep2Back}>
+              <InputImage title="Otras imágenes" {...formStep2.additional} label="Estas son las imágenes adicionales que se mostraran en la página de tu aplicación." />
+              <InputImage title="Miniatura" {...formStep2.thumbnail} label="Esta imágen saldra en los resultados de búsquedad, procura que sea llamativa." />
+              <InputImage title="Portada" {...formStep2.cover} label="Esta imágen se mostrara en la página de la aplicación AR, deberia ser una imágen grande." />
+              <InputApk title="Aplicación" {...formStep2.apk} />
             </CustomForm>
           </FlexContainer>
         )}
