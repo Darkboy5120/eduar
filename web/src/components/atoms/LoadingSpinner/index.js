@@ -17,11 +17,11 @@ const getSizeStyle = (size) => {
   return sizeStyle;
 };
 
-function LoadingSpinner({ size, centered }) {
+function LoadingSpinner({ size, centered, className }) {
   const sizeStyle = getSizeStyle(size);
   const centeredStyle = centered ? styles.centered : '';
 
-  return <FaSyncAlt className={`${styles.loading} ${sizeStyle} ${centeredStyle}`} />;
+  return <FaSyncAlt className={`${styles.loading} ${sizeStyle} ${centeredStyle} ${className}`} />;
 }
 
 export default LoadingSpinner;

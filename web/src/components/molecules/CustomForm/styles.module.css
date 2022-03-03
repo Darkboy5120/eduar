@@ -14,3 +14,6 @@
   font-weight: bold;
   cursor: pointer;
 }
+.backButton {
+  margin-right: .5em;
+}
