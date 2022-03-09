@@ -21,19 +21,21 @@ const getCategories = (setCategories) => {
   });
 };
 
-const createApp = (form1, form2, setLoading, alert) => {
-  setLoading(true);
-  request('developer_createApp', {
+const createApp = (form1, form2, alert) => {
+  form2.submit.setLoading(true);
+  request.post('developer_createApp', {
     developerId: globalStore.getState().user.id,
     name: form1.name.value,
     description: form1.description.value,
     category: form1.category.value,
     github: form1.github.value,
+  }, {
     additional: form2.additional.value,
     thumbnail: form2.thumbnail.value,
     cover: form2.cover.value,
     apk: form2.apk.value,
   }).then((res) => {
+    form2.submit.setLoading(false);
     switch (res?.data?.code) {
       case 0:
         alert.show('todo ok', { type: 'success' });
@@ -61,7 +63,7 @@ function NewAr() {
     label: 'Terminar',
     onClick: () => {
       // setStep2(true);
-      createApp(formStep1, formStep2, setStep2.submit.setLoading, alert);
+      createApp(formStep1, formStep2, alert);
     },
   };
   const formStep2Back = {
