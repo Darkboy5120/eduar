@@ -21,7 +21,13 @@ function ShowMyAr({ type }) {
         <CustomButton title="Subir AR" leftIcon={<FaPlus />} onClick={() => router.push('/?p=newar')} />
       </>
     )
-    : null;
+    : (
+      <>
+        <CustomText h1 text="Has subido los siguientes AR" />
+        <br />
+        <CustomButton title="Subir AR" leftIcon={<FaPlus />} onClick={() => router.push('/?p=newar')} />
+      </>
+    );
 }
 
 export default ShowMyAr;
