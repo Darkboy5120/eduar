@@ -5,25 +5,27 @@ import LoadingSpinner from '../LoadingSpinner';
 import FlexContainer from '../../../layouts/FlexContainer';
 
 function InputDropdown({
-  title, label, setOk, setValue, getData,
+  title, label, setOk, setValue, getData, initialData, className,
 }) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(initialData ?? null);
 
   useEffect(() => {
-    if (!data) {
-      getData(setData);
-    } else {
-      setOk(true);
-      setValue(data[0].pk_id);
+    if (getData && setOk && setValue) {
+      if (!data) {
+        getData(setData);
+      } else {
+        setOk(true);
+        setValue(data[0].pk_id);
+      }
     }
   }, [data]);
 
-  const handleChange = (event) => {
+  const handleChange = getData ? (event) => {
     setValue(event.target.value);
-  };
+  } : () => {};
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className}`}>
       <div className={styles.wrapper}>
         <FlexContainer className={styles.headerContainer}>
           <CustomText className={styles.title} text={title} />

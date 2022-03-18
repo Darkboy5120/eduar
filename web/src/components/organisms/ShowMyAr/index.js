@@ -5,6 +5,7 @@ import CustomText from '../../atoms/CustomText';
 import CustomButton from '../../atoms/CustomButton';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomLink from '../../atoms/CustomLink';
+import AppFilter from '../../molecules/AppFilter';
 
 function ShowMyAr({ type }) {
   const router = useRouter();
@@ -26,6 +27,8 @@ function ShowMyAr({ type }) {
         <CustomText h1 text="Has subido los siguientes AR" />
         <br />
         <CustomButton title="Subir AR" leftIcon={<FaPlus />} onClick={() => router.push('/?p=newar')} />
+        <br />
+        <AppFilter />
       </>
     );
 }

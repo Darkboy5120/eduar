@@ -2,9 +2,10 @@ import React from 'react';
 import styles from './styles.module.css';
 
 function CustomText({
-  text, h1, h2, h3, span, centered, className,
+  children, text, h1, h2, h3, span, centered, className, bold,
 }) {
-  const textStyle = `${className} ${centered ? styles.centered : ''}`;
+  text = children ?? text;
+  const textStyle = `${className} ${centered ? styles.centered : ''} ${bold ? styles.bold : ''}`;
 
   if (h1) {
     return <h1 className={textStyle}>{text}</h1>;

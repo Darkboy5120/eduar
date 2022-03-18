@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  padding: 0 1em;
+}
+.paginationContainer {
+}
+.dropdownsContainer {
+  width: 50%;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.dropdown {
+  width: max-content;
+  margin-right: 1em;
+  margin-bottom: 0;
+}
+.filterButton {
+  width: max-content;
+}
