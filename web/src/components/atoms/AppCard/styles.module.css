@@ -6,6 +6,15 @@
   box-shadow: 2px 2px 4px 4px transparent;
   text-decoration: none !important;
 }
+.dropdown {
+  position: absolute;
+  right: .5em;
+  top: .5em;
+}
+.dropdown > button {
+  padding: 0 .3em;
+  height: 40px;
+}
 .container:link {
   text-decoration: none;
   color: inherit;

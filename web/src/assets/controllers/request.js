@@ -28,21 +28,6 @@ const req = (api, data, files) => {
     apiPath,
     newData,
   )
-  // return fetch(apiPath, {
-  //   body: newData,
-  //   // body: JSON.stringify({ ...data, api }),
-  //   // body: { ...data, api },
-  //   method: 'post',
-  //   // headers: {
-  //   //   'Content-Type': 'application/x-www-form-urlencoded',
-  //   // },
-  //   // headers: {
-  //   //   'Content-Type': 'multipart/form-data',
-  //   // },
-  //   // headers: {
-  //   //   'Content-Type': 'application/json',
-  //   // },
-  // })
     .catch((e) => console.error(e));
 };
 

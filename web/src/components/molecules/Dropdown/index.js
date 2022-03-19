@@ -23,7 +23,7 @@ const handlekeyboardNavigation = (root) => {
 };
 
 function Dropdown({
-  children, title, leftIcon, align,
+  children, title, leftIcon, align, className,
 }) {
   const root = useRef();
   align = align ?? 'left';
@@ -34,7 +34,7 @@ function Dropdown({
   }, [root]);
 
   return (
-    <div ref={root} className={styles.dropdown}>
+    <div ref={root} className={`${className} ${styles.dropdown}`}>
       <CustomButton leftIcon={leftIcon} title={title} onClick={() => {}} />
       <div className={`${styles.content} ${contentAlign}`}>{children}</div>
     </div>

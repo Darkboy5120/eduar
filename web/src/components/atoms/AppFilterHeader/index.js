@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../CustomText';
 import InputDropdown from '../InputDropdown';
-import useAppFilter from '../../../assets/hooks/useAppFlter';
 import request from '../../../assets/controllers/request';
 import orderBy from '../../../assets/datasets/orderBy.json';
 import orderType from '../../../assets/datasets/orderType.json';
@@ -16,8 +15,7 @@ const getCategories = (setCategories) => {
   });
 };
 
-function AppFilterHeader() {
-  const form = useAppFilter();
+function AppFilterHeader({ form }) {
   return (
     <FlexContainer className={styles.container}>
       <FlexContainer flex={1} column className={styles.paginationContainer}>
@@ -35,8 +33,8 @@ function AppFilterHeader() {
       </FlexContainer>
       <FlexContainer className={styles.dropdownsContainer}>
         <InputDropdown className={styles.dropdown} title="Categorias" {...form.category} getData={getCategories} />
-        <InputDropdown className={styles.dropdown} title="Ordernar por" initialData={orderBy} />
-        <InputDropdown className={styles.dropdown} title="Orden" initialData={orderType} />
+        <InputDropdown className={styles.dropdown} title="Ordernar por" {...form.orderBy} initialData={orderBy} />
+        <InputDropdown className={styles.dropdown} title="Orden" {...form.orderType} initialData={orderType} />
       </FlexContainer>
     </FlexContainer>
   );

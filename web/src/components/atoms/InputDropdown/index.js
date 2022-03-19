@@ -10,8 +10,8 @@ function InputDropdown({
   const [data, setData] = useState(initialData ?? null);
 
   useEffect(() => {
-    if (getData && setOk && setValue) {
-      if (!data) {
+    if (setOk && setValue) {
+      if (!data && getData) {
         getData(setData);
       } else {
         setOk(true);
