@@ -10,7 +10,7 @@ function CategotyItem({ name, id }) {
     <CustomLink className={styles.container} href={`/?p=searchar&category=${id}`}>
       <FlexContainer className={styles.flexContainer} column>
         <FaTag className={styles.icon} />
-        <CustomText text={name} />
+        <CustomText centered text={name} />
       </FlexContainer>
     </CustomLink>
   );

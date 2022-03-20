@@ -35,7 +35,7 @@ function DrawApps({ data }) {
         author={{ name: `${app.firstname} ${app.lastname}`, link: 'asdasdasd' }}
         appLink="asdasdasd"
         stats={{ favorites: app.favorites, popularity: app.endorsements, downloads: app.downloads }}
-        imagePath={`localhost:3001/apis?api=global_get_ar_image&filepath=${app.thumbnail}`}
+        imagePath={`https://eduar-server.herokuapp.com/${app.thumbnail}`}
       />
     ))
   ) : <CustomText text="No se encontraron aplicaciones" />;

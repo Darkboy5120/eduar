@@ -3,7 +3,7 @@ import FlexContainer from '../../../layouts/FlexContainer';
 import styles from './styles.module.css';
 import FilterButton from '../../molecules/FilterButton';
 import CustomText from '../../atoms/CustomText';
-import LoadCategoties from '../../molecules/LoadCategories';
+import LoadCategories from '../../molecules/LoadCategories';
 import ContentContainer from '../../../layouts/ContentContainer';
 
 function LandingCategories() {
@@ -20,7 +20,7 @@ function LandingCategories() {
         <CustomText text="Comienza a buscar en tu area de interes" centered />
         <br />
         <br />
-        <LoadCategoties />
+        <LoadCategories />
         <br />
       </FlexContainer>
     </ContentContainer>
