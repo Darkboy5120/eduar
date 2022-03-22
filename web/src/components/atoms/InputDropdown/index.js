@@ -5,7 +5,7 @@ import LoadingSpinner from '../LoadingSpinner';
 import FlexContainer from '../../../layouts/FlexContainer';
 
 function InputDropdown({
-  title, label, setOk, setValue, getData, initialData, className,
+  title, label, setOk, setValue, getData, initialData, className, initialValue, value,
 }) {
   const [data, setData] = useState(initialData ?? null);
 
@@ -15,7 +15,7 @@ function InputDropdown({
         getData(setData);
       } else {
         setOk(true);
-        setValue(data[0].pk_id);
+        setValue(initialValue ?? data[0].pk_id);
       }
     }
   }, [data]);
@@ -31,7 +31,7 @@ function InputDropdown({
           <CustomText className={styles.title} text={title} />
           {!data ? <LoadingSpinner className={styles.loading} /> : null}
         </FlexContainer>
-        <select className={styles.select} onChange={handleChange}>
+        <select className={styles.select} onChange={handleChange} value={value}>
           {data?.map((item) => (
             <option value={item.pk_id} key={item.pk_id}>{item.name}</option>
           ))}

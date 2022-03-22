@@ -2,9 +2,10 @@
 /* eslint-disable no-restricted-syntax */
 import axios from 'axios';
 import FormData from 'form-data';
+import globals from '../datasets/globals';
 
 // const apiPath = 'http://localhost:3001/apis';
-const apiPath = 'https://eduar-server.herokuapp.com/apis';
+const apiPath = `${globals.server.path}apis`;
 
 const isValidFile = (value) => {
   if (value.name && value.size && value.type) {

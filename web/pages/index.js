@@ -10,6 +10,7 @@ import MyAr from '../src/components/pages/MyAr';
 import Home from '../src/components/pages/Home';
 import NewAr from '../src/components/pages/NewAr';
 import Loading from '../src/components/pages/Loading';
+import SearchAr from '../src/components/pages/SearchAr';
 
 const options = {
   position: positions.BOTTOM_RIGHT,
@@ -31,7 +32,7 @@ function PageContent({ params }) {
   if (restrictedScreens.includes(params.p) && globalState.signed === false) {
     router.push('/?p=welcome');
     return <Loading />;
-  } if (restrictedScreens.includes(params.p) && globalState.signed === null) {
+  } if (globalState.signed === null) {
     return <Loading />;
   } if (toDefaultScreen && globalState.signed !== null) {
     router.push('/?p=home');
@@ -50,6 +51,9 @@ function PageContent({ params }) {
       break;
     case 'newar':
       pageContent = <NewAr />;
+      break;
+    case 'searchar':
+      pageContent = <SearchAr params={params} />;
       break;
     default:
       if (!toDefaultScreen) {

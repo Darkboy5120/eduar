@@ -3,10 +3,11 @@ import CustomLink from '../../atoms/CustomLink';
 import styles from './styles.module.css';
 
 function FilterButton({
-  title, href, className, icon,
+  title, href, className, icon, disabled, invisible,
 }) {
+  const invisibleStyle = invisible ? styles.invisible : null;
   return (
-    <CustomLink href={href} className={`${styles.container} ${className}`}>
+    <CustomLink disabled={disabled} href={href} className={`${invisibleStyle} ${styles.container} ${className}`}>
       {icon}
       {title}
     </CustomLink>

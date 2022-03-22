@@ -28,7 +28,7 @@ function ShowMyAr({ type }) {
         <br />
         <CustomButton title="Subir AR" leftIcon={<FaPlus />} onClick={() => router.push('/?p=newar')} />
         <br />
-        <AppFilter />
+        <AppFilter devMode />
       </>
     );
 }

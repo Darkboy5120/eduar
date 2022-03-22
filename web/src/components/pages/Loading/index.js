@@ -5,7 +5,7 @@ import PageContainer from '../../../layouts/PageContainer';
 function Loading() {
   return (
     <PageContainer>
-      <LoadingSpinner size="big" centered />
+      <LoadingSpinner size="big" />
     </PageContainer>
   );
 }

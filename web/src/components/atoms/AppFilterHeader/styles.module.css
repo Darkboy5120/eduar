@@ -15,5 +15,6 @@
   margin-bottom: 0;
 }
 .filterButton {
+  border-radius: 5px;
   width: max-content;
 }
