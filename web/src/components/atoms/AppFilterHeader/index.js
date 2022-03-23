@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../CustomText';
 import InputDropdown from '../InputDropdown';

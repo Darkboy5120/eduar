@@ -28,11 +28,11 @@ const getApps = (setApps, alert, form, devMode, page) => {
   });
 };
 
-function DrawApps({ data, setApps }) {
+function DrawApps({ data, setRefresh }) {
   return data.aplications.length > 0 ? (
     data?.aplications?.map((app) => (
       <AppCard
-        setApps={setApps}
+        setRefresh={setRefresh}
         key={app.pk_id}
         id={app.pk_id}
         name={app.name}
@@ -47,17 +47,22 @@ function DrawApps({ data, setApps }) {
 }
 
 function AppFilterContent({
-  devMode, form, apps, setApps, page,
+  devMode, form, apps, setApps, page, refresh, setRefresh,
 }) {
   const alert = useAlert();
   useEffect(() => {
-    if (form.submit.ok && !apps) {
+    if (form.submit.ok || refresh) {
       getApps(setApps, alert, form, devMode, page);
     }
-  }, [form.submit.ok, form.category.value, form.orderBy.value, form.orderType.value, apps]);
+  }, [form.submit.ok, form.category.value, form.orderBy.value, form.orderType.value, refresh]);
+  useEffect(() => {
+    if (refresh) {
+      setRefresh(false);
+    }
+  }, [refresh]);
   return (
     <div className={styles.container}>
-      {apps ? <DrawApps data={apps} setApps={setApps} /> : <LoadingSpinner size="big" />}
+      {apps ? <DrawApps data={apps} setRefresh={setRefresh} /> : <LoadingSpinner size="big" />}
     </div>
   );
 }

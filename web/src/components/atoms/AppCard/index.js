@@ -23,7 +23,7 @@ const capString = (string, cap) => {
   return result;
 };
 
-const removeApp = (setRemoveAppModal, id, setLoading, alert, setApps) => {
+const removeApp = (setRemoveAppModal, id, setLoading, alert, setRefresh) => {
   setLoading(true);
   request.post('developer_remove_ar', {
     appId: id,
@@ -35,7 +35,7 @@ const removeApp = (setRemoveAppModal, id, setLoading, alert, setApps) => {
     switch (res?.data?.code) {
       case 0:
         alert.show('Aplicación eliminada correctamente', { type: 'success' });
-        setApps(null);
+        setRefresh(true);
         break;
       default:
         alert.show('Ha ocurrido un problema en el servidor', { type: 'error' });
@@ -44,7 +44,7 @@ const removeApp = (setRemoveAppModal, id, setLoading, alert, setApps) => {
 };
 
 function AppCard({
-  name, version, imagePath, author, stats, appLink, id, setApps,
+  name, version, imagePath, author, stats, appLink, id, setRefresh,
 }) {
   const [removeAppModal, setRemoveAppModal] = useState();
   const [loading, setLoading] = useState(false);
@@ -57,7 +57,7 @@ function AppCard({
           title="Si, eliminala"
           loading={loading}
           onClick={() => {
-            removeApp(setRemoveAppModal, id, setLoading, alert, setApps);
+            removeApp(setRemoveAppModal, id, setLoading, alert, setRefresh);
           }}
         />
         <FlexButton title="Cancelar" onClick={() => setRemoveAppModal(false)} />

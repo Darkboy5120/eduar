@@ -20,9 +20,9 @@ function InputDropdown({
     }
   }, [data]);
 
-  const handleChange = getData ? (event) => {
+  const handleChange = (event) => {
     setValue(event.target.value);
-  } : () => {};
+  };
 
   return (
     <div className={`${styles.container} ${className}`}>
