@@ -28,11 +28,13 @@ const getApps = (setApps, alert, form, devMode, page) => {
   });
 };
 
-function DrawApps({ data }) {
+function DrawApps({ data, setApps }) {
   return data.aplications.length > 0 ? (
     data?.aplications?.map((app) => (
       <AppCard
+        setApps={setApps}
         key={app.pk_id}
+        id={app.pk_id}
         name={app.name}
         version="V2.3"
         author={{ name: `${app.firstname} ${app.lastname}`, link: 'asdasdasd' }}
@@ -49,13 +51,13 @@ function AppFilterContent({
 }) {
   const alert = useAlert();
   useEffect(() => {
-    if (form.submit.ok) {
+    if (form.submit.ok && !apps) {
       getApps(setApps, alert, form, devMode, page);
     }
-  }, [form.submit.ok, form.category.value, form.orderBy.value, form.orderType.value]);
+  }, [form.submit.ok, form.category.value, form.orderBy.value, form.orderType.value, apps]);
   return (
     <div className={styles.container}>
-      {apps ? <DrawApps data={apps} /> : <LoadingSpinner size="big" />}
+      {apps ? <DrawApps data={apps} setApps={setApps} /> : <LoadingSpinner size="big" />}
     </div>
   );
 }
