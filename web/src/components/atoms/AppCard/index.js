@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
 import {
   FaDownload, FaEllipsisV, FaHeart, FaThumbsUp,
 } from 'react-icons/fa';
 import { useAlert } from 'react-alert';
+import { useRouter } from 'next/router';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../CustomText';
 import IconNumber from '../IconNumber';
@@ -14,6 +17,7 @@ import Modal from '../Modal';
 import request from '../../../assets/controllers/request';
 import styles from './styles.module.css';
 import globalStore from '../../../assets/store/reducers/globalStore';
+import CustomLink from '../CustomLink';
 
 const capString = (string, cap) => {
   let result = string;
@@ -49,6 +53,7 @@ function AppCard({
   const [removeAppModal, setRemoveAppModal] = useState();
   const [loading, setLoading] = useState(false);
   const alert = useAlert();
+  const router = useRouter();
 
   return (
     <FlexContainer column href={appLink} className={styles.container}>
@@ -67,11 +72,13 @@ function AppCard({
         <DropdownItem title="Eliminar" onClick={() => setRemoveAppModal(true)} />
       </Dropdown>
       <FlexContainer className={styles.imageContainer}>
-        <img className={styles.image} src={imagePath} />
+        <img className={styles.image} src={imagePath} onClick={() => router.push(`/?p=seear&appId=${id}`)} />
       </FlexContainer>
       <FlexContainer className={styles.contentContainer} column>
         <FlexContainer className={styles.contentHeader}>
-          <CustomText text={name} bold />
+          <CustomLink className={styles.appName} href={`/?p=seear&appId=${id}`}>
+            <CustomText text={name} bold />
+          </CustomLink>
           <CustomText text={version} />
         </FlexContainer>
         <FlexContainer className={styles.contentFooter}>

@@ -6,6 +6,10 @@
   box-shadow: 2px 2px 4px 4px transparent;
   text-decoration: none !important;
 }
+.appName {
+  text-decoration: none;
+  color: var(--main2);
+}
 .dropdown {
   position: absolute;
   right: .5em;

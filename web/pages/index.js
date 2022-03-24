@@ -9,6 +9,7 @@ import Navbar from '../src/components/organisms/Navbar';
 import MyAr from '../src/components/pages/MyAr';
 import Home from '../src/components/pages/Home';
 import NewAr from '../src/components/pages/NewAr';
+import SeeAr from '../src/components/pages/SeeAr';
 import Loading from '../src/components/pages/Loading';
 import SearchAr from '../src/components/pages/SearchAr';
 
@@ -54,6 +55,9 @@ function PageContent({ params }) {
       break;
     case 'searchar':
       pageContent = <SearchAr params={params} />;
+      break;
+    case 'seear':
+      pageContent = <SeeAr params={params} />;
       break;
     default:
       if (!toDefaultScreen) {

@@ -1,0 +1,29 @@
+.container {
+  margin-bottom: 1em;
+}
+.coverContainer {
+  height: 15em;
+  width: 100%;
+  position: relative;
+}
+.cover {
+  object-fit: cover;
+  height: inherit;
+  width: 100%;
+  border-radius: 5px;
+}
+.titleContainer {
+  position: absolute;
+  left: 1em;
+  bottom: 1em;
+  background-color: rgba(255, 255, 255, .5);
+  border-radius: 5px;
+  padding: .2em .8em;
+}
+.bottomContainer {
+  justify-content: space-between;
+  padding: .5em 1em;
+}
+.bottomInfo > * {
+  padding-right: 1em;
+}
