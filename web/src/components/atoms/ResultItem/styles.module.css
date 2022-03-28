@@ -1,0 +1,15 @@
+.container {
+  padding: .5em;
+  background-color: var(--main4);
+  border-radius: 5px;
+  margin-bottom: .5em;
+}
+.title {
+  font-weight: bold;
+}
+.author:link, .title:link {
+  color: var(--main2);
+}
+.bottomContainer {
+  justify-content: space-between;
+}
