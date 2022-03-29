@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.containerPadding {
   padding: 2em;
 }
 .signFormTitle {
@@ -16,4 +18,7 @@
 }
 .backButton {
   margin-right: .5em;
+}
+.buttonRow {
+  margin-left: .5em;
 }

@@ -6,6 +6,7 @@ import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../../atoms/CustomText';
 import LoadingSpinner from '../../atoms/LoadingSpinner';
 import FilterButton from '../FilterButton';
+import ArComments from '../ArComments';
 import styles from './styles.module.css';
 
 const getActiveClass = (activeTab) => (index) => ({ className: `${styles.tabButton} ${activeTab === index ? styles.activeTab : ''}` });
@@ -39,7 +40,7 @@ function ArDetailsContent() {
           {appDetails?.images ? <LoadAppImages images={appDetails.images} /> : <LoadingSpinner size="medium" />}
         </FlexContainer>
         <FlexContainer className={styles.content} column hidden={activeTab !== 2}>
-          <CustomText text="desc foo foo foo 2" />
+          <ArComments appId={appDetails.pk_id} />
         </FlexContainer>
       </FlexContainer>
     </ContentContainer>

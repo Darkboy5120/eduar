@@ -6,19 +6,21 @@ import CustomLink from '../../atoms/CustomLink';
 import FlexContainer from '../../../layouts/FlexContainer';
 
 function CustomForm({
-  title, footer, submit, children, ok, loading, back,
+  title, footer, submit, children, ok, loading, back, row, removePadding,
 }) {
+  const buttonRowStyle = row ? styles.buttonRow : null;
+  const paddingStyle = removePadding ? null : styles.containerPadding;
   return (
-    <div className={styles.signFormContainer}>
+    <div className={`${styles.signFormContainer} ${paddingStyle}`}>
       {title ? <h3 className={styles.signFormTitle}>{title}</h3> : null}
-      <Form>
+      <Form row={row}>
         {children}
         <FlexContainer column={!back}>
           {back
             // eslint-disable-next-line max-len
             ? <CustomButton title={back.label} className={styles.backButton} onClick={back.onClick} />
             : null}
-          <CustomButton disabled={!ok} loading={loading} type="submit" title={submit.label} onClick={submit.onClick} />
+          <CustomButton className={buttonRowStyle} disabled={!ok} loading={loading} type="submit" title={submit.label} onClick={submit.onClick} />
         </FlexContainer>
       </Form>
       {footer ? (
