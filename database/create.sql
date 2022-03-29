@@ -347,7 +347,8 @@ insert into `aplication_category` (`name`) values
 insert into `interaction` (`type`) values
 ("download"),
 ("endorsement"),
-("favorite");
+("favorite"),
+("comment");
 
 insert into `notification` (`type`) values
 ("aplication_comment"),
