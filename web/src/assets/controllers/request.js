@@ -14,12 +14,16 @@ const isValidFile = (value) => {
   return false;
 };
 
-const req = (api, data, files) => {
+const getInitialFormData = (api, data) => {
   const newData = new FormData();
   newData.append('api', api);
   for (const key in data) {
     newData.append(key, data[key]);
   }
+};
+
+const req = (api, data, files) => {
+  const newData = getInitialFormData(api, data);
   for (const filesArr in files) {
     for (const file in files[filesArr]) {
       if (isValidFile(files[filesArr][file])) {
