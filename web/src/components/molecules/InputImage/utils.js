@@ -38,15 +38,24 @@ export const createLog = (input, options) => {
   return log;
 };
 
+const checkFilesRange = (files, log, options) => {
+  let result = true;
+  if (files.length < options.min) {
+    log.print('error', log.message.minLength);
+    result = false;
+  } if (files.length > options.max) {
+    log.print('error', log.message.maxLength);
+    result = false;
+  }
+  return result;
+};
+
 export const createItsAllRight = (files, log, options) => () => {
   if (files.length === 0) {
     log.print('error', log.message.empty);
     return false;
-  } if (files.length < options.min) {
-    log.print('error', log.message.minLength);
-    return false;
-  } if (files.length > options.max) {
-    log.print('error', log.message.maxLength);
+  }
+  if (!checkFilesRange(files, log, options)) {
     return false;
   }
   log.print('success', log.message.success);
