@@ -152,7 +152,6 @@ export function ImageControl(inputEl, setOk, setValue, options) {
   const label = createLabel(input);
   const empty = createEmpty(input);
   const button = createButton(input);
-
   const itsAllRight = createItsAllRight(files, log, options);
   const resetIsEdited = () => { editedStatus = false; };
   const isEdited = () => editedStatus;
