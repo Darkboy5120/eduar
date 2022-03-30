@@ -28,6 +28,17 @@ function LoadResults({ results }) {
   );
 }
 
+const onInputKeyUp = (setResults, setLoading) => (event) => {
+  const { value } = event.target;
+  if (value.length > 0) {
+    setLoading(true);
+    clearTimeout(throttle);
+    throttle = setTimeout(() => {
+      getResults(value, setResults, setLoading);
+    }, searchDelay);
+  }
+};
+
 function InputSearch() {
   const leftIcon = <FaSearch className={styles.inputIcon} />;
   const input = useRef();
@@ -36,16 +47,7 @@ function InputSearch() {
 
   useEffect(() => {
     if (input.current) {
-      input.current.onkeyup = (event) => {
-        const { value } = event.target;
-        if (value.length > 0) {
-          setLoading(true);
-          clearTimeout(throttle);
-          throttle = setTimeout(() => {
-            getResults(value, setResults, setLoading);
-          }, searchDelay);
-        }
-      };
+      input.current.onkeyup = onInputKeyUp(setResults, setLoading);
     }
   }, [input.current]);
 
