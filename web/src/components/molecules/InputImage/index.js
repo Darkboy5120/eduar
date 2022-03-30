@@ -146,12 +146,10 @@ class Images {
 
 export function ImageControl(inputEl, setOk, setValue, options) {
   let editedStatus = false;
-  const files = [];
-  const input = createInput(inputEl);
-  const log = createLog(input, options);
-  const label = createLabel(input);
-  const empty = createEmpty(input);
-  const button = createButton(input);
+  const [files, input] = [[], createInput(inputEl)];
+  const [log, label] = [createLog(input, options), createLabel(input)];
+  const [empty, button] = [createEmpty(input), createButton(input)];
+
   const itsAllRight = createItsAllRight(files, log, options);
   const resetIsEdited = () => { editedStatus = false; };
   const isEdited = () => editedStatus;
