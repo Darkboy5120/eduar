@@ -6,6 +6,7 @@ import CustomLink from '../../atoms/CustomLink';
 import CustomText from '../../atoms/CustomText';
 import IconNumber from '../../atoms/IconNumber';
 import globals from '../../../assets/datasets/globals';
+import AppStats from '../../atoms/AppStats';
 import styles from './styles.module.css';
 
 function ArCover({ bg, name }) {
@@ -34,11 +35,7 @@ function ArDetailsHeader() {
           <CustomLink href={appDetails.github}>Github</CustomLink>
           <CustomText text="v2.3" />
         </FlexContainer>
-        <FlexContainer>
-          <IconNumber icon={<FaHeart />} number={appDetails.favorites} />
-          <IconNumber icon={<FaThumbsUp />} number={appDetails.endorsements} />
-          <IconNumber icon={<FaDownload />} number={appDetails.downloads} />
-        </FlexContainer>
+        <AppStats appDetails={appDetails} />
       </FlexContainer>
     </FlexContainer>
   );

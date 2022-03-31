@@ -18,6 +18,7 @@ import request from '../../../assets/controllers/request';
 import styles from './styles.module.css';
 import globalStore from '../../../assets/store/reducers/globalStore';
 import CustomLink from '../CustomLink';
+import AppStats from '../AppStats';
 
 const capString = (string, cap) => {
   let result = string;
@@ -87,11 +88,7 @@ function AppCard({
             {' '}
             <a href={author.link}>{capString(author.name, 20)}</a>
           </CustomText>
-          <FlexContainer>
-            <IconNumber icon={<FaHeart />} number={stats.favorites} />
-            <IconNumber icon={<FaThumbsUp />} number={stats.popularity} />
-            <IconNumber icon={<FaDownload />} number={stats.downloads} />
-          </FlexContainer>
+          <AppStats appDetails={stats} />
         </FlexContainer>
       </FlexContainer>
     </FlexContainer>
