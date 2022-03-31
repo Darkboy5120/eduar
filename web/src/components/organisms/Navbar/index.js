@@ -57,12 +57,20 @@ function Navbar() {
         <Dropdown leftIcon={<FaUserCircle />} align="right">
           <p>{globalState.user.firstname}</p>
           <p>{globalState.user.email}</p>
-          {globalState.signed ? <DropdownItem title="Ver perfil" linkTarget="foo" /> : null}
-          {globalState.signed ? <DropdownItem title="Mis AR" linkTarget="/?p=myar" /> : null}
-          {globalState.signed ? <DropdownItem title="Mis favoritos" linkTarget="foo" /> : null}
-          {globalState.signed ? <DropdownItem title="Cerrar sesión" onClick={() => fbPipe.signOut()} /> : null}
-          {!globalState.signed ? <DropdownItem title="Iniciar sesión" onClick={() => setSignInModal(true)} /> : null}
-          {!globalState.signed ? <DropdownItem title="Crear cuenta" onClick={() => setSignUpModal(true)} /> : null}
+          {globalState.signed ? (
+            <>
+              <DropdownItem title="Ver perfil" linkTarget="foo" />
+              <DropdownItem title="Mis AR" linkTarget="/?p=myar" />
+              <DropdownItem title="Mis favoritos" linkTarget="foo" />
+              <DropdownItem title="Cerrar sesión" onClick={() => fbPipe.signOut()} />
+            </>
+          ) : null}
+          {!globalState.signed ? (
+            <>
+              <DropdownItem title="Iniciar sesión" onClick={() => setSignInModal(true)} />
+              <DropdownItem title="Crear cuenta" onClick={() => setSignUpModal(true)} />
+            </>
+          ) : null}
         </Dropdown>
       </div>
     </div>

@@ -20,6 +20,7 @@ const getInitialFormData = (api, data) => {
   for (const key in data) {
     newData.append(key, data[key]);
   }
+  return newData;
 };
 
 const prepareFiles = (newData, files, filesArr) => {
