@@ -8,16 +8,22 @@ import IconNumber from '../../atoms/IconNumber';
 import globals from '../../../assets/datasets/globals';
 import styles from './styles.module.css';
 
+function ArCover({ bg, name }) {
+  return (
+    <FlexContainer className={styles.coverContainer}>
+      <img className={styles.cover} alt="" src={`${globals.server.path}${bg}`} />
+      <div className={styles.titleContainer}>
+        <CustomText h1 text={name} />
+      </div>
+    </FlexContainer>
+  );
+}
+
 function ArDetailsHeader() {
   const appDetails = useSelector((state) => state.appDetails);
   return (
     <FlexContainer column className={styles.container}>
-      <FlexContainer className={styles.coverContainer}>
-        <img className={styles.cover} alt="" src={`${globals.server.path}${appDetails.background}`} />
-        <div className={styles.titleContainer}>
-          <CustomText h1 text={appDetails.name} />
-        </div>
-      </FlexContainer>
+      <ArCover bg={appDetails.background} name={appDetails.name} />
       <FlexContainer className={styles.bottomContainer}>
         <FlexContainer className={styles.bottomInfo}>
           <span>
