@@ -10,18 +10,19 @@ export const createInput = (inputEl) => ({
 export const createLabel = (input) => ({
   element: input.element.parentNode.parentNode.querySelector('label'),
 });
+const getLogMessage = (options) => ({
+  minLength: `No debes agregar menos de ${options.min}${(options.min > 1)
+    ? plural : singular}`,
+  maxLength: `No debes agregar más de ${options.max}${(options.max > 1)
+    ? plural : singular}`,
+  empty: 'El campo esta vacío',
+  success: 'El campo es correcto',
+  regex: 'No se permite ese tipo de archivo',
+});
 export const createLog = (input, options) => {
   const log = {
     element: input.element.parentNode.parentNode.querySelector(`.${styles.inputLog}`),
-    message: {
-      minLength: `No debes agregar menos de ${options.min}${(options.min > 1)
-        ? plural : singular}`,
-      maxLength: `No debes agregar más de ${options.max}${(options.max > 1)
-        ? plural : singular}`,
-      empty: 'El campo esta vacío',
-      success: 'El campo es correcto',
-      regex: 'No se permite ese tipo de archivo',
-    },
+    message: getLogMessage(options),
     print: (type, message) => {
       log.element.textContent = message;
       log.element.classList.remove(styles.hidden);
