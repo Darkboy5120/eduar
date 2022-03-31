@@ -30,6 +30,16 @@ const putDefaultScreen = (toDefaultScreen, setToDefaultScreen) => {
   }
 };
 
+// eslint-disable-next-line arrow-body-style
+const visitorTryToAccessPrivatePage = (restrictedScreens, params, globalState) => {
+  return restrictedScreens.includes(params.p) && globalState.signed === false;
+};
+
+// eslint-disable-next-line arrow-body-style
+const someoneTryToAccessUndefinedPage = (toDefaultScreen, globalState) => {
+  return toDefaultScreen && globalState.signed !== null;
+};
+
 function PageContent({ params }) {
   const globalState = useSelector(globalStore.getState);
   const restrictedScreens = ['myar'];
@@ -38,10 +48,10 @@ function PageContent({ params }) {
 
   if (globalState.signed === null) {
     return <Loading />;
-  } if (restrictedScreens.includes(params.p) && globalState.signed === false) {
+  } if (visitorTryToAccessPrivatePage(restrictedScreens, params, globalState)) {
     router.push('/?p=welcome');
     return <Loading />;
-  } if (toDefaultScreen && globalState.signed !== null) {
+  } if (someoneTryToAccessUndefinedPage(toDefaultScreen, globalState)) {
     router.push('/?p=home');
   }
 
