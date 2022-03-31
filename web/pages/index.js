@@ -24,7 +24,27 @@ export async function getServerSideProps(context) {
   return { props: context.query };
 }
 
-const getPageContent = (setToDefaultScreen, toDefaultScreen, params) => {
+const putDefaultScreen = (toDefaultScreen, setToDefaultScreen) => {
+  if (!toDefaultScreen) {
+    setToDefaultScreen(true);
+  }
+};
+
+function PageContent({ params }) {
+  const globalState = useSelector(globalStore.getState);
+  const restrictedScreens = ['myar'];
+  const [toDefaultScreen, setToDefaultScreen] = useState(false);
+  const router = useRouter();
+
+  if (globalState.signed === null) {
+    return <Loading />;
+  } if (restrictedScreens.includes(params.p) && globalState.signed === false) {
+    router.push('/?p=welcome');
+    return <Loading />;
+  } if (toDefaultScreen && globalState.signed !== null) {
+    router.push('/?p=home');
+  }
+
   let pageContent;
   switch (params.p) {
     case 'welcome':
@@ -46,30 +66,10 @@ const getPageContent = (setToDefaultScreen, toDefaultScreen, params) => {
       pageContent = <SeeAr params={params} />;
       break;
     default:
-      if (!toDefaultScreen) {
-        setToDefaultScreen(true);
-      }
+      putDefaultScreen(toDefaultScreen, setToDefaultScreen);
       pageContent = <Loading />;
   }
   return pageContent;
-};
-
-function PageContent({ params }) {
-  const globalState = useSelector(globalStore.getState);
-  const restrictedScreens = ['myar'];
-  const [toDefaultScreen, setToDefaultScreen] = useState(false);
-  const router = useRouter();
-
-  if (globalState.signed === null) {
-    return <Loading />;
-  } if (restrictedScreens.includes(params.p) && globalState.signed === false) {
-    router.push('/?p=welcome');
-    return <Loading />;
-  } if (toDefaultScreen && globalState.signed !== null) {
-    router.push('/?p=home');
-  }
-
-  return getPageContent(setToDefaultScreen, toDefaultScreen, params);
 }
 
 export default function App(params) {
