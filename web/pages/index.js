@@ -24,21 +24,7 @@ export async function getServerSideProps(context) {
   return { props: context.query };
 }
 
-function PageContent({ params }) {
-  const globalState = useSelector(globalStore.getState);
-  const restrictedScreens = ['myar'];
-  const [toDefaultScreen, setToDefaultScreen] = useState(false);
-  const router = useRouter();
-
-  if (restrictedScreens.includes(params.p) && globalState.signed === false) {
-    router.push('/?p=welcome');
-    return <Loading />;
-  } if (globalState.signed === null) {
-    return <Loading />;
-  } if (toDefaultScreen && globalState.signed !== null) {
-    router.push('/?p=home');
-  }
-
+const getPageContent = (setToDefaultScreen, toDefaultScreen, params) => {
   let pageContent;
   switch (params.p) {
     case 'welcome':
@@ -66,6 +52,24 @@ function PageContent({ params }) {
       pageContent = <Loading />;
   }
   return pageContent;
+};
+
+function PageContent({ params }) {
+  const globalState = useSelector(globalStore.getState);
+  const restrictedScreens = ['myar'];
+  const [toDefaultScreen, setToDefaultScreen] = useState(false);
+  const router = useRouter();
+
+  if (globalState.signed === null) {
+    return <Loading />;
+  } if (restrictedScreens.includes(params.p) && globalState.signed === false) {
+    router.push('/?p=welcome');
+    return <Loading />;
+  } if (toDefaultScreen && globalState.signed !== null) {
+    router.push('/?p=home');
+  }
+
+  return getPageContent(setToDefaultScreen, toDefaultScreen, params);
 }
 
 export default function App(params) {
