@@ -25,13 +25,16 @@ export const createLog = (input, options) => {
     print: (type, message) => {
       log.element.textContent = message;
       log.element.classList.remove(styles.hidden);
+      let [addStyle, removeStyle] = [null, null];
       if (type === 'success') {
-        log.element.classList.add(styles.inputSuccessLog);
-        log.element.classList.remove(styles.inputErrorLog);
+        addStyle = styles.inputSuccessLog;
+        removeStyle = styles.inputErrorLog;
       } else if (type === 'error') {
-        log.element.classList.remove(styles.inputSuccessLog);
-        log.element.classList.add(styles.inputErrorLog);
+        addStyle = styles.inputErrorLog;
+        removeStyle = styles.inputSuccessLog;
       }
+      log.element.classList.add(addStyle);
+      log.element.classList.remove(removeStyle);
     },
     hide: () => log.element.classList.add(styles.hidden),
   };
