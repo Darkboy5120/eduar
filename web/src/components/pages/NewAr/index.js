@@ -22,6 +22,13 @@ const getCategories = (setCategories) => {
   });
 };
 
+const prepareAppFiles = (form2) => ({
+  additional: form2.additional.value,
+  thumbnail: form2.thumbnail.value,
+  cover: form2.cover.value,
+  apk: form2.apk.value,
+});
+
 const createApp = (form1, form2, alert, router, setStep2) => {
   form2.submit.setLoading(true);
   request.post('developer_createApp', {
@@ -30,12 +37,7 @@ const createApp = (form1, form2, alert, router, setStep2) => {
     description: form1.description.value,
     category: form1.category.value,
     github: form1.github.value,
-  }, {
-    additional: form2.additional.value,
-    thumbnail: form2.thumbnail.value,
-    cover: form2.cover.value,
-    apk: form2.apk.value,
-  }).then((res) => {
+  }, prepareAppFiles(form2)).then((res) => {
     form2.submit.setLoading(false);
     switch (res?.data?.code) {
       case 0:
