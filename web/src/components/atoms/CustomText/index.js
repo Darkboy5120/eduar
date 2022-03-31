@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 
 const getTextStyle = (className, centered, bold) => `${className} ${centered ? styles.centered : ''} ${bold ? styles.bold : ''}`;
 
-const getFinalElement = (textStyle, text, h1, h2, h3, span) => {
+const getFinalElement = (textStyle, text, h1, h2, h3, h4, span) => {
   let result = <p className={textStyle}>{text}</p>;
   if (h1) {
     result = <h1 className={textStyle}>{text}</h1>;
@@ -18,12 +18,12 @@ const getFinalElement = (textStyle, text, h1, h2, h3, span) => {
 };
 
 function CustomText({
-  children, text, h1, h2, h3, span, centered, className, bold,
+  children, text, h1, h2, h3, h4, span, centered, className, bold,
 }) {
   text = children ?? text;
   const textStyle = getTextStyle(className, centered, bold);
 
-  return getFinalElement(textStyle, text, h1, h2, h3, span);
+  return getFinalElement(textStyle, text, h1, h2, h3, h4, span);
 }
 
 export default CustomText;

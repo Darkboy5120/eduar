@@ -6,7 +6,6 @@ import styles from './styles.module.css';
 import Dropdown from '../../molecules/Dropdown';
 import DropdownItem from '../../molecules/DropdrownItem';
 import InputSearch from '../../molecules/InputSearch';
-import Modal from '../../atoms/Modal';
 import SignInForm from '../SignInForm';
 import SignUpForm from '../SignUpForm';
 import globalStore from '../../../assets/store/reducers/globalStore';
