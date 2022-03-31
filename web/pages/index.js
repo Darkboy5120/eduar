@@ -42,7 +42,7 @@ const someoneTryToAccessUndefinedPage = (toDefaultScreen, globalState) => {
 
 function PageContent({ params }) {
   const globalState = useSelector(globalStore.getState);
-  const restrictedScreens = ['myar'];
+  const restrictedScreens = ['myar', 'newar'];
   const [toDefaultScreen, setToDefaultScreen] = useState(false);
   const router = useRouter();
 

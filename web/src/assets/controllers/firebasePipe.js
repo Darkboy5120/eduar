@@ -108,9 +108,9 @@ const signUp = (email, password, firstname, lastname, birthdate, dismiss) => {
   );
 };
 
-const autoSignIn = () => {
+const autoSignIn = (initialSetLoading) => {
   auth.onAuthStateChanged((user) => {
-    if (user && !setLoading) {
+    if (user && !initialSetLoading) {
       // alert.show('Sesión restaurada', { type: 'success' });
       signInServer(user);
     } else {
@@ -137,7 +137,7 @@ const firebasePipe = {
       signIn,
       signUp,
       signOut,
-      autoSignIn,
+      autoSignIn: () => autoSignIn(newSetLoading),
       auth,
     };
   },

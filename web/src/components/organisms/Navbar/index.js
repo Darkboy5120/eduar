@@ -27,24 +27,28 @@ function Navbar() {
 
   return (
     <div className={styles.navbar}>
-      <Modal title="Inicio de sesión" size="big" visible={signInModal} setVisible={setSignInModal}>
-        <SignInForm
-          footerOnClick={() => {
-            setSignInModal(false);
-            setSignUpModal(true);
-          }}
-          dismiss={() => setSignInModal(false)}
-        />
-      </Modal>
-      <Modal title="Registro" size="big" visible={signUpModal} setVisible={setSignUpModal}>
-        <SignUpForm
-          footerOnClick={() => {
-            setSignUpModal(false);
-            setSignInModal(true);
-          }}
-          dismiss={() => setSignUpModal(false)}
-        />
-      </Modal>
+      <SignInForm
+        title="Inicio de sesión"
+        size="big"
+        visible={signInModal}
+        setVisible={setSignInModal}
+        footerOnClick={() => {
+          setSignInModal(false);
+          setSignUpModal(true);
+        }}
+        dismiss={() => setSignInModal(false)}
+      />
+      <SignUpForm
+        title="Registro"
+        size="big"
+        visible={signUpModal}
+        setVisible={setSignUpModal}
+        footerOnClick={() => {
+          setSignUpModal(false);
+          setSignInModal(true);
+        }}
+        dismiss={() => setSignUpModal(false)}
+      />
       <Dropdown title="Eduar" leftIcon={<FaAlignJustify />}>
         <DropdownItem title="Categorias" linkTarget="/?p=home" />
         <DropdownItem title="¿Que es Eduar?" linkTarget="foo" />
