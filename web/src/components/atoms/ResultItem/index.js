@@ -6,6 +6,7 @@ import IconNumber from '../IconNumber';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomLink from '../CustomLink';
 import styles from './styles.module.css';
+import AppStats from '../AppStats';
 
 function ResultItem({ data }) {
   const fullname = `${data.firstname} ${data.lastname}`;
@@ -15,11 +16,7 @@ function ResultItem({ data }) {
       <CustomLink className={styles.title} href={arPage}>{data.name}</CustomLink>
       <FlexContainer className={styles.bottomContainer}>
         <CustomLink className={styles.author} href={arPage}>{fullname}</CustomLink>
-        <FlexContainer>
-          <IconNumber icon={<FaHeart />} number={data.favorites} />
-          <IconNumber icon={<FaThumbsUp />} number={data.endorsements} />
-          <IconNumber icon={<FaDownload />} number={data.downloads} />
-        </FlexContainer>
+        <AppStats appDetails={data} />
       </FlexContainer>
     </FlexContainer>
   );
