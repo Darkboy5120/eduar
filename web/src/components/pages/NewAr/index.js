@@ -15,12 +15,7 @@ import InputDropdown from '../../atoms/InputDropdown';
 import InputImage from '../../molecules/InputImage';
 import InputApk from '../../molecules/InputApk';
 import globalStore from '../../../assets/store/reducers/globalStore';
-
-const getCategories = (setCategories) => {
-  request.post('global_getCategories').then((res) => {
-    setCategories(res?.data?.data);
-  });
-};
+import getCategories from '../../../assets/requests/getCategories';
 
 const prepareAppFiles = (form2) => ({
   additional: form2.additional.value,

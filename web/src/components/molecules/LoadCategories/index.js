@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import CategotyItem from '../CategoryItem';
-import request from '../../../assets/controllers/request';
 import LoadingSpinner from '../../atoms/LoadingSpinner';
 import styles from './styles.module.css';
-
-const getCategories = (setCategories) => {
-  request.post('global_getCategories').then((res) => {
-    setCategories(res?.data?.data);
-  });
-};
+import getCategories from '../../../assets/requests/getCategories';
 
 function LoadCategories() {
   const [categories, setCategories] = useState();
