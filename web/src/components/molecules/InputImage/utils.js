@@ -27,11 +27,9 @@ export const createLog = (input, options) => {
       log.element.classList.remove(styles.hidden);
       let [addStyle, removeStyle] = [null, null];
       if (type === 'success') {
-        addStyle = styles.inputSuccessLog;
-        removeStyle = styles.inputErrorLog;
+        [addStyle, removeStyle] = [styles.inputSuccessLog, styles.inputErrorLog];
       } else if (type === 'error') {
-        addStyle = styles.inputErrorLog;
-        removeStyle = styles.inputSuccessLog;
+        [addStyle, removeStyle] = [styles.inputErrorLog, styles.inputSuccessLog];
       }
       log.element.classList.add(addStyle);
       log.element.classList.remove(removeStyle);
