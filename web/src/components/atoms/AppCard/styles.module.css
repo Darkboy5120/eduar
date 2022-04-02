@@ -53,4 +53,5 @@
 .contentFooter {
   margin-top: auto;
   justify-content: space-between;
+  align-items: flex-end;
 }
