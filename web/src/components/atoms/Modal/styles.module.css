@@ -3,17 +3,23 @@
   top: 0;
   left: 0;
   background-color: rgba(50, 50, 50, .5);
-  z-index: 1;
+  z-index: 5;
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.modalContainer {
-  background-color: var(--main4);
+.modalContainerBig {
   height: 80%;
   width: 60%;
+}
+.modalContainerSmall {
+  height: 35%;
+  width: 30%;
+}
+.modalContainer {
+  background-color: var(--main4);
   border-radius: 5px;
   border: 2px solid var(--main2);
   padding: 1em;
@@ -45,4 +51,5 @@
 .modalBody {
   overflow-y: auto;
   flex: 1;
+  padding: 2%;
 }

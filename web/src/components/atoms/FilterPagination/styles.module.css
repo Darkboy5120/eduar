@@ -1,0 +1,7 @@
+.filterButton {
+  border-radius: 5px;
+  width: max-content;
+}
+.filterButtonActive {
+  background-color: var(--primary);
+}

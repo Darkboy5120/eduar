@@ -1,0 +1,20 @@
+.container {
+  background-color: var(--primary);
+  color: var(--main1);
+  padding: .2em .4em;
+  margin: 0 .2em;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.label {
+  font-weight: bold;
+  margin-right: .5em;
+}
+.undoneContainer {
+  opacity: .8;
+}
+.undoneIcon {
+  visibility: hidden;
+}

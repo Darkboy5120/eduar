@@ -11,10 +11,8 @@ const objectToArr = (obj) => {
   return arr;
 };
 
-let paramsArr;
-
 const formHookPipe = (params) => {
-  paramsArr = objectToArr(params);
+  const paramsArr = objectToArr(params);
   useEffect(() => {
     const ok = paramsArr.filter((p) => !p.ok).length === 0;
     params.submit.setOk(ok);

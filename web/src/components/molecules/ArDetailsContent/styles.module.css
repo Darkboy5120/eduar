@@ -1,0 +1,25 @@
+.tabButton {
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.activeTab {
+  background-color: var(--main1);
+  color: var(--main2);
+  border-bottom: 2px solid var(--main2);
+}
+.content {
+  min-height: 10em;
+  padding: .5em 1em;
+  background-color: var(--main1);
+  width: 100%;
+}
+.images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+}
+.image {
+  height: 15em;
+  width: inherit;
+  object-fit: cover;
+}

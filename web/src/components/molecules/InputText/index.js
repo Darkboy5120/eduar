@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styles from './styles.module.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import styles from './styles.module.css';
 import Input from '../../atoms/Input';
 
 const LOG = {
@@ -44,7 +44,7 @@ const triggerValidation = (value, validation, setError, setOk) => {
 };
 
 function InputText({
-  type, placeholder, title, label, setValue, setOk, validation,
+  type, placeholder, title, label, setValue, setOk, validation, value,
 }) {
   const [error, setError] = useState();
   const isPassword = type === 'password';
@@ -62,7 +62,7 @@ function InputText({
   return (
     <div className={styles.inputTextContainer}>
       <div className={styles.inputTextBox}>
-        <Input onChange={onChangeDo} title={title} type={type} placeholder={placeholder} />
+        <Input onChange={onChangeDo} value={value || ''} title={title} type={type} placeholder={placeholder} />
         {isPassword ? <button type="button" aria-label="password-visibility" onClick={() => setPassword(!password)} className={styles.inputTextPasswordIcon}>{passwordIcon}</button> : null}
       </div>
       <span className={styles.inputTextLabel}>{label}</span>

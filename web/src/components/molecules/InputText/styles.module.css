@@ -4,6 +4,7 @@
   flex-direction: column;
   margin-bottom: .5em;
   justify-content: center;
+  width: 20em;
 }
 .inputTextLabel {
 }
@@ -14,6 +15,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  width: inherit;
 }
 .inputTextPasswordIcon {
   position: absolute;

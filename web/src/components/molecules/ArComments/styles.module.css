@@ -1,0 +1,7 @@
+.container {
+  align-items: flex-start;
+}
+.commentsContainer {
+  width: 100%;
+  position: relative;
+}

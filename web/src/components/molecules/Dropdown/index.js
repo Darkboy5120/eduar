@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Button from '../../atoms/Button';
+import CustomButton from '../../atoms/CustomButton';
 import styles from './styles.module.css';
 
 const handlekeyboardNavigation = (root) => {
@@ -7,7 +7,6 @@ const handlekeyboardNavigation = (root) => {
   root.current.onkeypress = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(root.current);
     const firstChild = root.current.querySelector('div > a');
     firstChild.focus();
     const rootChilds = root.current.querySelectorAll('div > a');
@@ -24,7 +23,7 @@ const handlekeyboardNavigation = (root) => {
 };
 
 function Dropdown({
-  children, title, leftIcon, align,
+  children, title, leftIcon, align, className,
 }) {
   const root = useRef();
   align = align ?? 'left';
@@ -35,8 +34,8 @@ function Dropdown({
   }, [root]);
 
   return (
-    <div ref={root} className={styles.dropdown}>
-      <Button leftIcon={leftIcon} title={title} onClick={() => {}} />
+    <div ref={root} className={`${className} ${styles.dropdown}`}>
+      <CustomButton leftIcon={leftIcon} title={title} onClick={() => {}} />
       <div className={`${styles.content} ${contentAlign}`}>{children}</div>
     </div>
   );

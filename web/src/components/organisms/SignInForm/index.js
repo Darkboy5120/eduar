@@ -1,11 +1,17 @@
 import React from 'react';
-import SignForm from '../../molecules/SignForm';
+import { useAlert } from 'react-alert';
+import CustomForm from '../../molecules/CustomForm';
 import InputText from '../../molecules/InputText';
 import useSignIn from '../../../assets/hooks/useSignIn';
-import request from '../../../assets/controllers/request';
+import firebasePipe from '../../../assets/controllers/firebasePipe';
+import Modal from '../../atoms/Modal';
 
-function SignInForm({ footerOnClick }) {
+function SignInForm({
+  footerOnClick, dismiss, title, size, visible, setVisible,
+}) {
   const form = useSignIn();
+  const alert = useAlert();
+  const fbPipe = firebasePipe.init(form.submit.setLoading, alert);
 
   const signFooter = {
     label: '¿Aun no tienes cuenta? registrate ',
@@ -17,19 +23,20 @@ function SignInForm({ footerOnClick }) {
   const signSubmit = {
     label: 'Iniciar sesión',
     onClick: () => {
-      form.submit.setLoading(true);
-      request.post('signIn', {}).then((res) => {
-        console.log(res);
-        form.submit.setLoading(false);
-      });
+      fbPipe.signIn(form.email.value, form.password.value, dismiss);
     },
   };
 
   return (
-    <SignForm {...form.submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>
-      <InputText {...form.email} title="Correo" placeholder="ejemplo@gmail.mx" />
-      <InputText {...form.password} type="password" title="Contraseña" />
-    </SignForm>
+    <Modal {...{
+      title, size, visible, setVisible,
+    }}
+    >
+      <CustomForm {...form.submit} title="Llena tus datos" footer={signFooter} submit={signSubmit}>
+        <InputText {...form.email} title="Correo" placeholder="ejemplo@gmail.mx" />
+        <InputText {...form.password} type="password" title="Contraseña" />
+      </CustomForm>
+    </Modal>
   );
 }
 
