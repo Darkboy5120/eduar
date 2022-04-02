@@ -4,9 +4,10 @@ import styles from './styles.module.css';
 import LoadingSpinner from '../LoadingSpinner';
 import FlexContainer from '../../../layouts/FlexContainer';
 
-function InputDropdown({
-  title, label, setOk, setValue, getData, initialData, className, initialValue, value,
-}) {
+function InputDropdown(props) {
+  const {
+    title, label, setOk, setValue, getData, initialData, className, initialValue, value,
+  } = props;
   const [data, setData] = useState(initialData ?? null);
 
   useEffect(() => {
