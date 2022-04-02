@@ -21,6 +21,14 @@ function LoadAppImages({ images }) {
   );
 }
 
+function TabContent({ className, children, hidden }) {
+  return (
+    <FlexContainer className={`${styles.content} ${className}`} column hidden={hidden}>
+      {children}
+    </FlexContainer>
+  );
+}
+
 function ArDetailsContent() {
   const appDetails = useSelector((state) => state.appDetails);
   const [activeTab, setActiveTab] = useState(0);
@@ -33,15 +41,15 @@ function ArDetailsContent() {
         <FilterButton title="Comentarios" onClick={() => setActiveTab(2)} {...isTabActive(2)} />
       </FlexContainer>
       <FlexContainer>
-        <FlexContainer className={styles.content} column hidden={activeTab !== 0}>
+        <TabContent hidden={activeTab !== 0}>
           <CustomText text={appDetails.description} />
-        </FlexContainer>
-        <FlexContainer className={`${styles.images} ${styles.content}`} column hidden={activeTab !== 1}>
+        </TabContent>
+        <TabContent className={styles.images} hidden={activeTab !== 1}>
           {appDetails?.images ? <LoadAppImages images={appDetails.images} /> : <LoadingSpinner size="medium" />}
-        </FlexContainer>
-        <FlexContainer className={styles.content} column hidden={activeTab !== 2}>
+        </TabContent>
+        <TabContent hidden={activeTab !== 2}>
           <ArComments appId={appDetails.pk_id} />
-        </FlexContainer>
+        </TabContent>
       </FlexContainer>
     </ContentContainer>
   );
