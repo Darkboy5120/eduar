@@ -1,5 +1,10 @@
 import React from 'react';
-import { FaLaughBeam, FaFrown, FaAngry, FaHeart } from 'react-icons/fa';
+import {
+  FaLaughBeam,
+  FaFrown,
+  FaAngry,
+  FaHeart,
+} from 'react-icons/fa';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../../atoms/CustomText';
 import IconNumber from '../../atoms/IconNumber';

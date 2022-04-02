@@ -1,8 +1,4 @@
 import React from 'react';
-import {
-  FaDownload, FaHeart, FaThumbsUp,
-} from 'react-icons/fa';
-import IconNumber from '../IconNumber';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomLink from '../CustomLink';
 import styles from './styles.module.css';

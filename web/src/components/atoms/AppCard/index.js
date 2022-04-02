@@ -3,13 +3,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
 import {
-  FaDownload, FaEllipsisV, FaHeart, FaThumbsUp,
+  FaEllipsisV,
 } from 'react-icons/fa';
 import { useAlert } from 'react-alert';
 import { useRouter } from 'next/router';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../CustomText';
-import IconNumber from '../IconNumber';
 import Dropdown from '../../molecules/Dropdown';
 import DropdownItem from '../../molecules/DropdrownItem';
 import FlexButton from '../../molecules/FlexButton';

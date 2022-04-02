@@ -1,10 +1,8 @@
 import React from 'react';
-import { FaDownload, FaHeart, FaThumbsUp } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomLink from '../../atoms/CustomLink';
 import CustomText from '../../atoms/CustomText';
-import IconNumber from '../../atoms/IconNumber';
 import globals from '../../../assets/datasets/globals';
 import AppStats from '../../atoms/AppStats';
 import styles from './styles.module.css';
