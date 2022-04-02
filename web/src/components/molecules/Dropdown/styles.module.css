@@ -1,6 +1,5 @@
 .dropdown {
   position: relative;
-  z-index: 3;
 }
 .dropdown > .content {
   position: absolute;

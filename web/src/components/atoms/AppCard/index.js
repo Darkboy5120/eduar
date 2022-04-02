@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
+import Image from 'next/image';
 import {
   FaEllipsisV,
 } from 'react-icons/fa';
@@ -47,8 +48,17 @@ const removeApp = (setRemoveAppModal, id, setLoading, alert, setRefresh) => {
   });
 };
 
+function AuthorOnlyActions({ setRemoveAppModal, authorId }) {
+  return globalStore.getState()?.user.email === authorId ? (
+    <Dropdown className={styles.dropdown} align="right" leftIcon={<FaEllipsisV />}>
+      <DropdownItem title="Editar" linkTarget="foo" />
+      <DropdownItem title="Eliminar" onClick={() => setRemoveAppModal(true)} />
+    </Dropdown>
+  ) : null;
+}
+
 function AppCard({
-  name, version, imagePath, author, stats, appLink, id, setRefresh,
+  name, version, imagePath, author, stats, appLink, id, setRefresh, authorId,
 }) {
   const [removeAppModal, setRemoveAppModal] = useState();
   const [loading, setLoading] = useState(false);
@@ -67,12 +77,9 @@ function AppCard({
         />
         <FlexButton title="Cancelar" onClick={() => setRemoveAppModal(false)} />
       </Modal>
-      <Dropdown className={styles.dropdown} align="right" leftIcon={<FaEllipsisV />}>
-        <DropdownItem title="Editar" linkTarget="foo" />
-        <DropdownItem title="Eliminar" onClick={() => setRemoveAppModal(true)} />
-      </Dropdown>
+      <AuthorOnlyActions {...{ setRemoveAppModal, authorId }} />
       <FlexContainer className={styles.imageContainer}>
-        <img className={styles.image} src={imagePath} onClick={() => router.push(`/?p=seear&appId=${id}`)} />
+        <Image priority className={styles.image} layout="fill" src={imagePath} onClick={() => router.push(`/?p=seear&appId=${id}`)} />
       </FlexContainer>
       <FlexContainer className={styles.contentContainer} column>
         <FlexContainer className={styles.contentHeader}>
