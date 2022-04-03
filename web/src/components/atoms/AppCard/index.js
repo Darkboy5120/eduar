@@ -58,7 +58,7 @@ function AuthorOnlyActions({ setRemoveAppModal, authorId }) {
 }
 
 function AppCard({
-  name, version, imagePath, author, stats, appLink, id, setRefresh, authorId,
+  name, version, imagePath, author, stats, appLink, id, setRefresh, authorId, already,
 }) {
   const [removeAppModal, setRemoveAppModal] = useState();
   const [loading, setLoading] = useState(false);
@@ -94,7 +94,7 @@ function AppCard({
             {' '}
             <a href={author.link}>{capString(author.name, 20)}</a>
           </CustomText>
-          <AppStats appDetails={stats} />
+          <AppStats appDetails={{ ...stats, ...already }} />
         </FlexContainer>
       </FlexContainer>
     </FlexContainer>
