@@ -5,6 +5,11 @@ const inputValidations = {
     min: 5,
     max: 50,
   },
+  url: {
+    regex: /[^A-Za-z0-9:/._]+/,
+    min: 5,
+    max: 50,
+  },
   description: {
     regex: /[^A-Za-z0-9 ,.]+/,
     min: 5,

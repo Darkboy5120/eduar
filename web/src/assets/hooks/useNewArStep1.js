@@ -7,7 +7,7 @@ const useNewArStep1 = () => formHookPipe({
   name: useInput(inputValidations.string),
   category: useInput(inputValidations.string),
   description: useInput(inputValidations.description),
-  github: useInput(inputValidations.string),
+  github: useInput(inputValidations.url),
   submit: useSubmit(),
 });
 
