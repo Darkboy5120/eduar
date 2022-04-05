@@ -35,8 +35,13 @@ function DrawApps({ data, setRefresh }) {
         setRefresh={setRefresh}
         key={app.pk_id}
         id={app.pk_id}
+        authorId={app.author_id}
         name={app.name}
         version="V2.3"
+        already={{
+          already_favorite: app.already_favorite,
+          already_endorsement: app.already_endorsement,
+        }}
         author={{ name: `${app.firstname} ${app.lastname}`, link: 'asdasdasd' }}
         appLink="asdasdasd"
         stats={{ favorites: app.favorites, popularity: app.endorsements, downloads: app.downloads }}

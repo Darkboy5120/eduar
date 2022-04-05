@@ -1,5 +1,7 @@
 .container {
   margin-left: .3em;
+  padding: .2em;
+  height: min-content;
 }
 .text {
   padding-left: .1em;

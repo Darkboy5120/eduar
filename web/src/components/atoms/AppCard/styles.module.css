@@ -14,6 +14,7 @@
   position: absolute;
   right: .5em;
   top: .5em;
+  z-index: 2 !important;
 }
 .dropdown > button {
   padding: 0 .3em;
@@ -52,4 +53,5 @@
 .contentFooter {
   margin-top: auto;
   justify-content: space-between;
+  align-items: flex-end;
 }

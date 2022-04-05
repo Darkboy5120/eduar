@@ -23,18 +23,19 @@ const handlekeyboardNavigation = (root) => {
 };
 
 function Dropdown({
-  children, title, leftIcon, align, className,
+  children, title, leftIcon, align, className, zindex,
 }) {
   const root = useRef();
   align = align ?? 'left';
   const contentAlign = align === 'right' ? styles.contentRight : null;
+  const zindexStyle = { zIndex: zindex ?? 3 };
 
   useEffect(() => {
     handlekeyboardNavigation(root);
   }, [root]);
 
   return (
-    <div ref={root} className={`${className} ${styles.dropdown}`}>
+    <div ref={root} className={`${className} ${styles.dropdown}`} style={zindexStyle}>
       <CustomButton leftIcon={leftIcon} title={title} onClick={() => {}} />
       <div className={`${styles.content} ${contentAlign}`}>{children}</div>
     </div>

@@ -1,0 +1,6 @@
+.alreadyFavorite {
+  color: var(--danger);
+}
+.alreadyEndorsement {
+  color: var(--primary);
+}

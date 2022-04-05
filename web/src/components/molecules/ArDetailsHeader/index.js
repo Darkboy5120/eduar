@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Image from 'next/image';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomLink from '../../atoms/CustomLink';
 import CustomText from '../../atoms/CustomText';
@@ -10,7 +11,7 @@ import styles from './styles.module.css';
 function ArCover({ bg, name }) {
   return (
     <FlexContainer className={styles.coverContainer}>
-      <img className={styles.cover} alt="" src={`${globals.server.path}${bg}`} />
+      <Image priority className={styles.cover} layout="fill" alt="cover" src={`${globals.server.path}${bg}`} />
       <div className={styles.titleContainer}>
         <CustomText h1 text={name} />
       </div>
@@ -33,7 +34,7 @@ function ArDetailsHeader() {
           <CustomLink href={appDetails.github}>Github</CustomLink>
           <CustomText text="v2.3" />
         </FlexContainer>
-        <AppStats appDetails={appDetails} />
+        <AppStats appDetails={appDetails} allowButtons />
       </FlexContainer>
     </FlexContainer>
   );

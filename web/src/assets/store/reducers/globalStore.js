@@ -1,7 +1,7 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-const userIntialState = {
-  id: null,
+const userInitialState = {
+  auth: null,
   firstname: null,
   lastname: null,
   email: null,
@@ -12,7 +12,7 @@ const userIntialState = {
 export const globalSlice = createSlice({
   name: 'globalStore',
   initialState: {
-    user: userIntialState,
+    user: userInitialState,
     signed: null,
   },
   reducers: {
@@ -21,7 +21,7 @@ export const globalSlice = createSlice({
       state.signed = data.payload.signed;
     },
     signOut: (state) => {
-      state.user = userIntialState;
+      state.user = userInitialState;
       state.signed = false;
     },
     setAppDetails: (state, data) => {
