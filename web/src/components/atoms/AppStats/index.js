@@ -82,7 +82,11 @@ function AppStats({ appDetails, allowButtons }) {
         number={stats.endorsements.value}
         onClick={onClicks.popularity}
       />
-      <IconNumber icon={<FaDownload />} number={appDetails.downloads} onClick={onClicks.downloads} />
+      <IconNumber
+        icon={<FaDownload />}
+        number={appDetails.downloads}
+        onClick={onClicks.downloads}
+      />
     </FlexContainer>
   );
 }
