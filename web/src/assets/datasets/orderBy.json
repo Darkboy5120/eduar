@@ -1,5 +1,5 @@
 [
   {"pk_id": "0","name": "Descargas"},
-  {"pk_id": "1","name": "Favoritos"},
-  {"pk_id": "2","name": "Popularidad"}
+  {"pk_id": "1","name": "Popularidad"},
+  {"pk_id": "2","name": "Favoritos"}
 ]

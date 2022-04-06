@@ -11,6 +11,7 @@ import Home from '../src/components/pages/Home';
 import NewAr from '../src/components/pages/NewAr';
 import SeeAr from '../src/components/pages/SeeAr';
 import Loading from '../src/components/pages/Loading';
+import MyFavorite from '../src/components/pages/MyFavorite';
 import SearchAr from '../src/components/pages/SearchAr';
 
 const options = {
@@ -42,7 +43,7 @@ const someoneTryToAccessUndefinedPage = (toDefaultScreen, globalState) => {
 
 function PageContent({ params }) {
   const globalState = useSelector(globalStore.getState);
-  const restrictedScreens = ['myar', 'newar'];
+  const restrictedScreens = ['myar', 'newar', 'myfavorite'];
   const [toDefaultScreen, setToDefaultScreen] = useState(false);
   const router = useRouter();
 
@@ -74,6 +75,9 @@ function PageContent({ params }) {
       break;
     case 'seear':
       pageContent = <SeeAr params={params} />;
+      break;
+    case 'myfavorite':
+      pageContent = <MyFavorite params={params} />;
       break;
     default:
       putDefaultScreen(toDefaultScreen, setToDefaultScreen);

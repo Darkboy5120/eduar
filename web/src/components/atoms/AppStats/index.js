@@ -7,6 +7,7 @@ import request from '../../../assets/controllers/request';
 import styles from './styles.module.css';
 import useStats from '../../../assets/hooks/useStats';
 import globalStore from '../../../assets/store/reducers/globalStore';
+import globals from '../../../assets/datasets/globals';
 
 const revertAlready = (already) => (already === 0 ? 1 : 0);
 
@@ -51,6 +52,24 @@ const switchAppStat = (type, appDetails, appStats, alert, setStat, setAlreadySta
   });
 };
 
+const downloadAr = (appDetails, alert) => {
+  const user = globalStore.getState()?.user;
+  request.post('consumer_download_ar', {
+    appId: appDetails.pk_id,
+    userEmail: user.email,
+    userAuth: user.auth,
+  }).then((res) => {
+    switch (res?.data?.code) {
+      case 0:
+        window.location = `${globals.server.path}${res.data.data}`;
+        alert.show('Se esta comenzando a descargar la ar', { type: 'success' });
+        break;
+      default:
+        alert.show('Ha ocurrido un problema en el servidor', { type: 'error' });
+    }
+  });
+};
+
 function AppStats({ appDetails, allowButtons }) {
   const alert = useAlert();
   const stats = useStats(appDetails);
@@ -63,7 +82,7 @@ function AppStats({ appDetails, allowButtons }) {
     onClicks = {
       favorites: () => switchAppStat('favorites', appDetails, stats, alert, stats.favorites.setValue, stats.alreadyFavorite.setValue),
       popularity: () => switchAppStat('endorsement', appDetails, stats, alert, stats.endorsements.setValue, stats.alreadyEndorsement.setValue),
-      downloads: () => console.log(3),
+      downloads: () => downloadAr(appDetails, alert),
     };
   }
   const alreadyFavoriteStyle = stats.alreadyFavorite.value ? styles.alreadyFavorite : null;

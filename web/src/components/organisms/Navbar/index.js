@@ -64,7 +64,7 @@ function Navbar() {
             <>
               <DropdownItem title="Ver perfil" linkTarget="foo" />
               <DropdownItem title="Mis AR" linkTarget="/?p=myar" />
-              <DropdownItem title="Mis favoritos" linkTarget="foo" />
+              <DropdownItem title="Mis favoritos" linkTarget="/?p=myfavorite" />
               <DropdownItem title="Cerrar sesión" onClick={() => fbPipe.signOut()} />
             </>
           ) : null}
