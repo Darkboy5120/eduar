@@ -28,9 +28,14 @@ const getApps = (setApps, alert, form, devMode, page) => {
   });
 };
 
-function DrawApps({ data, setRefresh }) {
+// eslint-disable-next-line arrow-body-style
+const getFavoritesIf = (onlyFavorites) => {
+  return (app) => (onlyFavorites ? app.already_favorite === 1 : true);
+};
+
+function DrawApps({ data, setRefresh, onlyFavorites }) {
   return data.aplications.length > 0 ? (
-    data?.aplications?.map((app) => (
+    data?.aplications.filter(getFavoritesIf(onlyFavorites))?.map((app) => (
       <AppCard
         setRefresh={setRefresh}
         key={app.pk_id}
@@ -52,7 +57,7 @@ function DrawApps({ data, setRefresh }) {
 }
 
 function AppFilterContent({
-  devMode, form, apps, setApps, page, refresh, setRefresh,
+  devMode, form, apps, setApps, page, refresh, setRefresh, onlyFavorites,
 }) {
   const alert = useAlert();
   useEffect(() => {
@@ -67,7 +72,7 @@ function AppFilterContent({
   }, [refresh]);
   return (
     <div className={styles.container}>
-      {apps ? <DrawApps data={apps} setRefresh={setRefresh} /> : <LoadingSpinner size="big" />}
+      {apps ? <DrawApps data={apps} setRefresh={setRefresh} onlyFavorites={onlyFavorites} /> : <LoadingSpinner size="big" />}
     </div>
   );
 }

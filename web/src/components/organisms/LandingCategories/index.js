@@ -11,7 +11,7 @@ function LandingCategories() {
     <ContentContainer>
       <FlexContainer className={styles.filterContainer}>
         <FilterButton title="Más descargado" href="/?p=searchar&orderby=0" />
-        <FilterButton title="Más descargado" href="/?p=searchar&orderby=1" />
+        <FilterButton title="Más populares" href="/?p=searchar&orderby=1" />
         <FilterButton title="Más favorito" href="/?p=searchar&orderby=2" />
       </FlexContainer>
       <FlexContainer column>
