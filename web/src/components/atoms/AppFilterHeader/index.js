@@ -3,8 +3,8 @@ import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../CustomText';
 import InputDropdown from '../InputDropdown';
 import request from '../../../assets/controllers/request';
-import orderBy from '../../../assets/datasets/orderBy.json';
-import orderType from '../../../assets/datasets/orderType.json';
+import orderByData from '../../../assets/datasets/orderBy.json';
+import orderTypeData from '../../../assets/datasets/orderType.json';
 import FilterPagination from '../FilterPagination';
 import styles from './styles.module.css';
 
@@ -17,7 +17,7 @@ const getCategories = (setCategories) => {
 };
 
 function AppFilterHeader({
-  form, category, apps, page,
+  form, category, apps, page, orderBy,
 }) {
   return (
     <FlexContainer className={styles.container}>
@@ -28,8 +28,8 @@ function AppFilterHeader({
       </FlexContainer>
       <FlexContainer className={styles.dropdownsContainer}>
         <InputDropdown className={styles.dropdown} title="Categorias" {...form.category} initialValue={category} getData={getCategories} />
-        <InputDropdown className={styles.dropdown} title="Ordernar por" {...form.orderBy} initialData={orderBy} />
-        <InputDropdown className={styles.dropdown} title="Orden" {...form.orderType} initialData={orderType} />
+        <InputDropdown className={styles.dropdown} title="Ordernar por" {...form.orderBy} initialValue={orderBy} initialData={orderByData} />
+        <InputDropdown className={styles.dropdown} title="Orden" {...form.orderType} initialData={orderTypeData} />
       </FlexContainer>
     </FlexContainer>
   );

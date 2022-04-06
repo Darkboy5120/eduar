@@ -7,7 +7,6 @@ import {
   FaEllipsisV,
 } from 'react-icons/fa';
 import { useAlert } from 'react-alert';
-import { useRouter } from 'next/router';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../CustomText';
 import Dropdown from '../../molecules/Dropdown';
@@ -63,7 +62,6 @@ function AppCard({
   const [removeAppModal, setRemoveAppModal] = useState();
   const [loading, setLoading] = useState(false);
   const alert = useAlert();
-  const router = useRouter();
 
   return (
     <FlexContainer column href={appLink} className={styles.container}>
@@ -79,7 +77,15 @@ function AppCard({
       </Modal>
       <AuthorOnlyActions {...{ setRemoveAppModal, authorId }} />
       <FlexContainer className={styles.imageContainer}>
-        <Image priority className={styles.image} layout="fill" src={imagePath} onClick={() => router.push(`/?p=seear&appId=${id}`)} />
+        <Image
+          priority
+          className={styles.image}
+          layout="fill"
+          src={imagePath}
+          onClick={() => {
+            window.location = `/?p=seear&appId=${id}`;
+          }}
+        />
       </FlexContainer>
       <FlexContainer className={styles.contentContainer} column>
         <FlexContainer className={styles.contentHeader}>

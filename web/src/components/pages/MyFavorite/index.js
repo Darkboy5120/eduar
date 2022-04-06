@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PageContainer from '../../../layouts/PageContainer';
 import LoadingSpinner from '../../atoms/LoadingSpinner';
-import BecomeDeveloper from '../../organisms/BecomeDeveloper';
-import ShowMyAr from '../../organisms/ShowMyAr';
+import CustomText from '../../atoms/CustomText';
 import getIsDev from '../../../assets/requests/getIsDev';
+import AppFilter from '../../molecules/AppFilter';
 
-const getContent = (code, setData) => {
-  if (code === 0) {
-    return <BecomeDeveloper setData={setData} />;
-  }
-  return <ShowMyAr type={code} />;
-};
-
-function MyAr() {
+function MyFavorite() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -23,9 +16,17 @@ function MyAr() {
 
   return (
     <PageContainer>
-      {data !== null ? getContent(data, setData) : <LoadingSpinner size="big" centered />}
+      {!data ? (
+        <LoadingSpinner size="big" centered />
+      ) : (
+        <>
+          <CustomText h1 text="Estas son tus Ar favoritas" />
+          <br />
+          <AppFilter onlyFavorites />
+        </>
+      )}
     </PageContainer>
   );
 }
 
-export default MyAr;
+export default MyFavorite;
