@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PageContainer from '../../../layouts/PageContainer';
-import request from '../../../assets/controllers/request';
-import globalStore from '../../../assets/store/reducers/globalStore';
 import LoadingSpinner from '../../atoms/LoadingSpinner';
 import BecomeDeveloper from '../../organisms/BecomeDeveloper';
 import ShowMyAr from '../../organisms/ShowMyAr';
-
-const getData = (setData) => {
-  request.post('global_isDev', {
-    id: globalStore.getState().user.email,
-  }).then((res) => {
-    setData(res?.data?.code);
-  });
-};
+import getIsDev from '../../../assets/requests/getIsDev';
 
 const getContent = (code, setData) => {
   if (code === 0) {
@@ -26,7 +17,7 @@ function MyAr() {
 
   useEffect(() => {
     if (!data) {
-      getData(setData);
+      getIsDev(setData);
     }
   }, [data]);
 
