@@ -1,0 +1,32 @@
+.container {
+  width: 20vw;
+  position: relative;
+  background-color: var(--main5);
+  border-radius: 5px;
+  padding-bottom: 1em;
+}
+.imageContainer {
+  padding: .5em;
+  width: inherit;
+  align-items: center;
+}
+.imageContainer p {
+  padding-left: 1em;
+}
+.image {
+  border-radius: 100%;
+}
+.levelContainer {
+  padding: .5em;
+  padding-bottom: 1em;
+}
+.levelContainer > meter {
+  width: inherit;
+}
+.tabsContainer {
+  width: inherit;
+}
+.tabsContainer > * {
+  margin: 0;
+  margin-bottom: .2em;
+}
