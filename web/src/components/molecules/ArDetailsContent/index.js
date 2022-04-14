@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import Image from 'next/image';
 import globals from '../../../assets/datasets/globals';
 import ContentContainer from '../../../layouts/ContentContainer';
 import FlexContainer from '../../../layouts/FlexContainer';
@@ -15,7 +16,13 @@ function LoadAppImages({ images }) {
   return (
     <>
       {images.map((image) => (
-        <img className={styles.image} alt="" key={image.filepath} src={`${globals.server.path}${image.filepath}`} />
+        <div className={styles.imageContainer} key={image.filepath}>
+          <Image
+            className={styles.image}
+            layout="fill"
+            src={`${globals.server.path}${image.filepath}`}
+          />
+        </div>
       ))}
     </>
   );
