@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PageContainer from '../../../layouts/PageContainer';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../../atoms/CustomText';
