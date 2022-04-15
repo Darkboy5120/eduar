@@ -6,3 +6,15 @@
 .text {
   padding-left: .1em;
 }
+.popupContainer {
+  display: none;
+}
+.container:hover + .popupContainer {
+  display: block;
+  position: absolute;
+  padding: .5em;
+  background-color: var(--main2);
+  color: white;
+  margin-top: .3em;
+  border-radius: 5px;
+}
