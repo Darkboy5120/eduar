@@ -1,0 +1,9 @@
+.container {
+}
+.dynamicContainer {
+  background-color: var(--main6);
+  flex: 1;
+  margin-left: .5em;
+  border-radius: 5px;
+  padding: 1em;
+}

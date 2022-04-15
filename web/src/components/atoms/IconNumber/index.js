@@ -5,10 +5,15 @@ import CustomButton from '../CustomButton';
 import styles from './styles.module.css';
 
 function IconNumber({
-  icon, number, onClick, className,
+  icon, number, onClick, className, popup,
 }) {
   return onClick ? (
-    <CustomButton title={`${number}`} leftIcon={icon} className={`${styles.container} ${className}`} onClick={onClick} />
+    <div>
+      <CustomButton title={`${number}`} leftIcon={icon} className={`${styles.container} ${className}`} onClick={onClick} />
+      <div className={styles.popupContainer}>
+        <CustomText text={popup} />
+      </div>
+    </div>
   ) : (
     <FlexContainer hCentered vCentered className={`${styles.container} ${className}`}>
       {icon}

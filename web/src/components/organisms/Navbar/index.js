@@ -62,7 +62,7 @@ function Navbar() {
           <p>{globalState.user.email}</p>
           {globalState.signed ? (
             <>
-              <DropdownItem title="Ver perfil" linkTarget="foo" />
+              <DropdownItem title="Ver perfil" linkTarget="/?p=myprofile" />
               <DropdownItem title="Mis AR" linkTarget="/?p=myar" />
               <DropdownItem title="Mis favoritos" linkTarget="/?p=myfavorite" />
               <DropdownItem title="Cerrar sesión" onClick={() => fbPipe.signOut()} />

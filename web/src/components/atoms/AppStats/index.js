@@ -94,17 +94,20 @@ function AppStats({ appDetails, allowButtons }) {
         icon={<FaHeart />}
         number={stats.favorites.value}
         onClick={onClicks.favorites}
+        popup="Favoritos"
       />
       <IconNumber
         className={alreadyEndorsement}
         icon={<FaThumbsUp />}
         number={stats.endorsements.value}
         onClick={onClicks.popularity}
+        popup="Popularidad"
       />
       <IconNumber
         icon={<FaDownload />}
         number={appDetails.downloads}
         onClick={onClicks.downloads}
+        popup="Descargas"
       />
     </FlexContainer>
   );

@@ -13,6 +13,7 @@ import SeeAr from '../src/components/pages/SeeAr';
 import Loading from '../src/components/pages/Loading';
 import MyFavorite from '../src/components/pages/MyFavorite';
 import SearchAr from '../src/components/pages/SearchAr';
+import MyProfile from '../src/components/pages/MyProfile';
 
 const options = {
   position: positions.BOTTOM_RIGHT,
@@ -43,7 +44,7 @@ const someoneTryToAccessUndefinedPage = (toDefaultScreen, globalState) => {
 
 function PageContent({ params }) {
   const globalState = useSelector(globalStore.getState);
-  const restrictedScreens = ['myar', 'newar', 'myfavorite'];
+  const restrictedScreens = ['myar', 'newar', 'myfavorite', 'myprofile'];
   const [toDefaultScreen, setToDefaultScreen] = useState(false);
   const router = useRouter();
 
@@ -70,6 +71,9 @@ function PageContent({ params }) {
     case 'newar':
       pageContent = <NewAr />;
       break;
+    case 'myprofile':
+      pageContent = <MyProfile />;
+      break;
     case 'searchar':
       pageContent = <SearchAr params={params} />;
       break;
@@ -93,7 +97,7 @@ export default function App(params) {
         <div>
           <Head>
             <title>Eduar</title>
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/favicon.png" />
           </Head>
           <Navbar />
           <PageContent params={params} />

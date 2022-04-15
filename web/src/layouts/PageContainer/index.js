@@ -1,10 +1,14 @@
 import React from 'react';
+import Footer from '../../components/molecules/Footer';
 import styles from './styles.module.css';
 
 function PageContainer({ children }) {
   return (
-    <div className={styles.container}>
-      {children}
+    <div>
+      <div className={styles.container}>
+        {children}
+      </div>
+      <Footer />
     </div>
   );
 }
