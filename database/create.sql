@@ -11,7 +11,6 @@ drop table if exists `notification_aplication_comment_reaction`;
 drop table if exists `notification_karma_level`;
 drop table if exists `notification_karma_achievement`;
 drop table if exists `notification_verified_developer`;
-drop table if exists `developer_karma_achievement`;
 drop table if exists `aplication_comment_reaction`;
 drop table if exists `aplication_comment`;
 drop table if exists `aplication_download`;
@@ -26,12 +25,14 @@ drop table if exists `aplication_version`;
 drop table if exists `aplication`;
 drop table if exists `aplication_category`;
 drop table if exists `verified_developer`;
+drop table if exists `developer_karma_achievement`;
 drop table if exists `developer`;
 drop table if exists `consumer`;
 drop table if exists `user_notification`;
 drop table if exists `notification`;
 drop table if exists `checker`;
 drop table if exists `user_photo`;
+drop table if exists `karma_achievement_progress`;
 drop table if exists `user`;
 drop table if exists `comment_reaction`;
 drop table if exists `karma_achievement`;
@@ -48,6 +49,8 @@ create table `karma_level` (
 create table `karma_achievement` (
   `pk_id` smallint unsigned not null auto_increment,
   `title` varchar(50) not null,
+  `only_developers` varchar(50) not null,
+  `goal_count` varchar(50) not null,
   `description` varchar(255) not null,
   `pointsgain` smallint not null,
   primary key(pk_id),
@@ -70,6 +73,16 @@ create table `user` (
   `registerdate` timestamp default current_timestamp not null,
   primary key(pk_email),
   unique key(auth)
+) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
+
+create table `karma_achievement_progress` (
+  `fk_karma_achievement_id` smallint unsigned not null,
+  `fk_user_id` varchar(50) not null,
+  `checked` enum('0', '1') default '0' not null,
+  `current_count` varchar(50) default '0' not null,
+  primary key(fk_karma_achievement_id, fk_user_id),
+  foreign key(fk_karma_achievement_id) references karma_achievement(pk_id) on delete cascade,
+  foreign key(fk_user_id) references user(pk_email) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
 create table `user_photo` (
@@ -252,15 +265,6 @@ create table `aplication_comment_reaction` (
   foreign key(fk_consumer_id) references consumer(fk_user_id) on delete cascade
 ) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
 
-create table `developer_karma_achievement` (
-  `fk_developer_id` varchar(50) not null,
-  `fk_karmaachievement_id` smallint unsigned not null,
-  `registerdate` timestamp default current_timestamp not null,
-  unique key(fk_developer_id, fk_karmaachievement_id),
-  foreign key(fk_developer_id) references developer(fk_consumer_id) on delete cascade,
-  foreign key(fk_karmaachievement_id) references karma_achievement(pk_id) on delete cascade
-) engine=InnoDB default charset=utf8 collate=utf8_unicode_ci;
-
 create table `notification_verified_developer` (
   `fk_verifieddeveloper_id` varchar(50) not null,
   `fk_usernotification_id` smallint unsigned not null,
@@ -359,5 +363,23 @@ insert into `notification` (`type`) values
 ("karma_level"),
 ("karma_achievement"),
 ("verified_developer");
+
+COMMIT;
+
+START TRANSACTION;
+
+insert into `user` (`pk_email`, `firstname`, `lastname`, `birthdate`, `auth`, `registerdate`) values ('hmaldonado0@ucol.mx', 'Hilario', 'Maldonado', '2024-02-02', '7ccGzpgo8QOly1SF1QFmKijnJPr2', '2022-04-18 15:03:31');
+insert into `consumer` (`fk_user_id`) values ('hmaldonado0@ucol.mx');
+insert into `karma_achievement` (
+  `title`, `only_developers`,  `goal_count`, `description`, `pointsgain`
+  ) values
+  ('Amor a primera vista', '0', '1', 'Dale favorito a un AR por primera vez', '10'),
+  ('Esto me gusta', '0', '1', 'Dale Me gusta a un AR por primera vez', '10'),
+  ('Es hora de aprender', '0', '1', 'Descarga una AR por primera vez', '10'),
+  ('Gracias por tu contribución! :)', '1', '1', 'Sube una AR por primera vez', '30');
+insert into `karma_level` (`minpoints`, `maxpoints`, `description`) values
+  ('0', '50', 'Parece que acabas de crear tu cuenta, te invitamos a descargar de las AR que Eduar tiene para ti'),
+  ('50', '100', 'Este es el segundo nivel, quiere decir que ya has interactuado un poco con Eduar y conoces de que trata la plataforma, gracias a miembros como tu Eduar esta creciendo'),
+  ('100', '150', 'Gracias por seguirte interesando por Eduar, estas contribuyendo a la educación de mucha gente, sigue asi!');
 
 COMMIT;

@@ -1,5 +1,5 @@
 module.exports = {
   images: {
-    domains: ['localhost', 'eduar-ten.vercel.app', 'eduar-server.herokuapp.com'],
+    domains: ['localhost', 'eduar-ten.vercel.app', 'eduar-server.herokuapp.com', 'images.unsplash.com'],
   },
 }
