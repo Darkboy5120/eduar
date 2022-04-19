@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 10em;
+  gap: .5em;
+}
+.card {
+  padding: .5em;
+  background-color: var(--main5);
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px 2px var(--shadow);
+}
+.cardFooter > meter {
+  width: 100%;
+}
+.cardFooter {
+  margin-top: auto;
+}
+.hiddenStyle {
+  display: none !important;
+}
+.points {
+  font-size: .8rem;
+  font-weight: 600;
+}

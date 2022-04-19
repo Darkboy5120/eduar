@@ -1,11 +1,18 @@
 import React from 'react';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
+import { FaInfoCircle } from 'react-icons/fa';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../../atoms/CustomText';
 import FilterButton from '../FilterButton';
 import styles from './styles.module.css';
+import HelpIcon from '../../atoms/HelpIcon';
 
 function ProfileNav({ activeTab, setActiveTab }) {
+  const defaultUserPhoto = 'https://images.unsplash.com/photo-1533552755457-5b471cb2ab11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
+  const userPhoto = useSelector((state) => state.user.photo);
+  const userPhotoPath = userPhoto ?? defaultUserPhoto;
+  const { level } = useSelector((state) => state.profile);
   const getActive = (index) => ({ secondary: index !== activeTab });
   return (
     <FlexContainer className={styles.container} column>
@@ -16,15 +23,18 @@ function ProfileNav({ activeTab, setActiveTab }) {
           width={64}
           height={64}
           layout="fixed"
-          src="https://images.unsplash.com/photo-1533552755457-5b471cb2ab11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+          src={userPhotoPath}
           onClick={() => {
           }}
         />
         <CustomText text="Hilario" bold />
       </FlexContainer>
       <FlexContainer className={styles.levelContainer} column>
-        <CustomText text="Nivel 3" bold />
-        <meter min="0" max="1000" value="500" />
+        <FlexContainer>
+          <CustomText text={`Nivel ${level.currentLevel}`} bold />
+          <HelpIcon label={level.description} icon={<FaInfoCircle />} />
+        </FlexContainer>
+        <meter min={level.minPoints} max={level.maxPoints} value={level.currentPoints} />
       </FlexContainer>
       <FlexContainer className={styles.tabsContainer} column>
         <FilterButton title="Configuración" onClick={() => setActiveTab(0)} {...getActive(0)} />

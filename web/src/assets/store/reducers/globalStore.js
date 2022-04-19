@@ -6,7 +6,7 @@ const userInitialState = {
   lastname: null,
   email: null,
   birthdate: null,
-  appDetails: null,
+  photo: null,
 };
 
 export const globalSlice = createSlice({
@@ -14,6 +14,8 @@ export const globalSlice = createSlice({
   initialState: {
     user: userInitialState,
     signed: null,
+    appDetails: null,
+    profile: null,
   },
   reducers: {
     signIn: (state, data) => {
@@ -30,6 +32,9 @@ export const globalSlice = createSlice({
     clearAppDetails: (state) => {
       state.appDetails = null;
     },
+    setProfile: (state, data) => {
+      state.profile = data.payload;
+    },
   },
 });
 
@@ -38,7 +43,7 @@ const globalStore = configureStore({
 });
 
 export const {
-  signIn, signOut, setAppDetails, clearAppDetails,
+  signIn, signOut, setAppDetails, clearAppDetails, setProfile,
 } = globalSlice.actions;
 
 export default globalStore;

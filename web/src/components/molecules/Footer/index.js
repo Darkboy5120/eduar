@@ -45,7 +45,7 @@ function Footer() {
       <div className={styles.tabsContainer}>
         <FlexContainer column className={styles.logoContainer}>
           <FlexContainer>
-            <Image src={logo} layout="fixed" className={styles.footerLogo} width={160} height={160} />
+            <Image priority src={logo} layout="fixed" className={styles.footerLogo} width={160} height={160} />
             <Image src={udc} layout="fixed" className={styles.footerLogo} width={64} height={64} />
           </FlexContainer>
           <CustomText h3 text={'"Aprendizaje para la nueva realidad"'} />

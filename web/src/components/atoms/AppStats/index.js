@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaHeart, FaThumbsUp, FaDownload } from 'react-icons/fa';
 import { useAlert } from 'react-alert';
 import FlexContainer from '../../../layouts/FlexContainer';
@@ -61,7 +61,7 @@ const downloadAr = (appDetails, alert) => {
   }).then((res) => {
     switch (res?.data?.code) {
       case 0:
-        window.location = `${globals.server.path}${res.data.data}`;
+        window.location = `${globals.server.path}${res.data.data.filepath}`;
         alert.show('Se esta comenzando a descargar la ar', { type: 'success' });
         break;
       default:
@@ -73,6 +73,9 @@ const downloadAr = (appDetails, alert) => {
 function AppStats({ appDetails, allowButtons }) {
   const alert = useAlert();
   const stats = useStats(appDetails);
+  useEffect(() => {
+    request.setAlert(alert);
+  }, []);
   let onClicks = {
     favorites: null,
     popularity: null,

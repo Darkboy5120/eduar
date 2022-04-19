@@ -7,8 +7,9 @@ function FilterButton({
 }) {
   const invisibleStyle = invisible ? styles.invisible : null;
   const backgroundColor = secondary ? styles.bgSecondary : styles.bgPrimary;
+  const defaultTabIndex = onClick ? 0 : undefined;
   return (
-    <CustomLink onClick={onClick} disabled={disabled} href={href} className={`${invisibleStyle} ${backgroundColor} ${styles.container} ${className}`}>
+    <CustomLink onClick={onClick} tabIndex={defaultTabIndex} disabled={disabled} href={href} className={`${invisibleStyle} ${backgroundColor} ${styles.container} ${className}`}>
       {icon}
       {title}
     </CustomLink>

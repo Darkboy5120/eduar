@@ -4,6 +4,7 @@
   background-color: var(--main5);
   border-radius: 5px;
   padding-bottom: 1em;
+  box-shadow: 0px 2px 4px var(--shadow);
 }
 .imageContainer {
   padding: .5em;
