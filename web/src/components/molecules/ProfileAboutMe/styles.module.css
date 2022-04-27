@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  align-items: flex-start;
+}
+.section {
+  width: 100%;
+  align-items: flex-start;
+  margin-bottom: 2em;
+}
+.formContainer {
+  width: 100%; 
+  align-items: flex-start;
+}
+.submitContainer {
+  width: 100%;
+  display: block;
+  margin-right: auto;
+}
+.tripleColumnGrid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: flex-start;
+}
+.input {
+  width: max-content;
+}
+.sectionHeader {
+  margin-bottom: 1em;
+}

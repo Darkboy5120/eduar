@@ -44,7 +44,7 @@ const triggerValidation = (value, validation, setError, setOk) => {
 };
 
 function InputText({
-  type, placeholder, title, label, setValue, setOk, validation, value,
+  type, placeholder, title, label, setValue, setOk, validation, value, className, disabled,
 }) {
   const [error, setError] = useState();
   const isPassword = type === 'password';
@@ -55,14 +55,16 @@ function InputText({
     type = password ? 'password' : 'text';
   }
   const onChangeDo = (e) => {
-    setValue(e.target.value);
-    triggerValidation(e.target.value, validation, setError, setOk);
+    if (!disabled) {
+      setValue(e.target.value);
+      triggerValidation(e.target.value, validation, setError, setOk);
+    }
   };
 
   return (
-    <div className={styles.inputTextContainer}>
+    <div className={`${styles.inputTextContainer} ${className}`}>
       <div className={styles.inputTextBox}>
-        <Input onChange={onChangeDo} value={value || ''} title={title} type={type} placeholder={placeholder} />
+        <Input disabled={disabled} onChange={onChangeDo} value={value || ''} title={title} type={type} placeholder={placeholder} />
         {isPassword ? <button type="button" aria-label="password-visibility" onClick={() => setPassword(!password)} className={styles.inputTextPasswordIcon}>{passwordIcon}</button> : null}
       </div>
       <span className={styles.inputTextLabel}>{label}</span>

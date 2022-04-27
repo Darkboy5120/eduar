@@ -43,7 +43,7 @@ const req = (api, data, files) => {
     newData,
   )
     .then((res) => {
-      if (res?.data?.data?.newAchievements && customAlert) {
+      if (res?.data?.data?.newAchievements) {
         const { newAchievements } = res.data.data;
         for (const achieve of newAchievements) {
           customAlert.show(`Logro desbloqueado: ${achieve.title}`, { type: 'success' });

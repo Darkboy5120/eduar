@@ -35,6 +35,10 @@ export const globalSlice = createSlice({
     setProfile: (state, data) => {
       state.profile = data.payload;
     },
+    updateFullname: (state, data) => {
+      state.user.firstname = data.payload.firstname;
+      state.user.lastname = data.payload.lastname;
+    },
   },
 });
 
@@ -43,7 +47,7 @@ const globalStore = configureStore({
 });
 
 export const {
-  signIn, signOut, setAppDetails, clearAppDetails, setProfile,
+  signIn, signOut, setAppDetails, clearAppDetails, setProfile, updateFullname,
 } = globalSlice.actions;
 
 export default globalStore;

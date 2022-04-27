@@ -1,8 +1,9 @@
 .container {
 }
 .dynamicContainer {
+  position: relative;
   background-color: var(--main5);
-  flex: 1;
+  width: 70vw;
   margin-left: .5em;
   border-radius: 5px;
   padding: 1em;

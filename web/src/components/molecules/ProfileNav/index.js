@@ -9,6 +9,8 @@ import styles from './styles.module.css';
 import HelpIcon from '../../atoms/HelpIcon';
 
 function ProfileNav({ activeTab, setActiveTab }) {
+  const { firstname, lastname } = useSelector((state) => state.user);
+  const fullname = `${firstname} ${lastname}`;
   const defaultUserPhoto = 'https://images.unsplash.com/photo-1533552755457-5b471cb2ab11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
   const userPhoto = useSelector((state) => state.user.photo);
   const userPhotoPath = userPhoto ?? defaultUserPhoto;
@@ -27,7 +29,7 @@ function ProfileNav({ activeTab, setActiveTab }) {
           onClick={() => {
           }}
         />
-        <CustomText text="Hilario" bold />
+        <CustomText text={fullname} bold />
       </FlexContainer>
       <FlexContainer className={styles.levelContainer} column>
         <FlexContainer>
@@ -37,8 +39,8 @@ function ProfileNav({ activeTab, setActiveTab }) {
         <meter min={level.minPoints} max={level.maxPoints} value={level.currentPoints} />
       </FlexContainer>
       <FlexContainer className={styles.tabsContainer} column>
-        <FilterButton title="Configuración" onClick={() => setActiveTab(0)} {...getActive(0)} />
-        <FilterButton title="Perfil" onClick={() => setActiveTab(1)} {...getActive(1)} />
+        <FilterButton title="Sobre mi" onClick={() => setActiveTab(0)} {...getActive(0)} />
+        <FilterButton title="Configuración" onClick={() => setActiveTab(1)} {...getActive(1)} />
         <FilterButton title="Verificación" onClick={() => setActiveTab(2)} {...getActive(2)} />
         <FilterButton title="Logros" onClick={() => setActiveTab(3)} {...getActive(3)} />
       </FlexContainer>

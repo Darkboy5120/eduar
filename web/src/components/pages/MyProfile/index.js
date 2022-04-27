@@ -10,6 +10,7 @@ import ProfileAchievements from '../../molecules/ProfileAchievements';
 import LoadingSpinner from '../../atoms/LoadingSpinner';
 import globalStore, { setProfile } from '../../../assets/store/reducers/globalStore';
 import request from '../../../assets/controllers/request';
+import ProfileAboutMe from '../../molecules/ProfileAboutMe';
 
 const prepareData = (data) => {
   const level = {
@@ -70,14 +71,12 @@ function MyProfile() {
         <FlexContainer className={styles.container}>
           <ProfileNav {...{ activeTab, setActiveTab }} />
           <FlexContainer className={styles.dynamicContainer}>
-            <FlexContainer hidden={activeTab !== 0}>
-              <CustomText text="foo0" />
-            </FlexContainer>
+            <ProfileAboutMe hidden={activeTab !== 0} />
             <FlexContainer hidden={activeTab !== 1}>
-              <CustomText text="foo1" />
+              <CustomText h2 text="Proximamente" />
             </FlexContainer>
             <FlexContainer hidden={activeTab !== 2}>
-              <CustomText text="foo2" />
+              <CustomText h2 text="Proximamente" />
             </FlexContainer>
             <ProfileAchievements hidden={activeTab !== 3} />
           </FlexContainer>

@@ -16,7 +16,7 @@ function Form({ children, row, className }) {
   }, []);
 
   return (
-    <form onSubmit={onSubmit} ref={form}>
+    <form onSubmit={onSubmit} ref={form} className={styles.container}>
       <FlexContainer column={!row} className={`${styles.formContainer} ${rowStyle} ${className}`}>
         {children}
       </FlexContainer>
