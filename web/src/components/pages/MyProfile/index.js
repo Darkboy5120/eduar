@@ -71,10 +71,10 @@ function MyProfile() {
         <FlexContainer className={styles.container}>
           <ProfileNav {...{ activeTab, setActiveTab }} />
           <FlexContainer className={styles.dynamicContainer}>
-            <ProfileAboutMe hidden={activeTab !== 0} />
-            <FlexContainer hidden={activeTab !== 1}>
+            <FlexContainer hidden={activeTab !== 0}>
               <CustomText h2 text="Proximamente" />
             </FlexContainer>
+            <ProfileAboutMe hidden={activeTab !== 1} />
             <FlexContainer hidden={activeTab !== 2}>
               <CustomText h2 text="Proximamente" />
             </FlexContainer>

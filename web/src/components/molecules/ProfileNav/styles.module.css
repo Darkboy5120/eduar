@@ -21,13 +21,26 @@
   padding: .5em;
   padding-bottom: 1em;
 }
-.levelContainer > meter {
-  width: inherit;
-}
 .tabsContainer {
   width: inherit;
 }
 .tabsContainer > * {
   margin: 0;
   margin-bottom: .2em;
+}
+.levelBar {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.levelBar > meter {
+  height: 2em;
+  width: 100%;
+}
+.levelBarPoints {
+  position: absolute;
+  z-index: 1;
+  font-weight: 700;
+  color: var(--main2);
+  font-size: .8em;
 }

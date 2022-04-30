@@ -9,7 +9,7 @@ import styles from './styles.module.css';
 import HelpIcon from '../../atoms/HelpIcon';
 
 function ProfileNav({ activeTab, setActiveTab }) {
-  const { firstname, lastname } = useSelector((state) => state.user);
+  const { firstname, lastname, email } = useSelector((state) => state.user);
   const fullname = `${firstname} ${lastname}`;
   const defaultUserPhoto = 'https://images.unsplash.com/photo-1533552755457-5b471cb2ab11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80';
   const userPhoto = useSelector((state) => state.user.photo);
@@ -29,14 +29,20 @@ function ProfileNav({ activeTab, setActiveTab }) {
           onClick={() => {
           }}
         />
-        <CustomText text={fullname} bold />
+        <FlexContainer column>
+          <CustomText text={fullname} bold />
+          <CustomText text={email} />
+        </FlexContainer>
       </FlexContainer>
       <FlexContainer className={styles.levelContainer} column>
         <FlexContainer>
           <CustomText text={`Nivel ${level.currentLevel}`} bold />
           <HelpIcon label={level.description} icon={<FaInfoCircle />} />
         </FlexContainer>
-        <meter min={level.minPoints} max={level.maxPoints} value={level.currentPoints} />
+        <FlexContainer className={styles.levelBar}>
+          <CustomText className={styles.levelBarPoints}>{`${level.currentPoints} / ${level.maxPoints}`}</CustomText>
+          <meter min={level.minPoints} max={level.maxPoints} value={level.currentPoints} />
+        </FlexContainer>
       </FlexContainer>
       <FlexContainer className={styles.tabsContainer} column>
         <FilterButton title="Sobre mi" onClick={() => setActiveTab(0)} {...getActive(0)} />
