@@ -10,7 +10,7 @@
   padding: .5em;
   color: var(--main1);
   background-color: var(--main2);
-  z-index: 1;
+  z-index: 2;
   top: 100%;
   border-radius: 5px;
   width: 20vw;
