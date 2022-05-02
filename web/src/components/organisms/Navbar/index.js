@@ -49,7 +49,7 @@ function Navbar() {
         dismiss={() => setSignUpModal(false)}
       />
       <Dropdown title="Eduar" leftIcon={<FaAlignJustify />}>
-        <DropdownItem title="Categorias" linkTarget="/?p=home" />
+        <DropdownItem title="Categorías" linkTarget="/?p=home" />
         <DropdownItem title="¿Que es Eduar?" linkTarget="foo" />
         <DropdownItem title="Objetivos" linkTarget="foo" />
         <DropdownItem title="Para maestros" linkTarget="foo" />
