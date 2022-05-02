@@ -28,10 +28,8 @@ function SeeAr({ params }) {
   const appDetails = useSelector((state) => state.appDetails);
   const alert = useAlert();
   useEffect(() => {
-    if (!appDetails) {
-      getAppDetails(params.appId, alert);
-    }
-  }, [appDetails]);
+    getAppDetails(params.appId, alert);
+  }, []);
   return (
     <PageContainer>
       {appDetails ? (

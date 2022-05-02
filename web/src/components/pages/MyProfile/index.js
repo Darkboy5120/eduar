@@ -43,6 +43,7 @@ const prepareData = (data) => {
 };
 
 const getProfileData = (email, alert) => {
+  globalStore.dispatch(setProfile(null));
   request.post('consumer_get_profile_data', {
     userEmail: email,
   }).then((res) => {

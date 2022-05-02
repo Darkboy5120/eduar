@@ -14,6 +14,7 @@ import Loading from '../src/components/pages/Loading';
 import MyFavorite from '../src/components/pages/MyFavorite';
 import SearchAr from '../src/components/pages/SearchAr';
 import MyProfile from '../src/components/pages/MyProfile';
+import Welcome from '../src/components/pages/Welcome';
 
 const options = {
   position: positions.BOTTOM_RIGHT,
@@ -60,7 +61,7 @@ function PageContent({ params }) {
   let pageContent;
   switch (params.p) {
     case 'welcome':
-      pageContent = <div />;
+      pageContent = <Welcome />;
       break;
     case 'myar':
       pageContent = <MyAr />;

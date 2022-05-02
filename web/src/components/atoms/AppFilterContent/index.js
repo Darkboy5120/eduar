@@ -34,8 +34,9 @@ const getFavoritesIf = (onlyFavorites) => {
 };
 
 function DrawApps({ data, setRefresh, onlyFavorites }) {
-  return data.aplications.length > 0 ? (
-    data?.aplications.filter(getFavoritesIf(onlyFavorites))?.map((app) => (
+  const aplications = data?.aplications.filter(getFavoritesIf(onlyFavorites));
+  return aplications.length > 0 ? (
+    aplications?.map((app) => (
       <AppCard
         setRefresh={setRefresh}
         key={app.pk_id}
@@ -47,8 +48,7 @@ function DrawApps({ data, setRefresh, onlyFavorites }) {
           already_favorite: app.already_favorite,
           already_endorsement: app.already_endorsement,
         }}
-        author={{ name: `${app.firstname} ${app.lastname}`, link: 'asdasdasd' }}
-        appLink="asdasdasd"
+        author={{ name: `${app.firstname} ${app.lastname}`, link: `?p=seear&user=${app.author_id}` }}
         stats={{ favorites: app.favorites, popularity: app.endorsements, downloads: app.downloads }}
         imagePath={`${globals.server.path}${app.thumbnail}`}
       />

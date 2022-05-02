@@ -50,10 +50,10 @@ function Navbar() {
       />
       <Dropdown title="Eduar" leftIcon={<FaAlignJustify />}>
         <DropdownItem title="Categorías" linkTarget="/?p=home" />
-        <DropdownItem title="¿Que es Eduar?" linkTarget="foo" />
-        <DropdownItem title="Objetivos" linkTarget="foo" />
-        <DropdownItem title="Para maestros" linkTarget="foo" />
-        <DropdownItem title="Guía para desarrolladores" linkTarget="foo" />
+        <DropdownItem title="¿Que es Eduar?" linkTarget="/?p=welcome" />
+        <DropdownItem title="Objetivos" linkTarget="/?p=welcome" />
+        <DropdownItem title="Para maestros" linkTarget="/?p=welcome" />
+        <DropdownItem title="Guía para desarrolladores" linkTarget="/?p=welcome" />
       </Dropdown>
       <div className={styles.rightContainer}>
         <InputSearch />

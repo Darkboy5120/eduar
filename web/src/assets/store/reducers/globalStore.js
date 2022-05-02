@@ -7,6 +7,7 @@ const userInitialState = {
   email: null,
   birthdate: null,
   photo: null,
+  screenParams: {},
 };
 
 export const globalSlice = createSlice({
@@ -39,6 +40,9 @@ export const globalSlice = createSlice({
       state.user.firstname = data.payload.firstname;
       state.user.lastname = data.payload.lastname;
     },
+    setScreenParams: (state, data) => {
+      state.screenParams = { ...state.screenParams, ...data.payload };
+    },
   },
 });
 
@@ -48,6 +52,7 @@ const globalStore = configureStore({
 
 export const {
   signIn, signOut, setAppDetails, clearAppDetails, setProfile, updateFullname,
+  setScreenParams,
 } = globalSlice.actions;
 
 export default globalStore;
