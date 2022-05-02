@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { FaInfoCircle } from 'react-icons/fa';
 import FlexContainer from '../../../layouts/FlexContainer';

@@ -33,6 +33,7 @@ const editPersonalInfo = (userData, alert, firstname, lastname) => {
   });
 };
 
+// eslint-disable-next-line no-unused-vars
 function editPassword(form, alert, auth) {
   alert.show('Esta funcionalidad aun no se implementa :(', { type: 'error' });
 }
