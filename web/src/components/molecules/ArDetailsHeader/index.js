@@ -29,10 +29,10 @@ function ArDetailsHeader() {
           <span>
             Desarrollador por
             {' '}
-            <a href="foo">{`${appDetails.firstname} ${appDetails.lastname}`}</a>
+            <a href={`?p=myprofile&user=${appDetails.author_id}`}>{`${appDetails.firstname} ${appDetails.lastname}`}</a>
           </span>
           <CustomLink href={appDetails.github}>Github</CustomLink>
-          <CustomText text="v2.3" />
+          {/* <CustomText text="v2.3" /> */}
         </FlexContainer>
         <AppStats appDetails={appDetails} allowButtons />
       </FlexContainer>

@@ -72,7 +72,7 @@ function PageContent({ params }) {
       pageContent = <NewAr />;
       break;
     case 'myprofile':
-      pageContent = <MyProfile />;
+      pageContent = <MyProfile params={params} />;
       break;
     case 'searchar':
       pageContent = <SearchAr params={params} />;

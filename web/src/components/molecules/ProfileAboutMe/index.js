@@ -1,23 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useAlert } from 'react-alert';
-import useEditPersonalInfo from '../../../assets/hooks/editPersonalInfo';
+import Image from 'next/image';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../../atoms/CustomText';
-import CustomForm from '../CustomForm';
-import InputText from '../InputText';
-import globalStore, { updateFullname } from '../../../assets/store/reducers/globalStore';
-import useEditPassword from '../../../assets/hooks/useEditPassword';
 import styles from './styles.module.css';
-import request from '../../../assets/controllers/request';
-import firebasePipe from '../../../assets/controllers/firebasePipe';
 import UserPhoto from '../../atoms/UserPhoto';
+import LoadingSpinner from '../../atoms/LoadingSpinner';
+import CustomLink from '../../atoms/CustomLink';
+import globals from '../../../assets/datasets/globals';
+
+function AplicationsGrid({ aplications }) {
+  return aplications.length > 0 ? (
+    <div className={styles.aplicationsGrid}>
+      {aplications.map((app) => (
+        <CustomLink key={app.pk_id} className={styles.appGridItem} href={`?p=seear&appId=${app.pk_id}`}>
+          <Image layout="fill" objectFit="cover" src={`${globals.server.path}${app.pk_filepath}`} />
+        </CustomLink>
+      ))}
+    </div>
+  ) : <CustomText>Este usuario no tiene aplicaciones</CustomText>;
+}
 
 function ProfileAboutMe({ hidden }) {
-  return (
+  const { aplications, activity } = useSelector((state) => state.profile);
+  const commentsLength = activity.filter((inter) => inter.fk_interaction_type === 'comment').length;
+  const favLength = activity.filter((inter) => inter.fk_interaction_type === 'favorite').length;
+  const likesLength = activity.filter((inter) => inter.fk_interaction_type === 'endorsement').length;
+  const userPhoto = useSelector((state) => state.profile.user.photo);
+  return !aplications && activity ? <LoadingSpinner size="medium" /> : (
     <FlexContainer column hidden={hidden} className={styles.container}>
       <FlexContainer hCentered className={styles.imageContainer}>
-        <UserPhoto height={192} width={192} />
+        <UserPhoto height={192} width={192} path={userPhoto} />
       </FlexContainer>
       <div className={styles.infoContainer}>
         <FlexContainer flex={1} column>
@@ -32,11 +45,15 @@ function ProfileAboutMe({ hidden }) {
           </ul>
           <br />
           <CustomText h3>Actividad de este mes</CustomText>
-          <br />
-          <CustomText h3>Actividad global</CustomText>
+          <ul>
+            <li><CustomText>{`${commentsLength} comentarios`}</CustomText></li>
+            <li><CustomText>{`${favLength} favoritos`}</CustomText></li>
+            <li><CustomText>{`${likesLength} me gusta`}</CustomText></li>
+          </ul>
         </FlexContainer>
-        <FlexContainer flex={1}>
+        <FlexContainer flex={1} column>
           <CustomText h3>Aplicaciones súbidas</CustomText>
+          <AplicationsGrid aplications={aplications} />
         </FlexContainer>
       </div>
     </FlexContainer>

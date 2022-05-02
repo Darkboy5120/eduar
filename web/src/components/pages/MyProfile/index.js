@@ -12,8 +12,10 @@ import globalStore, { setProfile } from '../../../assets/store/reducers/globalSt
 import request from '../../../assets/controllers/request';
 import ProfileAboutMe from '../../molecules/ProfileAboutMe';
 import ProfileConfiguration from '../../molecules/ProfileConfiguration';
+import globals from '../../../assets/datasets/globals';
 
 const prepareData = (data) => {
+  data.user.photo = data.user.photo ? `${globals.server.path}${data.user.photo}` : null;
   const level = {
     currentPoints: 0,
     currentLevel: 0,
@@ -40,11 +42,9 @@ const prepareData = (data) => {
   return { ...data, level };
 };
 
-const getProfileData = (alert) => {
-  const { auth, email } = globalStore.getState().user;
+const getProfileData = (email, alert) => {
   request.post('consumer_get_profile_data', {
     userEmail: email,
-    userAuth: auth,
   }).then((res) => {
     switch (res?.data?.code) {
       case 0:
@@ -56,12 +56,13 @@ const getProfileData = (alert) => {
   });
 };
 
-function MyProfile() {
+function MyProfile({ params }) {
   const [activeTab, setActiveTab] = useState(0);
   const alert = useAlert();
   const profile = useSelector((state) => state.profile);
+  const selfProfile = useSelector((state) => state.user.email) === params.user;
   useEffect(() => {
-    getProfileData(alert);
+    getProfileData(params.user, alert);
   }, []);
 
   return (
@@ -70,13 +71,17 @@ function MyProfile() {
         <LoadingSpinner size="big" />
       ) : (
         <FlexContainer className={styles.container}>
-          <ProfileNav {...{ activeTab, setActiveTab }} />
+          <ProfileNav selfProfile={selfProfile} {...{ activeTab, setActiveTab }} />
           <FlexContainer className={styles.dynamicContainer}>
             <ProfileAboutMe hidden={activeTab !== 0} />
-            <ProfileConfiguration hidden={activeTab !== 1} />
-            <FlexContainer hidden={activeTab !== 2}>
-              <CustomText h2 text="Proximamente" />
-            </FlexContainer>
+            {selfProfile ? (
+              <>
+                <ProfileConfiguration hidden={activeTab !== 1} />
+                <FlexContainer hidden={activeTab !== 2}>
+                  <CustomText h2 text="Proximamente" />
+                </FlexContainer>
+              </>
+            ) : null}
             <ProfileAchievements hidden={activeTab !== 3} />
           </FlexContainer>
         </FlexContainer>

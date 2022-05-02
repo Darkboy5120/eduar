@@ -9,15 +9,15 @@ import styles from './styles.module.css';
 import HelpIcon from '../../atoms/HelpIcon';
 import UserPhoto from '../../atoms/UserPhoto';
 
-function ProfileNav({ activeTab, setActiveTab }) {
-  const { firstname, lastname, email } = useSelector((state) => state.user);
+function ProfileNav({ selfProfile, activeTab, setActiveTab }) {
+  const { firstname, lastname, email } = useSelector((state) => state.profile.user);
   const fullname = `${firstname} ${lastname}`;
-  const { level } = useSelector((state) => state.profile);
+  const { level, user } = useSelector((state) => state.profile);
   const getActive = (index) => ({ secondary: index !== activeTab });
   return (
     <FlexContainer className={styles.container} column>
       <FlexContainer className={styles.imageContainer}>
-        <UserPhoto height={64} width={64} />
+        <UserPhoto height={64} width={64} path={user.photo} />
         <FlexContainer column>
           <CustomText text={fullname} bold />
           <CustomText text={email} />
@@ -35,8 +35,12 @@ function ProfileNav({ activeTab, setActiveTab }) {
       </FlexContainer>
       <FlexContainer className={styles.tabsContainer} column>
         <FilterButton title="Sobre mi" onClick={() => setActiveTab(0)} {...getActive(0)} />
-        <FilterButton title="Configuración" onClick={() => setActiveTab(1)} {...getActive(1)} />
-        <FilterButton title="Verificación" onClick={() => setActiveTab(2)} {...getActive(2)} />
+        {selfProfile ? (
+          <>
+            <FilterButton title="Configuración" onClick={() => setActiveTab(1)} {...getActive(1)} />
+            <FilterButton title="Verificación" onClick={() => setActiveTab(2)} {...getActive(2)} />
+          </>
+        ) : null}
         <FilterButton title="Logros" onClick={() => setActiveTab(3)} {...getActive(3)} />
       </FlexContainer>
     </FlexContainer>

@@ -73,7 +73,7 @@ function EditPassword() {
 }
 
 function EditPersonalInfo() {
-  const userData = useSelector((state) => state.user);
+  const userData = useSelector((state) => state.profile.user);
   const form = useEditPersonalInfo(userData);
   const alert = useAlert();
   const submit = {
