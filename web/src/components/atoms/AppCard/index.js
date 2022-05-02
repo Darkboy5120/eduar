@@ -7,6 +7,7 @@ import {
   FaEllipsisV,
 } from 'react-icons/fa';
 import { useAlert } from 'react-alert';
+import { useRouter } from 'next/router';
 import FlexContainer from '../../../layouts/FlexContainer';
 import CustomText from '../CustomText';
 import Dropdown from '../../molecules/Dropdown';
@@ -57,14 +58,15 @@ function AuthorOnlyActions({ setRemoveAppModal, authorId }) {
 }
 
 function AppCard({
-  name, version, imagePath, author, stats, appLink, id, setRefresh, authorId, already,
+  name, version, imagePath, author, stats, id, setRefresh, authorId, already,
 }) {
+  const router = useRouter();
   const [removeAppModal, setRemoveAppModal] = useState();
   const [loading, setLoading] = useState(false);
   const alert = useAlert();
 
   return (
-    <FlexContainer column href={appLink} className={styles.container}>
+    <FlexContainer column className={styles.container}>
       <Modal title="¿Estas seguro de eliminar esta aplicación?" visible={removeAppModal} setVisible={setRemoveAppModal}>
         <FlexButton
           title="Si, eliminala"
@@ -83,7 +85,7 @@ function AppCard({
           layout="fill"
           src={imagePath}
           onClick={() => {
-            window.location = `/?p=seear&appId=${id}`;
+            router.push(`/?p=seear&appId=${id}`);
           }}
         />
       </FlexContainer>

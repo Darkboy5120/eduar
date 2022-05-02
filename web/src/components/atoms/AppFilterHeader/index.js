@@ -27,7 +27,7 @@ function AppFilterHeader({
         <FilterPagination apps={apps} page={page} form={form} />
       </FlexContainer>
       <FlexContainer className={styles.dropdownsContainer}>
-        <InputDropdown className={styles.dropdown} title="Categorias" {...form.category} initialValue={category} getData={getCategories} />
+        <InputDropdown className={styles.dropdown} title="Categorías" {...form.category} initialValue={category} getData={getCategories} />
         <InputDropdown className={styles.dropdown} title="Ordernar por" {...form.orderBy} initialValue={orderBy} initialData={orderByData} />
         <InputDropdown className={styles.dropdown} title="Orden" {...form.orderType} initialData={orderTypeData} />
       </FlexContainer>

@@ -1,0 +1,32 @@
+.container {
+  width: inherit;
+}
+.imageContainer {
+  margin-bottom: 2em;
+}
+.infoContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1em;
+}
+.aplicationsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+}
+.appGridItem {
+  position: relative;
+  height: 4em;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline-offset: 1px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.appGridItem {
+  border: 2px solid transparent;
+}
+.appGridItem:hover {
+  border: 2px solid var(--main2);
+}

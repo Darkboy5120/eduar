@@ -1,3 +1,6 @@
 .disabled {
   opacity: .3;
 }
+.link {
+  cursor: pointer;
+}

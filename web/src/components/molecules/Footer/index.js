@@ -22,10 +22,10 @@ function AboutTab() {
   return (
     <FlexContainer column>
       <CustomText h4 text="Sobre Eduar" />
-      <CustomLink href="foo">¿Que es Eduar?</CustomLink>
-      <CustomLink href="foo">Objetivos</CustomLink>
-      <CustomLink href="foo">Para maestros</CustomLink>
-      <CustomLink href="foo">Guía para desarrolladores</CustomLink>
+      <CustomLink href="?p=welcome">¿Que es Eduar?</CustomLink>
+      <CustomLink href="?p=welcome">Objetivos</CustomLink>
+      <CustomLink href="?p=welcome">Para maestros</CustomLink>
+      <CustomLink href="?p=welcome">Guía para desarrolladores</CustomLink>
     </FlexContainer>
   );
 }
@@ -45,7 +45,7 @@ function Footer() {
       <div className={styles.tabsContainer}>
         <FlexContainer column className={styles.logoContainer}>
           <FlexContainer>
-            <Image src={logo} layout="fixed" className={styles.footerLogo} width={160} height={160} />
+            <Image priority src={logo} layout="fixed" className={styles.footerLogo} width={160} height={160} />
             <Image src={udc} layout="fixed" className={styles.footerLogo} width={64} height={64} />
           </FlexContainer>
           <CustomText h3 text={'"Aprendizaje para la nueva realidad"'} />
@@ -55,9 +55,9 @@ function Footer() {
         <UdcTab />
         <FlexContainer column>
           <CustomText h4 text="Más Información" />
-          <CustomLink href="foo">foo</CustomLink>
-          <CustomLink href="foo">foo</CustomLink>
-          <CustomLink href="foo">foo</CustomLink>
+          <CustomLink href="?p=welcome">foo</CustomLink>
+          <CustomLink href="?p=welcome">foo</CustomLink>
+          <CustomLink href="?p=welcome">foo</CustomLink>
         </FlexContainer>
       </div>
       <div className={styles.copyright}>

@@ -6,9 +6,10 @@ const inputValidations = {
     max: 50,
   },
   url: {
-    regex: /[^A-Za-z0-9:/._]+/,
+    regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
     min: 5,
     max: 50,
+    not: true,
   },
   description: {
     regex: /[^A-Za-z0-9 ,.]+/,

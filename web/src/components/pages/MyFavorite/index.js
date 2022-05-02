@@ -16,7 +16,7 @@ function MyFavorite() {
 
   return (
     <PageContainer>
-      {!data ? (
+      {data === undefined ? (
         <LoadingSpinner size="big" centered />
       ) : (
         <>

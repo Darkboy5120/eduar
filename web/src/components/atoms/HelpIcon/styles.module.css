@@ -1,0 +1,21 @@
+.container {
+  margin-left: .5em;
+  align-items: center;
+  position: relative;
+  font-size: 1.2rem;
+}
+.popup {
+  display: none;
+  position: absolute;
+  padding: .5em;
+  color: var(--main1);
+  background-color: var(--main2);
+  z-index: 2;
+  top: 100%;
+  border-radius: 5px;
+  width: 20vw;
+  font-size: 1rem;
+}
+.container:hover > .popup {
+  display: block;
+}

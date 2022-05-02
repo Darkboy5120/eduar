@@ -49,11 +49,11 @@ function Navbar() {
         dismiss={() => setSignUpModal(false)}
       />
       <Dropdown title="Eduar" leftIcon={<FaAlignJustify />}>
-        <DropdownItem title="Categorias" linkTarget="/?p=home" />
-        <DropdownItem title="¿Que es Eduar?" linkTarget="foo" />
-        <DropdownItem title="Objetivos" linkTarget="foo" />
-        <DropdownItem title="Para maestros" linkTarget="foo" />
-        <DropdownItem title="Guía para desarrolladores" linkTarget="foo" />
+        <DropdownItem title="Categorías" linkTarget="/?p=home" />
+        <DropdownItem title="¿Que es Eduar?" linkTarget="/?p=welcome" />
+        <DropdownItem title="Objetivos" linkTarget="/?p=welcome" />
+        <DropdownItem title="Para maestros" linkTarget="/?p=welcome" />
+        <DropdownItem title="Guía para desarrolladores" linkTarget="/?p=welcome" />
       </Dropdown>
       <div className={styles.rightContainer}>
         <InputSearch />
@@ -62,7 +62,7 @@ function Navbar() {
           <p>{globalState.user.email}</p>
           {globalState.signed ? (
             <>
-              <DropdownItem title="Ver perfil" linkTarget="/?p=myprofile" />
+              <DropdownItem title="Ver perfil" linkTarget={`/?p=myprofile&user=${globalState.user.email}`} />
               <DropdownItem title="Mis AR" linkTarget="/?p=myar" />
               <DropdownItem title="Mis favoritos" linkTarget="/?p=myfavorite" />
               <DropdownItem title="Cerrar sesión" onClick={() => fbPipe.signOut()} />

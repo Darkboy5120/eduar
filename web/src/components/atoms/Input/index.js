@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.module.css';
 
 function Input({
-  title, type, leftIcon, placeholder, onChange, reference, value,
+  title, type, leftIcon, placeholder, onChange, reference, value, disabled,
 }) {
   const iconLeftStyle = leftIcon ? styles.inputWithIconLeft : null;
   const inputTitleStyle = title ? styles.inputTitleSpace : null;
@@ -10,7 +10,7 @@ function Input({
     <div className={styles.inputContainer}>
       <span className={styles.inputTitle}>{title}</span>
       {leftIcon}
-      <input onChange={onChange} value={value} ref={reference} className={`${styles.input} ${iconLeftStyle} ${inputTitleStyle}`} type={type} placeholder={placeholder} />
+      <input disabled={disabled} onChange={onChange} value={value} ref={reference} className={`${styles.input} ${iconLeftStyle} ${inputTitleStyle}`} type={type} placeholder={placeholder} />
     </div>
   );
 }

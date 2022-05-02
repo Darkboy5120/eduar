@@ -16,7 +16,7 @@ function LandingCategories() {
       </FlexContainer>
       <FlexContainer column>
         <br />
-        <CustomText h2 text="Categorias AR" centered />
+        <CustomText h2 text="Categorías AR" centered />
         <CustomText text="Comienza a buscar en tu area de interes" centered />
         <br />
         <br />

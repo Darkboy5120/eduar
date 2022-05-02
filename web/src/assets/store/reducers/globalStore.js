@@ -6,7 +6,8 @@ const userInitialState = {
   lastname: null,
   email: null,
   birthdate: null,
-  appDetails: null,
+  photo: null,
+  screenParams: {},
 };
 
 export const globalSlice = createSlice({
@@ -14,6 +15,8 @@ export const globalSlice = createSlice({
   initialState: {
     user: userInitialState,
     signed: null,
+    appDetails: null,
+    profile: null,
   },
   reducers: {
     signIn: (state, data) => {
@@ -30,6 +33,16 @@ export const globalSlice = createSlice({
     clearAppDetails: (state) => {
       state.appDetails = null;
     },
+    setProfile: (state, data) => {
+      state.profile = data.payload;
+    },
+    updateFullname: (state, data) => {
+      state.user.firstname = data.payload.firstname;
+      state.user.lastname = data.payload.lastname;
+    },
+    setScreenParams: (state, data) => {
+      state.screenParams = { ...state.screenParams, ...data.payload };
+    },
   },
 });
 
@@ -38,7 +51,8 @@ const globalStore = configureStore({
 });
 
 export const {
-  signIn, signOut, setAppDetails, clearAppDetails,
+  signIn, signOut, setAppDetails, clearAppDetails, setProfile, updateFullname,
+  setScreenParams,
 } = globalSlice.actions;
 
 export default globalStore;

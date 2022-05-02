@@ -4,7 +4,7 @@ import formHookPipe from '../controllers/formHookPipe';
 import useSubmit from './useSubmit';
 
 const useNewArStep1 = () => formHookPipe({
-  name: useInput(inputValidations.string),
+  name: useInput(inputValidations.description),
   category: useInput(inputValidations.string),
   description: useInput(inputValidations.description),
   github: useInput(inputValidations.url),

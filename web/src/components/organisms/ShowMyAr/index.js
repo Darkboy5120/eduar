@@ -14,9 +14,13 @@ function ShowMyAr({ type }) {
       <>
         <CustomText h1 text="Aun no has subido aplicaciones" />
         <FlexContainer>
-          <CustomText text="Si necesitas ayuda para comenzar, consulta la -" />
-          <CustomLink href="foo">guía</CustomLink>
-          <CustomText text="- para desarrolladores" />
+          <CustomText>
+            Si necesitas ayuda para comenzar, consulta la
+            {' '}
+            <CustomLink href="foo">guía</CustomLink>
+            {' '}
+            para desarrolladores
+          </CustomText>
         </FlexContainer>
         <br />
         <CustomButton title="Subir AR" leftIcon={<FaPlus />} onClick={() => router.push('/?p=newar')} />

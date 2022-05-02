@@ -1,9 +1,11 @@
 .container {
 }
 .dynamicContainer {
-  background-color: var(--main6);
-  flex: 1;
+  position: relative;
+  background-color: var(--main5);
+  width: 70vw;
   margin-left: .5em;
   border-radius: 5px;
   padding: 1em;
+  box-shadow: 0px 2px 4px var(--shadow);
 }

@@ -6,6 +6,7 @@ import globals from '../datasets/globals';
 
 // const apiPath = 'http://localhost:3001/apis';
 const apiPath = `${globals.server.path}apis`;
+let customAlert = null;
 
 const isValidFile = (value) => {
   if (value.name && value.size && value.type) {
@@ -41,10 +42,22 @@ const req = (api, data, files) => {
     apiPath,
     newData,
   )
+    .then((res) => {
+      if (res?.data?.data?.newAchievements) {
+        const { newAchievements } = res.data.data;
+        for (const achieve of newAchievements) {
+          customAlert.show(`Logro desbloqueado: ${achieve.title}`, { type: 'success' });
+        }
+      }
+      return res;
+    })
     .catch((e) => console.error(e));
 };
 
 const request = {
+  setAlert: (newAlert) => {
+    customAlert = newAlert;
+  },
   post: (api, data, files) => req(api, data, files),
 };
 
