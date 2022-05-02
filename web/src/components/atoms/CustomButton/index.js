@@ -4,6 +4,8 @@ import LoadingSpinner from '../LoadingSpinner';
 
 const getButtonStyle = (className, flex) => `${styles.buttonContainer} ${className ?? ''} ${flex ? styles.flex : null}`;
 
+const getDisabled = (forceError, disabled) => forceError || disabled;
+
 function CustomButton({
   title, onClick, leftIcon, type, disabled, loading, className, flex, forceError,
 }) {
@@ -12,7 +14,7 @@ function CustomButton({
   const buttonStyle = getButtonStyle(className, flex);
   return (
     <button
-      disabled={forceError || disabled}
+      disabled={getDisabled(forceError, disabled)}
       type={type ? 'submit' : 'button'}
       className={buttonStyle}
       onClick={onClick}

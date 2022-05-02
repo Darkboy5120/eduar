@@ -14,8 +14,15 @@ import ProfileAboutMe from '../../molecules/ProfileAboutMe';
 import ProfileConfiguration from '../../molecules/ProfileConfiguration';
 import globals from '../../../assets/datasets/globals';
 
+// eslint-disable-next-line arrow-body-style
+const isCurrentLevel = (level, lvl) => {
+  return level.currentPoints >= lvl.minpoints && level.currentPoints < lvl.maxpoints;
+};
+
+const getUserPhoto = (data) => (data.user.photo ? `${globals.server.path}${data.user.photo}` : null);
+
 const prepareData = (data) => {
-  data.user.photo = data.user.photo ? `${globals.server.path}${data.user.photo}` : null;
+  data.user.photo = getUserPhoto(data);
   const level = {
     currentPoints: 0,
     currentLevel: 0,
@@ -31,7 +38,7 @@ const prepareData = (data) => {
     if (!level.maxPoints) {
       level.maxPoints = lvl.minpoints;
     }
-    if (level.currentPoints >= lvl.minpoints && level.currentPoints < lvl.maxpoints) {
+    if (isCurrentLevel(level, lvl)) {
       level.currentLevel = lvl.pk_level;
       level.maxPoints = lvl.maxpoints;
       level.minPoints = lvl.minpoints;

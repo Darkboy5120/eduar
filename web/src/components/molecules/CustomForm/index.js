@@ -6,6 +6,8 @@ import Form from '../../atoms/Form';
 import CustomLink from '../../atoms/CustomLink';
 import FlexContainer from '../../../layouts/FlexContainer';
 
+const getDisabled = (forceError, ok) => forceError || !ok;
+
 function CustomForm({
   title, footer, submit, children, ok, loading, back, row, removePadding, submitContainerStyle, className, forceError = false,
 }) {
@@ -22,7 +24,7 @@ function CustomForm({
             // eslint-disable-next-line max-len
             ? <CustomButton title={back.label} className={styles.backButton} onClick={back.onClick} />
             : null}
-          <CustomButton className={buttonStyle} disabled={forceError || !ok} loading={loading} type="submit" title={submit.label} onClick={submit.onClick} />
+          <CustomButton className={buttonStyle} disabled={getDisabled(forceError, ok)} loading={loading} type="submit" title={submit.label} onClick={submit.onClick} />
         </FlexContainer>
       </Form>
       {footer ? (
