@@ -20,6 +20,19 @@ function Welcome() {
         para movil y al mismo tiempo se pueda incentivar el desarrollo de
         las aplicaciones entre una comunidad de desarrolladores.
       </CustomText>
+      <br />
+      <CustomText h2>Objetivos</CustomText>
+      <CustomText>
+        Se tiene como metas dar accesibilidad a las aplicaciones AR, asi
+        como promover un buen flujo de desarrollo de aplicaciones AR, y
+        por lo tanto facilitar el desarrollo de aplicaciones AR. Tambien
+        se busca motivar a los desarrolladores a crear y seguir creando
+        aplicaciones AR y brindarles a los estudiantes y profesores la
+        confianza para descargar aplicaciones de los desarrolladores.
+        Tambien se desea crear una comunidad que pueda autosustentar el
+        ciclo. Finalmente se busca concientizar a los profesores de los
+        riesgos de usar AR sin las correctas metodologias
+      </CustomText>
     </PageContainer>
   );
 }
