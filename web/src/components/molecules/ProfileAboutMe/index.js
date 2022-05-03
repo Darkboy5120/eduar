@@ -8,6 +8,7 @@ import UserPhoto from '../../atoms/UserPhoto';
 import LoadingSpinner from '../../atoms/LoadingSpinner';
 import CustomLink from '../../atoms/CustomLink';
 import globals from '../../../assets/datasets/globals';
+import datePipe from '../../../assets/controllers/datePipe';
 
 function AplicationsGrid({ aplications }) {
   return aplications.length > 0 ? (
@@ -22,7 +23,9 @@ function AplicationsGrid({ aplications }) {
 }
 
 function ProfileAboutMe({ hidden }) {
-  const { aplications, activity } = useSelector((state) => state.profile);
+  const { aplications, activity, user } = useSelector((state) => state.profile);
+  const registerdate = datePipe.getDateName(user.registerdate);
+  const birthdate = datePipe.getDateName(user.birthdate);
   const commentsLength = activity.filter((inter) => inter.fk_interaction_type === 'comment').length;
   const favLength = activity.filter((inter) => inter.fk_interaction_type === 'favorite').length;
   const likesLength = activity.filter((inter) => inter.fk_interaction_type === 'endorsement').length;
@@ -37,10 +40,10 @@ function ProfileAboutMe({ hidden }) {
           <CustomText h3>Información adicional</CustomText>
           <ul>
             <li>
-              <CustomText>Se registró en Eduar el 12 de febrero del 2022 (hace 2 meses)</CustomText>
+              <CustomText>{`Se registró en Eduar el ${registerdate}`}</CustomText>
             </li>
             <li>
-              <CustomText>Cumple años el 7 de septiembre</CustomText>
+              <CustomText>{`Cumple años el ${birthdate}`}</CustomText>
             </li>
           </ul>
           <br />
