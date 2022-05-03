@@ -26,6 +26,7 @@ const prepareAppFiles = (form2) => ({
 
 const createApp = (form1, form2, alert, router, setStep2) => {
   form2.submit.setLoading(true);
+  request.setAlert(alert);
   request.post('developer_createApp', {
     developerId: globalStore.getState().user.email,
     name: form1.name.value,
